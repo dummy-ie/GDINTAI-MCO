@@ -25,6 +25,10 @@ namespace components {
 
         public:
             bool isSpace();
+            bool isUp();
+            bool isDown();
+            bool isLeft();
+            bool isRight();
     };
 }
 
