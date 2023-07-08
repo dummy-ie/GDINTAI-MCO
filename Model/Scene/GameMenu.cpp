@@ -30,5 +30,5 @@ void GameMenu::createBackground() {
 
 void GameMenu::createUserInterface() {
     TitleScreen* pTitleScreen = new TitleScreen("Title Screen");
-    GameObjectManager::getInstance()->addObject(pTitleScreen);
+    this->registerObject(pTitleScreen);
 }

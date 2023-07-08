@@ -13,6 +13,7 @@
 #include "../AnimatedTexture.hpp"
 
 #include "../Entity/Background.hpp"
+#include "../Entity/Tank.hpp"
 
 #include "../../View/Screen/TitleScreen.hpp"
 //#include "../../View/Screen/Leaderboards.hpp"
@@ -29,6 +30,10 @@ namespace scenes {
             void onLoadResources();
             void onLoadObjects();
             void onUnloadResources();
+
+        private:
+            void createMap();
+            void createTanks();
     };
 }
 

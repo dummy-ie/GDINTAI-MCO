@@ -3,7 +3,9 @@
 
 enum class AssetType : int {
     NONE = -1,
-    MENU_BACKGROUND
+    MENU_BACKGROUND,
+    PLAYER_TANK,
+    ENEMY_TANK
 };
 
 #endif

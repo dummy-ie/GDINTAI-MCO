@@ -14,10 +14,15 @@
 
 #include "Model/Component/Input/ButtonInput.cpp"
 #include "Model/Component/Input/GeneralInput.cpp"
+#include "Model/Component/Input/TankInput.cpp"
 
 #include "Model/Component/Renderer/Renderer.cpp"
 
+#include "Model/Component/Script/TankControls.cpp"
+
 #include "Model/Entity/Background.cpp"
+#include "Model/Entity/Tank.cpp"
+#include "Model/Entity/Base.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 

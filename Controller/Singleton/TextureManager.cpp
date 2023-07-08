@@ -4,6 +4,7 @@ using namespace controllers;
 
 void TextureManager::loadAll() {
     this->loadBackgroundFolder();
+    this->loadTankFolder();
 }
 
 void TextureManager::loadBackgroundFolder() {
@@ -12,6 +13,18 @@ void TextureManager::loadBackgroundFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/menu_background.jpg");
     this->mapTexture[AssetType::MENU_BACKGROUND].push_back(pTexture);
+}
+
+void TextureManager::loadTankFolder() {
+    sf::Texture* pTexture = NULL;
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/ventiTroll.png");
+    this->mapTexture[AssetType::PLAYER_TANK].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/ventiTroll.png");
+    this->mapTexture[AssetType::ENEMY_TANK].push_back(pTexture);
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

@@ -14,6 +14,7 @@ namespace controllers {
 
 		private:
 			void loadBackgroundFolder();
+            void loadTankFolder();
 
         private:
 		    static TextureManager* P_SHARED_INSTANCE;
