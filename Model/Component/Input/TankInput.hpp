@@ -18,16 +18,13 @@ namespace components {
         public:
             void perform();
             void resetSpace();
+            void resetMovement();
 
         private:
             void processKeyInput(bool bPressed);
 
         public:
             bool isSpace();
-            bool isUp();
-            bool isDown();
-            bool isLeft();
-            bool isRight();
     };
 }
 

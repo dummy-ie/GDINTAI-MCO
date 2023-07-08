@@ -19,11 +19,11 @@ void TextureManager::loadTankFolder() {
     sf::Texture* pTexture = NULL;
 
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/ventiTroll.png");
+    pTexture->loadFromFile("View/Image/player.png");
     this->mapTexture[AssetType::PLAYER_TANK].push_back(pTexture);
 
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/ventiTroll.png");
+    pTexture->loadFromFile("View/Image/enemy.png");
     this->mapTexture[AssetType::ENEMY_TANK].push_back(pTexture);
 }
 

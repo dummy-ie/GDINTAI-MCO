@@ -16,17 +16,25 @@ void TankControls::perform() {
     else {
         float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
         
-        if(pInput->isUp() && pOwner->isTopBounds())
+        if(pInput->isUp() && pOwner->isTopBounds()) {
             this->getOwner()->getSprite()->move(0.0f, -fOffset);
+            this->getOwner()->getSprite()->setRotation(0.0f);
+        }
 
-        if(pInput->isDown() && pOwner->isBottomBounds())
+        if(pInput->isDown() && pOwner->isBottomBounds()) {
             this->getOwner()->getSprite()->move(0.0f, fOffset);
+            this->getOwner()->getSprite()->setRotation(180.0f);
+        }
         
-        if(pInput->isLeft() && pOwner->isLeftBounds())
+        if(pInput->isLeft() && pOwner->isLeftBounds()) {
             this->getOwner()->getSprite()->move(-fOffset, 0.0f);
+            this->getOwner()->getSprite()->setRotation(270.0f);
+        }
 
-        if(pInput->isRight() && pOwner->isRightBounds())
+        if(pInput->isRight() && pOwner->isRightBounds()) {
             this->getOwner()->getSprite()->move(fOffset, 0.0f);
+            this->getOwner()->getSprite()->setRotation(90.0f);
+        }
 
         if(pInput->isSpace()) {
             pInput->resetSpace();
