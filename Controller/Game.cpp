@@ -2,7 +2,7 @@
 
 using namespace controllers;
 
-Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Risk of Death", sf::Style::Titlebar | sf::Style::Close) {
+Game::Game() : rwWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Tanky Tanks", sf::Style::Titlebar | sf::Style::Close) {
     this->rwWindow.setFramerateLimit(FRAME_RATE_LIMIT);
 
     TextureManager::getInstance()->loadAll();

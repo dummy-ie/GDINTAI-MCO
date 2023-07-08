@@ -11,6 +11,7 @@
 namespace models {
     class Tank : public PoolableObject {
         private:
+            //std::vector<Base*> vecBase;
             bool bTopBounds;
             bool bLeftBounds;
             bool bBottomBounds;

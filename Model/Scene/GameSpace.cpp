@@ -26,11 +26,11 @@ void GameSpace::createMap() {
 void GameSpace::createTanks() {
     AssetType EType = AssetType::PLAYER_TANK;
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
-    Tank* pPlayer = new Tank(PoolTag::TANK, "Player Tank", pTexture);
+    Player* pPlayer = new Player(PoolTag::TANK, "Player Tank", pTexture);
     this->registerObject(pPlayer);
 
     EType = AssetType::ENEMY_TANK;
     pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
-    Tank* pEnemy = new Tank(PoolTag::TANK, "Enemy Tank", pTexture);
+    Enemy* pEnemy = new Enemy(PoolTag::TANK, "Enemy Tank", pTexture);
     this->registerObject(pEnemy);
 }

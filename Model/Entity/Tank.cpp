@@ -11,25 +11,7 @@ Tank::Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture) : Poola
 
 Tank::~Tank() {}
 
-void Tank::initialize() {
-    this->setFrame(0);
-    this->centerSpriteOrigin();
-    this->pSprite->setPosition(90.0f, 210.0f);
-
-    Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
-    pRendererComponent->assignDrawable(this->pSprite);
-
-    TankInput* pInputComponent = new TankInput(this->strName + " Input");
-    TankControls* pControlsComponent = new TankControls(this->strName + " Controls");
-
-    //Collider* pCollider = new Collider(this->strName + " Collider");
-    //pCollider->setListener(this);
-
-    this->attachComponent(pRendererComponent);
-    this->attachComponent(pInputComponent);
-    this->attachComponent(pControlsComponent);
-    //this->attachComponent(pCollider);
-}
+void Tank::initialize() {}
 
 void Tank::onActivate() {
     //float fHalfWidth = this->pShip->getSprite()->getGlobalBounds().width / 2.0f;
@@ -46,11 +28,7 @@ void Tank::onActivate() {
 
 void Tank::onRelease() {}
 
-PoolableObject* Tank::clone() {
-    //PoolableObject* pClone = new Tank(this->strName, new AnimatedTexture(*this->pTexture), this->pBase);
-    PoolableObject* pClone = NULL;
-    return pClone;
-}
+PoolableObject* Tank::clone() {}
 
 bool Tank::isTopBounds() {
     return this->bTopBounds;

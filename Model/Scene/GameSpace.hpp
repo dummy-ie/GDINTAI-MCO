@@ -13,7 +13,8 @@
 #include "../AnimatedTexture.hpp"
 
 #include "../Entity/Background.hpp"
-#include "../Entity/Tank.hpp"
+#include "../Entity/Tank/Player.hpp"
+#include "../Entity/Tank/Enemy.hpp"
 
 #include "../../View/Screen/TitleScreen.hpp"
 //#include "../../View/Screen/Leaderboards.hpp"

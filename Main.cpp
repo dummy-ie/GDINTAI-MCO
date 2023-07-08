@@ -24,6 +24,9 @@
 #include "Model/Entity/Tank.cpp"
 #include "Model/Entity/Base.cpp"
 
+#include "Model/Entity/Tank/Player.cpp"
+#include "Model/Entity/Tank/Enemy.cpp"
+
 #include "Model/Pooling/PoolableObject.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
