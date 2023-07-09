@@ -12,7 +12,9 @@ Tank::Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture) : Poola
 
 Tank::~Tank() {}
 
-void Tank::initialize() {}
+void Tank::initialize() {
+    this->pSprite->setOrigin(18.0f, 25.0f);
+}
 
 void Tank::onActivate() {
     //float fHalfWidth = this->pShip->getSprite()->getGlobalBounds().width / 2.0f;
