@@ -5,12 +5,11 @@
 
 #include "../../Config/Settings.hpp"
 
-#include "../../Controller/Singleton/TextureManager.hpp"
-
 #include "../Enum/EnumAssetType.hpp"
 #include "../Enum/EnumSceneTag.hpp"
 
 #include "../AnimatedTexture.hpp"
+#include "../EmptyGameObject.hpp"
 
 #include "../Entity/Background.hpp"
 
@@ -19,12 +18,11 @@
 
 #include "../Entity/Tile/Wall.hpp"
 
-#include "../../View/Screen/TitleScreen.hpp"
-//#include "../../View/Screen/Leaderboards.hpp"
-
 namespace scenes {
+    using namespace controllers;
     using namespace models;
     using namespace views;
+    using namespace systems;
     class GameSpace : public Scene {
         public:
             GameSpace();
@@ -36,8 +34,10 @@ namespace scenes {
             void onUnloadResources();
 
         private:
+            void createNullObjectComponents();
             void createMap();
             void createTanks();
+            void createBorders();
     };
 }
 

@@ -8,9 +8,11 @@
 #include "../Component/Input/TankInput.hpp"
 #include "../Component/Script/TankControls.hpp"
 
+#include "../Component/Physics/Interface/CollisionListener.hpp"
+
 namespace models {
-    class Tank : public PoolableObject {
-        private:
+    class Tank : public PoolableObject, public CollisionListener {
+        protected:
             //std::vector<Base*> vecBase;
             bool bTopBounds;
             bool bLeftBounds;
@@ -33,6 +35,10 @@ namespace models {
             bool isLeftBounds();
             bool isBottomBounds();
             bool isRightBounds();
+
+        public:
+            virtual void onCollisionEnter(GameObject* pGameObject);
+            virtual void onCollisionExit(GameObject* pGameObject);
     };
 }
 

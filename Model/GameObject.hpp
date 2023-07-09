@@ -57,7 +57,7 @@ namespace models {
 
             std::string getName();
             sf::Sprite* getSprite();
-            sf::FloatRect getGlobalBounds();
+            virtual sf::FloatRect getGlobalBounds();
 
             GameObject* getParent();
             void setParent(GameObject* pParent);

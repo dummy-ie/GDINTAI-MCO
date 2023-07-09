@@ -16,11 +16,13 @@ void Player::initialize() {
     TankInput* pInputComponent = new TankInput(this->strName + " Input");
     TankControls* pControlsComponent = new TankControls(this->strName + " Controls");
 
-    //Collider* pCollider = new Collider(this->strName + " Collider");
-    //pCollider->setListener(this);
+    Collider* pCollider = new Collider(this->strName + " Collider");
+    pCollider->setListener(this);
 
     this->attachComponent(pRendererComponent);
     this->attachComponent(pInputComponent);
     this->attachComponent(pControlsComponent);
-    //this->attachComponent(pCollider);
+    this->attachComponent(pCollider);
+
+    PhysicsManager::getInstance()->trackCollider(pCollider);
 }

@@ -3,10 +3,12 @@
 
 #include "../Tile.hpp"
 
+#include "../Border/Border.hpp"
+
 namespace models {
     class Wall : public Tile {
         public:
-            Wall(std::string strName, AnimatedTexture* pTexture);
+            Wall(std::string strName, AnimatedTexture* pTexture, sf::Vector2f CPosition);
             ~Wall();
 
         public:

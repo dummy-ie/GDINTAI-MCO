@@ -15,10 +15,10 @@ void Enemy::initialize() {
 
     TankControls* pControlsComponent = new TankControls(this->strName + " Controls");
 
-    //Collider* pCollider = new Collider(this->strName + " Collider");
-    //pCollider->setListener(this);
+    Collider* pCollider = new Collider(this->strName + " Collider");
+    pCollider->setListener(this);
 
     this->attachComponent(pRendererComponent);
     this->attachComponent(pControlsComponent);
-    //this->attachComponent(pCollider);
+    this->attachComponent(pCollider);
 }

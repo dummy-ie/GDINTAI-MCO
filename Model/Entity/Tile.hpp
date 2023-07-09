@@ -6,10 +6,10 @@
 namespace models {
     class Tile : public GameObject {
         protected:
-            sf::FloatRect CBounds;
-        
+            sf::Vector2f CPosition;
+
         public:
-            Tile(std::string strName, AnimatedTexture* pTexture);
+            Tile(std::string strName, AnimatedTexture* pTexture, sf::Vector2f CPosition);
             ~Tile();
 
         public:

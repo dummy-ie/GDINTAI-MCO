@@ -6,7 +6,7 @@
 #include "SFML/Graphics.hpp"
 
 #include "Model/AnimatedTexture.cpp"
-#include "Model/EmptyGameObject.hpp"
+#include "Model/EmptyGameObject.cpp"
 #include "Model/GameObject.cpp"
 #include "Model/Scene.cpp"
 
@@ -15,6 +15,8 @@
 #include "Model/Component/Input/ButtonInput.cpp"
 #include "Model/Component/Input/GeneralInput.cpp"
 #include "Model/Component/Input/TankInput.cpp"
+
+#include "Model/Component/Physics/Collider.cpp"
 
 #include "Model/Component/Renderer/Renderer.cpp"
 
@@ -25,11 +27,13 @@
 #include "Model/Entity/Tile.cpp"
 //#include "Model/Entity/Map.cpp"
 
-#include "Model/Entity/Tile/Base.cpp"
-#include "Model/Entity/Tile/Wall.cpp"
+#include "Model/Entity/Border/Border.cpp"
 
 #include "Model/Entity/Tank/Player.cpp"
 #include "Model/Entity/Tank/Enemy.cpp"
+
+//#include "Model/Entity/Tile/Base.cpp"
+#include "Model/Entity/Tile/Wall.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 
@@ -50,10 +54,12 @@
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 
+#include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/SceneManager.cpp"
 #include "Controller/System/ViewManager.cpp"
 
 #include "Controller/Game.cpp"
+
 
 int main(int argc, const char** argv) {
     std::cout << "i hate you world" << std::endl;
