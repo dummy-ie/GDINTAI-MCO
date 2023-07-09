@@ -23,9 +23,10 @@
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Tank.cpp"
 #include "Model/Entity/Tile.cpp"
-#include "Model/Entity/Map.cpp"
+//#include "Model/Entity/Map.cpp"
 
 #include "Model/Entity/Tile/Base.cpp"
+#include "Model/Entity/Tile/Wall.cpp"
 
 #include "Model/Entity/Tank/Player.cpp"
 #include "Model/Entity/Tank/Enemy.cpp"

@@ -7,13 +7,12 @@ Tank::Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture) : Poola
     this->bLeftBounds = true;
     this->bBottomBounds = true;
     this->bRightBounds = true;
-    this->centerSpriteOrigin();
 }
 
 Tank::~Tank() {}
 
 void Tank::initialize() {
-    this->pSprite->setOrigin(18.0f, 25.0f);
+    this->centerSpriteOrigin();
 }
 
 void Tank::onActivate() {

@@ -5,6 +5,7 @@ using namespace controllers;
 void TextureManager::loadAll() {
     this->loadBackgroundFolder();
     this->loadTankFolder();
+    this->loadWallFolder();
 }
 
 void TextureManager::loadBackgroundFolder() {
@@ -25,6 +26,22 @@ void TextureManager::loadTankFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/enemy.png");
     this->mapTexture[AssetType::ENEMY_TANK].push_back(pTexture);
+}
+
+void TextureManager::loadWallFolder() {
+    sf::Texture* pTexture = NULL;
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/stone.png");
+    this->mapTexture[AssetType::STONE].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/brick.png");
+    this->mapTexture[AssetType::BRICK].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/bush.png");
+    this->mapTexture[AssetType::BUSH].push_back(pTexture);
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

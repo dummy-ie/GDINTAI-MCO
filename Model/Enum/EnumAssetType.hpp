@@ -5,7 +5,11 @@ enum class AssetType : int {
     NONE = -1,
     MENU_BACKGROUND,
     PLAYER_TANK,
-    ENEMY_TANK
+    ENEMY_TANK,
+
+    STONE,
+    BRICK,
+    BUSH
 };
 
 #endif
