@@ -34,22 +34,30 @@ void TankInput::processKeyInput(bool bPressed) {
             break;
 
         case sf::Keyboard::W:
-            this->resetMovement();
             this->bUp = bPressed;
+            this->bDown = false;
+            this->bLeft = false;
+            this->bRight = false;
             break;
 
         case sf::Keyboard::S:
-            this->resetMovement();
+            this->bUp = false;
             this->bDown = bPressed;
+            this->bLeft = false;
+            this->bRight = false;
             break;
 
         case sf::Keyboard::A:
-            this->resetMovement();
+            this->bUp = false;
+            this->bDown = false;
             this->bLeft = bPressed;
+            this->bRight = false;
             break;
 
         case sf::Keyboard::D:
-            this->resetMovement();
+            this->bUp = false;
+            this->bDown = false;
+            this->bLeft = false;
             this->bRight = bPressed;
             break;
 
@@ -60,13 +68,6 @@ void TankInput::processKeyInput(bool bPressed) {
 
 void TankInput::resetSpace() {
     this->bSpace = false;
-}
-
-void TankInput::resetMovement() {
-    this->bUp = false;
-    this->bDown = false;
-    this->bLeft = false;
-    this->bRight = false;
 }
 
 bool TankInput::isSpace() {

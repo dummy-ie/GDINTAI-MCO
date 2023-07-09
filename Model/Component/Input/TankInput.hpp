@@ -18,7 +18,6 @@ namespace components {
         public:
             void perform();
             void resetSpace();
-            void resetMovement();
 
         private:
             void processKeyInput(bool bPressed);

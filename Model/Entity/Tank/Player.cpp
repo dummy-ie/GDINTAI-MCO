@@ -8,6 +8,8 @@ Player::~Player() {}
 
 void Player::initialize() {
     this->setFrame(0);
+    this->centerSpriteOrigin();
+    this->pSprite->setScale(2.f, 2.f);
 
     Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
     pRendererComponent->assignDrawable(this->pSprite);

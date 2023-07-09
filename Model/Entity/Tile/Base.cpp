@@ -2,6 +2,6 @@
 
 using namespace models;
 
-//Base::Base(std::string strName, AnimatedTexture* pTexture) : Tile(strName, pTexture) {}
+Base::Base(std::string strName, AnimatedTexture* pTexture) : Tile(strName, pTexture) {}
 
-//Base::~Base() {}
+Base::~Base() {}
