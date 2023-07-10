@@ -19,9 +19,14 @@ void TextureManager::loadBackgroundFolder() {
 void TextureManager::loadTankFolder() {
     sf::Texture* pTexture = NULL;
 
+    AssetType EType = AssetType::PLAYER_TANK;
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/player.png");
-    this->mapTexture[AssetType::PLAYER_TANK].push_back(pTexture);
+    pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(768, 128, 32, 32));
+    this->mapTexture[EType].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(768, 160, 32, 32));
+    this->mapTexture[EType].push_back(pTexture);
 
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/enemy.png");
@@ -32,7 +37,7 @@ void TextureManager::loadWallFolder() {
     sf::Texture* pTexture = NULL;
 
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/stone.png");
+    pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(928, 144, 16, 16));
     this->mapTexture[AssetType::STONE].push_back(pTexture);
 
     pTexture = new sf::Texture();

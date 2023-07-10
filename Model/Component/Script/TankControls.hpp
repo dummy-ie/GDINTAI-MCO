@@ -17,6 +17,8 @@ namespace components {
     class TankControls : public Component {
         private:
             float fSpeed;
+            float fFrameInterval;
+            float fTicks;
             
         public:
             TankControls(std::string strName);

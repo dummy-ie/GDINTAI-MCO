@@ -4,6 +4,8 @@ using namespace components;
 
 TankControls::TankControls(std::string strName) : Component(strName, ComponentType::SCRIPT) {
     this->fSpeed = 80.f;
+    this->fFrameInterval = 20.f;
+    this->fTicks = 0.0f;
 }
 
 void TankControls::perform() {
@@ -15,7 +17,11 @@ void TankControls::perform() {
     }
     else {
         float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
-        
+        this->fTicks++;
+        if (this->fTicks > this->fFrameInterval) {
+            this->fTicks = 0.0f;
+            this->getOwner()->incrementFrame();
+        }
         if(pInput->isUp()) {
             this->getOwner()->getSprite()->setRotation(0.0f);
             if (pOwner->isTopBounds())
