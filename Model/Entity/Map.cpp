@@ -55,8 +55,8 @@ void Map::initialize()
                         Wall *pWall = new Wall(
                             "Stone Wall", 
                             pTexture, 
-                            sf::Vector2f(j * nOffset + k * 16 + 8, i * nOffset + l * 16 + 8), 
-                            sf::Vector2f(-1, -1)); // replace this with sf::Vector2f(k, l) to get the border culling effect
+                            sf::Vector2f(j * nOffset + k * 16 + 8, i * nOffset + l * 16 + 8)); 
+                            // sf::Vector2f(-1, -1)); // replace this with sf::Vector2f(k, l) to get the border culling effect (deprecated)
                         this->attachChild(pWall);
                         // std::cout << "created a wall" << std::endl;
                     }
