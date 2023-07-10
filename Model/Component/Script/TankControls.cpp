@@ -24,26 +24,38 @@ void TankControls::perform() {
         }
         if(pInput->isUp()) {
             this->getOwner()->getSprite()->setRotation(0.0f);
-            if (pOwner->isTopBounds())
+            if (pOwner->isTopBounds()) {
                 this->getOwner()->getSprite()->move(0.0f, -fOffset);
+                pOwner->moveBounds(0.0f, -fOffset);
+                pOwner->getRectangle()->move(0.0f, -fOffset);
+            }   
         }
 
         if(pInput->isDown()) {
             this->getOwner()->getSprite()->setRotation(180.0f);
-            if (pOwner->isBottomBounds())
+            if (pOwner->isBottomBounds()) {
                 this->getOwner()->getSprite()->move(0.0f, fOffset);
+                pOwner->moveBounds(0.0f, fOffset);
+                pOwner->getRectangle()->move(0.0f, fOffset);
+            }
         }
         
         if(pInput->isLeft()) {
             this->getOwner()->getSprite()->setRotation(270.0f);
-            if (pOwner->isLeftBounds())
+            if (pOwner->isLeftBounds()) {
                 this->getOwner()->getSprite()->move(-fOffset, 0.0f);
+                pOwner->moveBounds(-fOffset, 0.0f);
+                pOwner->getRectangle()->move(-fOffset, 0.0f);
+            }
         }
 
         if(pInput->isRight()) {
             this->getOwner()->getSprite()->setRotation(90.0f);
-            if (pOwner->isRightBounds())
+            if (pOwner->isRightBounds()) {
                 this->getOwner()->getSprite()->move(fOffset, 0.0f);
+                pOwner->moveBounds(fOffset, 0.0f);
+                pOwner->getRectangle()->move(fOffset, 0.0f);
+            }
         }
 
         if(pInput->isSpace()) {

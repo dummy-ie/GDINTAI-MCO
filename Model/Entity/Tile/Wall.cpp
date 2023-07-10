@@ -13,13 +13,14 @@ void Wall::initialize() {
         this->CColor = sf::Color(255, 0, 0, 100);
     else
         this->CColor = sf::Color::Transparent;
-    this->pRectangle = new sf::RectangleShape(sf::Vector2f(this->getGlobalBounds().width, this->getGlobalBounds().height));
-    this->pRectangle->setFillColor(this->CColor);
-    this->pRectangle->setPosition(this->CPosition.x - this->getGlobalBounds().width / 2, this->CPosition.y - this->getGlobalBounds().height / 2);
-    
+
     this->setFrame(0);
     this->getSprite()->setPosition(this->CPosition);
     this->centerSpriteOrigin();
+
+    this->pRectangle = new sf::RectangleShape(sf::Vector2f(this->getGlobalBounds().width, this->getGlobalBounds().height));
+    this->pRectangle->setFillColor(this->CColor);
+    this->pRectangle->setPosition(this->getGlobalBounds().left, this->getGlobalBounds().top);
 
     Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
     pRendererComponent->assignDrawable(this->pSprite);

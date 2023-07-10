@@ -14,10 +14,13 @@ namespace models {
     class Tank : public PoolableObject, public CollisionListener {
         protected:
             //std::vector<Base*> vecBase;
+            sf::FloatRect CBounds;
             bool bTopBounds;
             bool bLeftBounds;
             bool bBottomBounds;
             bool bRightBounds;
+            sf::RectangleShape* pRectangle;
+
         public:
             Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
             ~Tank();
@@ -40,6 +43,10 @@ namespace models {
             virtual void onCollisionEnter(GameObject* pGameObject);
             virtual void onCollisionContinue(GameObject* pGameObject);
             virtual void onCollisionExit(GameObject* pGameObject);
+
+        public:
+            sf::RectangleShape* getRectangle();
+            void moveBounds(float x, float y);
     };
 }
 

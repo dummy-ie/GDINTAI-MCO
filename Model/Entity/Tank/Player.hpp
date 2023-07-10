@@ -13,6 +13,10 @@ namespace models {
 
         public:
             void initialize();
+
+        public:
+            sf::FloatRect getGlobalBounds();
+            
     };
 }
 
