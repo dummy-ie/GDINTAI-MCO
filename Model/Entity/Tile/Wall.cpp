@@ -9,12 +9,24 @@ Wall::Wall(std::string strName, AnimatedTexture* pTexture, sf::Vector2f CPositio
 Wall::~Wall() {}
 
 void Wall::initialize() {
+    if(COLLIDER_VISIBILITY)
+        this->CColor = sf::Color(255, 0, 0, 100);
+    else
+        this->CColor = sf::Color::Transparent;
+    this->pRectangle = new sf::RectangleShape(sf::Vector2f(16.f, 16.f));
+    this->pRectangle->setFillColor(this->CColor);
+    this->pRectangle->setPosition(this->CPosition);
     this->setFrame(0);
     this->getSprite()->setPosition(this->CPosition);
     this->centerSpriteOrigin();
 
     Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
     pRendererComponent->assignDrawable(this->pSprite);
+
+    this->attachComponent(pRendererComponent);
+
+    pRendererComponent = new Renderer(this->strName + " Rectangle");
+    pRendererComponent->assignDrawable(this->pRectangle);
 
     this->attachComponent(pRendererComponent);
 

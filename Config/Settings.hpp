@@ -1,6 +1,8 @@
 #ifndef CONFIGS_SETTINGS_HPP
 #define CONFIGS_SETTINGS_HPP
 
+const bool COLLIDER_VISIBILITY = true;
+
 const int SCREEN_WIDTH  = 544;
 const int SCREEN_HEIGHT = 544;
 
