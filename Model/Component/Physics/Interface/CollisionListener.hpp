@@ -12,6 +12,7 @@ namespace listeners {
 
         public:
             virtual void onCollisionEnter(GameObject* pGameObject) = 0;
+            virtual void onCollisionContinue(GameObject* pGameObject) = 0;
             virtual void onCollisionExit(GameObject* pGameObject) = 0;
     };
 }

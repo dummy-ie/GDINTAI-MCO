@@ -22,6 +22,10 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
     std::cout << "[BORDER] : ENTER" << std::endl;
 }
 
+void Border::onCollisionContinue(GameObject* pGameObject) {
+    //std::cout << "[BORDER] : CONTINUE" << std::endl;
+}
+
 void Border::onCollisionExit(GameObject* pGameObject) {
     std::cout << "[BORDER] : EXIT" << std::endl;
 }

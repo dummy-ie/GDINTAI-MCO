@@ -38,6 +38,7 @@ namespace models {
 
         public:
             virtual void onCollisionEnter(GameObject* pGameObject);
+            virtual void onCollisionContinue(GameObject* pGameObject);
             virtual void onCollisionExit(GameObject* pGameObject);
     };
 }

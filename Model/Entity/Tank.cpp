@@ -66,6 +66,24 @@ void Tank::onCollisionEnter(GameObject* pGameObject) {
     }
 }
 
+void Tank::onCollisionContinue(GameObject* pGameObject){
+    if(pGameObject->getName().find("Top Border") != std::string::npos) {
+        this->bTopBounds = false;
+    }
+
+    if(pGameObject->getName().find("Left Border") != std::string::npos) {
+        this->bLeftBounds = false;
+    }
+
+    if(pGameObject->getName().find("Bottom Border") != std::string::npos) {
+        this->bBottomBounds = false;
+    }
+
+    if(pGameObject->getName().find("Right Border") != std::string::npos) {
+        this->bRightBounds = false;
+    }
+}
+
 void Tank::onCollisionExit(GameObject* pGameObject) {
     if(pGameObject->getName().find("Top Border") != std::string::npos) {
         this->bTopBounds = true;

@@ -11,7 +11,7 @@ void PhysicsManager::perform() {
 
         for(int j = 0; j < this->vecTrackedCollider.size(); j++) {
             pColliderB = this->vecTrackedCollider[j];
-
+        
             if(pColliderA != pColliderB) {
 
                 if(pColliderA->isColliding(pColliderB) &&
@@ -32,6 +32,13 @@ void PhysicsManager::perform() {
                     pColliderB->setCollided(pColliderA, false);
                     pColliderA->onCollisionExit(pColliderB->getOwner());
                     pColliderB->onCollisionExit(pColliderA->getOwner());
+                }
+
+                if(pColliderA->isColliding(pColliderB) &&
+                   pColliderA->hasCollided(pColliderB) &&
+                   pColliderB->hasCollided(pColliderA)) {
+                    pColliderA->onCollisionContinue(pColliderB->getOwner());
+                    pColliderB->onCollisionContinue(pColliderA->getOwner());
                 }
             }
         }

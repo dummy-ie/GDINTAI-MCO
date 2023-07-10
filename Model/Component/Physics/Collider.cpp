@@ -38,6 +38,12 @@ void Collider::onCollisionEnter(GameObject* pGameObject) {
     }
 }
 
+void Collider::onCollisionContinue(GameObject* pGameObject) {
+    if(this->pListener != NULL) {
+        this->pListener->onCollisionContinue(pGameObject);
+    }
+}
+
 void Collider::onCollisionExit(GameObject* pGameObject) {
     if(this->pListener != NULL) {
         this->pListener->onCollisionExit(pGameObject);

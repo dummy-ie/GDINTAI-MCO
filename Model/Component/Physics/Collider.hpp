@@ -25,6 +25,7 @@ namespace components {
             void cleanCollisions();
 
             void onCollisionEnter(GameObject* pGameObject);
+            void onCollisionContinue(GameObject* pGameObject);
             void onCollisionExit(GameObject* pGameObject);
 
         public:
