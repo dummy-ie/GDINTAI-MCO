@@ -18,17 +18,18 @@ void Wall::initialize() {
 
     this->attachComponent(pRendererComponent);
 
-    float fSize = 8.0f;
+    float fSize = 5.0f;
+    float fBleed = 5.0f;
 
-    Border* pBorder = new Border(this->strName + " Top Border", sf::FloatRect(this->pSprite->getPosition().x, this->pSprite->getPosition().y, this->pSprite->getGlobalBounds().width, fSize));
+    Border* pBorder = new Border(this->strName + " Top Border", sf::FloatRect(this->pSprite->getPosition().x, this->pSprite->getPosition().y + this->getGlobalBounds().height - fSize - fBleed, this->getGlobalBounds().width - 8.0f, fSize));
     this->attachChild(pBorder);
 
-    pBorder = new Border(this->strName + " Left Border", sf::FloatRect(this->pSprite->getPosition().x, this->pSprite->getPosition().y, fSize, this->getGlobalBounds().height));
+    pBorder = new Border(this->strName + " Left Border", sf::FloatRect(this->pSprite->getPosition().x + this->getGlobalBounds().width - fSize - fBleed, this->pSprite->getPosition().y, fSize, this->getGlobalBounds().height - 8.0f));
     this->attachChild(pBorder);
 
-    pBorder = new Border(this->strName + " Bottom Border", sf::FloatRect(this->pSprite->getPosition().x, this->getGlobalBounds().height - fSize, this->getGlobalBounds().width, fSize));
+    pBorder = new Border(this->strName + " Bottom Border", sf::FloatRect(this->pSprite->getPosition().x, this->pSprite->getPosition().y - fBleed, this->getGlobalBounds().width - 8.0f, fSize));
     this->attachChild(pBorder);
 
-    pBorder = new Border(this->strName + " Right Border", sf::FloatRect(this->getGlobalBounds().width - fSize, this->pSprite->getPosition().y, fSize, this->getGlobalBounds().height));
+    pBorder = new Border(this->strName + " Right Border", sf::FloatRect(this->pSprite->getPosition().x - fBleed, this->pSprite->getPosition().y, fSize, this->getGlobalBounds().height - 8.0f));
     this->attachChild(pBorder);
 }
