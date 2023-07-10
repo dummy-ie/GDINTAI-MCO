@@ -21,7 +21,7 @@ void Wall::initialize() {
     float fSize = 5.0f;
     float fBleed = 5.0f;
 
-    Border* pBorder = new Border(this->strName + " Border", sf::FloatRect(this->pSprite->getPosition().x, this->pSprite->getPosition().y, this->getGlobalBounds().width, this->getGlobalBounds().height));
+    Border* pBorder = new Border(this->strName + " Border", this->getGlobalBounds());
     this->attachChild(pBorder);
 
     // Border* pTopBorder = new Border(this->strName + " Top Border", sf::FloatRect(this->pSprite->getPosition().x, this->pSprite->getPosition().y + this->getGlobalBounds().height - fSize - fBleed, this->getGlobalBounds().width - 8.0f, fSize));

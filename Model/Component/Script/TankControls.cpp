@@ -3,7 +3,7 @@
 using namespace components;
 
 TankControls::TankControls(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpeed = 300.0f;
+    this->fSpeed = 80.f;
 }
 
 void TankControls::perform() {
