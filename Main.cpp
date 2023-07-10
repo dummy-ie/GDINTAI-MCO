@@ -5,6 +5,11 @@
 
 #include "SFML/Graphics.hpp"
 
+#include "Controller/Singleton/GameObjectManager.cpp"
+#include "Controller/Singleton/FontManager.cpp"
+#include "Controller/Singleton/ObjectPoolManager.cpp"
+#include "Controller/Singleton/TextureManager.cpp"
+
 #include "Model/AnimatedTexture.cpp"
 #include "Model/EmptyGameObject.cpp"
 #include "Model/GameObject.cpp"
@@ -25,7 +30,7 @@
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Tank.cpp"
 #include "Model/Entity/Tile.cpp"
-//#include "Model/Entity/Map.cpp"
+#include "Model/Entity/Map.cpp"
 
 #include "Model/Entity/Border/Border.cpp"
 
@@ -46,11 +51,6 @@
 #include "View/View.cpp"
 
 #include "View/Screen/TitleScreen.cpp"
-
-#include "Controller/Singleton/GameObjectManager.cpp"
-#include "Controller/Singleton/FontManager.cpp"
-#include "Controller/Singleton/ObjectPoolManager.cpp"
-#include "Controller/Singleton/TextureManager.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 

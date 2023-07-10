@@ -7,8 +7,11 @@
 
 namespace models {
     class Wall : public Tile {
+        private:
+            sf::Vector2f vecBlockPart;
+        
         public:
-            Wall(std::string strName, AnimatedTexture* pTexture, sf::Vector2f CPosition);
+            Wall(std::string strName, AnimatedTexture* pTexture, sf::Vector2f CPosition, sf::Vector2f vecBlockPart = sf::Vector2f(-1, -1));
             ~Wall();
 
         public:

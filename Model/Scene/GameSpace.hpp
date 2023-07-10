@@ -12,6 +12,7 @@
 #include "../EmptyGameObject.hpp"
 
 #include "../Entity/Background.hpp"
+#include "../Entity/Map.hpp"
 
 #include "../Entity/Tank/Player.hpp"
 #include "../Entity/Tank/Enemy.hpp"

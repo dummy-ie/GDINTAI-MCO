@@ -41,6 +41,7 @@ void TankControls::perform() {
         }
 
         if(pInput->isSpace()) {
+            this->getOwner()->getSprite()->setPosition(64, 64);
             pInput->resetSpace();
             //ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_BULLET)->requestPoolable();
         }
