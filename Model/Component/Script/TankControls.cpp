@@ -30,11 +30,11 @@ void TankControls::perform() {
             if (pOwner->isTopBounds())
             {
                 this->getOwner()->getSprite()->move(0.0f, -fOffset);
-                pOwner->moveBounds(0.0f, -fOffset);
+                // pOwner->moveBounds(0.0f, -fOffset);
                 pOwner->getRectangle()->move(0.0f, -fOffset);
             }   
-                ((Player*)(this->getOwner()))->pRectangle->move(0.0f, -fOffset);
-            }
+                // ((Player*)(this->getOwner()))->pRectangle->move(0.0f, -fOffset);
+            // }
         }
 
         if(pInput->isDown()) {
@@ -44,12 +44,12 @@ void TankControls::perform() {
             if (pOwner->isBottomBounds())
             {
                 this->getOwner()->getSprite()->move(0.0f, fOffset);
-                pOwner->moveBounds(0.0f, fOffset);
+                // pOwner->moveBounds(0.0f, fOffset);
                 pOwner->getRectangle()->move(0.0f, fOffset);
             }
-                ((Player*)(this->getOwner()))->pRectangle->move(0.0f, fOffset);
+                // ((Player*)(this->getOwner()))->pRectangle->move(0.0f, fOffset);
 
-            }
+            // }
         }
         
         if(pInput->isLeft()) {
@@ -59,11 +59,11 @@ void TankControls::perform() {
             if (pOwner->isLeftBounds())
             {
                 this->getOwner()->getSprite()->move(-fOffset, 0.0f);
-                pOwner->moveBounds(-fOffset, 0.0f);
+                // pOwner->moveBounds(-fOffset, 0.0f);
                 pOwner->getRectangle()->move(-fOffset, 0.0f);
             }
-                ((Player*)(this->getOwner()))->pRectangle->move(-fOffset, 0.0f);
-            }
+                // ((Player*)(this->getOwner()))->pRectangle->move(-fOffset, 0.0f);
+            // }
         }
 
         if(pInput->isRight()) {
@@ -73,16 +73,15 @@ void TankControls::perform() {
             if (pOwner->isRightBounds())
             {
                 this->getOwner()->getSprite()->move(fOffset, 0.0f);
-                pOwner->moveBounds(fOffset, 0.0f);
+                // pOwner->moveBounds(fOffset, 0.0f);
                 pOwner->getRectangle()->move(fOffset, 0.0f);
-            }
-                ((Player*)(this->getOwner()))->pRectangle->move(fOffset, 0.0f);
-
             }
         }
 
-        ((Player*)(this->getOwner()))->pRectangle->setSize(sf::Vector2f(pCollider->getGlobalBounds().width, pCollider->getGlobalBounds().height));
-        ((Player*)(this->getOwner()))->pRectangle->setPosition(pCollider->getGlobalBounds().left,pCollider->getGlobalBounds().top);
+        pOwner->getRectangle()->setSize(sf::Vector2f(pCollider->getGlobalBounds().width, pCollider->getGlobalBounds().height));
+        pOwner->getRectangle()->setPosition(pCollider->getGlobalBounds().left,pCollider->getGlobalBounds().top);
+        // ((Player*)(this->getOwner()))->pRectangle->setSize(sf::Vector2f(pCollider->getGlobalBounds().width, pCollider->getGlobalBounds().height));
+        // ((Player*)(this->getOwner()))->pRectangle->setPosition(pCollider->getGlobalBounds().left,pCollider->getGlobalBounds().top);
         // this->getSprite()->getPosition().x + 8.f, this->getSprite()->getPosition().y - 3.f
         // ((Player*)(this->getOwner()))->pRectangle->setPosition(this->getOwner()->getSprite()->getPosition().x + 8.f, this->getOwner()->getSprite()->getPosition().y - 3.f);
 

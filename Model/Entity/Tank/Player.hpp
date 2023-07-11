@@ -7,8 +7,8 @@
 
 namespace models {
     class Player : public Tank {
-        public:
-            sf::RectangleShape* pRectangle;
+        // public:
+        //     sf::RectangleShape* pRectangle;
 
         private:
             sf::FloatRect COffset;

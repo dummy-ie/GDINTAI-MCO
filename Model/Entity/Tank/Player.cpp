@@ -16,7 +16,7 @@ void Player::initialize() {
     TankInput* pInputComponent = new TankInput(this->strName + " Input");
     TankControls* pControlsComponent = new TankControls(this->strName + " Controls");
 
-    this->CBounds = sf::FloatRect(100.f + 7.f, 100.f - 2.f, this->getSprite()->getGlobalBounds().width - 14.f, 1.f);
+    // this->CBounds = sf::FloatRect(100.f + 7.f, 100.f - 2.f, this->getSprite()->getGlobalBounds().width - 14.f, 1.f);
     //sf::FloatRect COffset = sf::FloatRect(this->getGlobalBounds().left + 7.f, this->getGlobalBounds().top - 2.f, this->getSprite()->getGlobalBounds().width - 14.f, 1.f);
     Collider* pCollider = new Collider(this->strName + " Collider");
     COffset = sf::FloatRect(4.f, 0.f, -8.f, -24.f); // top
@@ -49,5 +49,5 @@ void Player::initialize() {
 }
 
 sf::FloatRect Player::getGlobalBounds() {
-    return this->CBounds;
+    return this->getSprite()->getGlobalBounds();
 }
