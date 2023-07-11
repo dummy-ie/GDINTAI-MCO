@@ -58,7 +58,25 @@ void Tank::onCollisionEnter(GameObject *pGameObject)
 {
     if (pGameObject->getName().find("Border") != std::string::npos)
     {
+        Collider* pCollider = (Collider*)this->findComponentByName(this->strName + " Collider");
+        
+        sf::Vector2f center1 = sf::Vector2f(pCollider->getGlobalBounds().left + pCollider->getGlobalBounds().width / 2, pCollider->getGlobalBounds().top + pCollider->getGlobalBounds().height / 2);
+        sf::Vector2f center2 = sf::Vector2f(pGameObject->getGlobalBounds().left + pGameObject->getGlobalBounds().width / 2, pGameObject->getGlobalBounds().top + pGameObject->getGlobalBounds().height / 2);
+        
+        if(center1.x < center2.x){
+            this->bRightBounds = false;
+        }
+        if(center1.x > center2.x){
+            this->bLeftBounds = false;
+        }
+        if(center1.y < center2.y){
+            this->bBottomBounds = false;
+        }
+        if(center1.y > center2.y){
+            this->bTopBounds = false;
+        }
         // this->bTopBounds = false;
+        /*
         switch ((int)this->getSprite()->getRotation())
         {
         case 0:
@@ -77,6 +95,7 @@ void Tank::onCollisionEnter(GameObject *pGameObject)
         default:
             break;
         }
+        */
         // this->bLeftBounds = false;
         // this->bBottomBounds = false;
         // this->bRightBounds = false;

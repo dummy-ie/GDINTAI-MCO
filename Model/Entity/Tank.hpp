@@ -7,6 +7,7 @@
 
 #include "../Component/Input/TankInput.hpp"
 #include "../Component/Script/TankControls.hpp"
+#include "../Component/Physics/Collider.hpp"
 
 #include "../Component/Physics/Interface/CollisionListener.hpp"
 
