@@ -70,6 +70,7 @@ void GameSpace::createTanks()
     Player *pPlayer = new Player(PoolTag::TANK, "Player Tank", pTexture);
     this->registerObject(pPlayer);
     pPlayer->getSprite()->setPosition(100.f, 100.f);
+    pPlayer->getRectangle()->setPosition(100.f, 100.f);
 
     // EType = AssetType::ENEMY_TANK;
     // pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));

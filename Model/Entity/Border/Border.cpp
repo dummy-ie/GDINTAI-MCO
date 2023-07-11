@@ -13,8 +13,8 @@ void Border::initialize() {
     pCollider->setListener(this);
 
     this->attachComponent(pCollider);
-    std::cout << this->strName << " ColliderLoc " << pCollider->getGlobalBounds().left << " x " << this->getGlobalBounds().top << std::endl;
-    std::cout << this->strName << " Collider " << pCollider->getGlobalBounds().width << " x " << this->getGlobalBounds().height << std::endl;
+    //std::cout << this->strName << " ColliderLoc " << pCollider->getGlobalBounds().left << " x " << this->getGlobalBounds().top << std::endl;
+    //std::cout << this->strName << " Collider " << pCollider->getGlobalBounds().width << " x " << this->getGlobalBounds().height << std::endl;
     PhysicsManager::getInstance()->trackCollider(pCollider);
 }
 

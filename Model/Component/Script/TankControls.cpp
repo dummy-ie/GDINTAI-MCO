@@ -30,6 +30,9 @@ void TankControls::perform() {
             if (pOwner->isTopBounds())
             {
                 this->getOwner()->getSprite()->move(0.0f, -fOffset);
+                pOwner->moveBounds(0.0f, -fOffset);
+                pOwner->getRectangle()->move(0.0f, -fOffset);
+            }   
                 ((Player*)(this->getOwner()))->pRectangle->move(0.0f, -fOffset);
             }
         }
@@ -41,6 +44,9 @@ void TankControls::perform() {
             if (pOwner->isBottomBounds())
             {
                 this->getOwner()->getSprite()->move(0.0f, fOffset);
+                pOwner->moveBounds(0.0f, fOffset);
+                pOwner->getRectangle()->move(0.0f, fOffset);
+            }
                 ((Player*)(this->getOwner()))->pRectangle->move(0.0f, fOffset);
 
             }
@@ -53,6 +59,9 @@ void TankControls::perform() {
             if (pOwner->isLeftBounds())
             {
                 this->getOwner()->getSprite()->move(-fOffset, 0.0f);
+                pOwner->moveBounds(-fOffset, 0.0f);
+                pOwner->getRectangle()->move(-fOffset, 0.0f);
+            }
                 ((Player*)(this->getOwner()))->pRectangle->move(-fOffset, 0.0f);
             }
         }
@@ -64,6 +73,9 @@ void TankControls::perform() {
             if (pOwner->isRightBounds())
             {
                 this->getOwner()->getSprite()->move(fOffset, 0.0f);
+                pOwner->moveBounds(fOffset, 0.0f);
+                pOwner->getRectangle()->move(fOffset, 0.0f);
+            }
                 ((Player*)(this->getOwner()))->pRectangle->move(fOffset, 0.0f);
 
             }
