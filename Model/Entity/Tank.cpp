@@ -58,6 +58,7 @@ void Tank::onCollisionEnter(GameObject *pGameObject)
 {
     if (pGameObject->getName().find("Border") != std::string::npos)
     {
+        // this->bTopBounds = false;
         switch ((int)this->getSprite()->getRotation())
         {
         case 0:

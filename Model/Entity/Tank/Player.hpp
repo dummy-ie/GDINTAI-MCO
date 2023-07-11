@@ -8,6 +8,12 @@
 namespace models {
     class Player : public Tank {
         public:
+            sf::RectangleShape* pRectangle;
+
+        private:
+            sf::FloatRect COffset;
+            
+        public:
             Player(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
             ~Player();
 

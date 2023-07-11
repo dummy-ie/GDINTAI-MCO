@@ -2,6 +2,7 @@
 #define COMPONENTS_TANK_CONTROLS_HPP
 
 #include "../../Entity/Tank.hpp"
+#include "../../Entity/Tank/Player.hpp"
 
 #include "../Component.hpp"
 #include "../Input/TankInput.hpp"
