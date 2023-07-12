@@ -19,7 +19,7 @@ void Border::initialize() {
 }
 
 void Border::onCollisionEnter(GameObject* pGameObject) {
-    std::cout << "[BORDER] : ENTER" << std::endl;
+    // std::cout << "[BORDER] : ENTER" << std::endl;
 }
 
 void Border::onCollisionContinue(GameObject* pGameObject) {
@@ -27,7 +27,7 @@ void Border::onCollisionContinue(GameObject* pGameObject) {
 }
 
 void Border::onCollisionExit(GameObject* pGameObject) {
-    std::cout << "[BORDER] : EXIT" << std::endl;
+    // std::cout << "[BORDER] : EXIT" << std::endl;
 }
 
 sf::FloatRect Border::getGlobalBounds() {

@@ -26,7 +26,7 @@ int AnimatedTexture::getCurrentFrame() {
 void AnimatedTexture::setCurrentFrame(int nCurrentFrame) {
     if(nCurrentFrame < 0 || nCurrentFrame >= this->vecFrames.size()) {
         nCurrentFrame = 0;
-        //std::cout << "[WARNING] : nCurrentFrame out-of-bounds. Setting back to ZERO." << std::endl;
+        // std::cout << "[WARNING] : nCurrentFrame out-of-bounds. Setting back to ZERO." << std::endl;
     }
 
     this->nCurrentFrame = nCurrentFrame;

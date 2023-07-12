@@ -48,24 +48,20 @@ void GameSpace::createObjectPools() {
 
 void GameSpace::createMap()
 {
-    std::vector<std::vector<int>> vecMap = { // -1 is outside the game space, 0 is free
-        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, // padding layer
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1}, // the game still struggles with a lot of colliders
-        {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1}, 
-        {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1}, // 13x13
-        // {-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1},
-        // {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        // {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        // {-1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, -1},
-        {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}, // padding layer
+    std::vector<std::vector<int>> vecMap = { // 0 is outside the game space, 0 is free
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, // padding layer
+        {0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0},
+        {0, 2, 0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 0},
+        {0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0}, // the game still struggles with a lot of colliders
+        {0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0}, 
+        {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0},
+        {1, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 0, 1},
+        {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0},
+        // {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
+        // {0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0},
+        // {0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0},
+        // {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
+        // {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0} // 13x13
     };
 
     Map *pMap = new Map(vecMap);
@@ -83,8 +79,8 @@ void GameSpace::createTanks()
     AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
     Player *pPlayer = new Player(PoolTag::TANK, "Player Tank", pTexture);
     this->registerObject(pPlayer);
-    pPlayer->getSprite()->setPosition(100.f, 100.f);
-    pPlayer->getRectangle()->setPosition(100.f, 100.f);
+    pPlayer->getSprite()->setPosition(16.f, 16.f);
+    pPlayer->getRectangle()->setPosition(16.f, 16.f);
 
     // EType = AssetType::ENEMY_TANK;
     // pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
@@ -94,21 +90,21 @@ void GameSpace::createTanks()
 
 void GameSpace::createBorders()
 {
-    int fSize = 24.0f;
+    int fSize = 32.0f;
 
     // 4 borders for the whole screen should be fine and wont contribute much to lag
     // this->registerObject(new Border("Border", 
     //                                 sf::FloatRect(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT)));
     
     this->registerObject(new Border("Top Border",
-                                    sf::FloatRect(0.0f, 0.0f, SCREEN_WIDTH, fSize)));
+                                    sf::FloatRect(0.0f, -fSize, SCREEN_WIDTH, fSize)));
 
     this->registerObject(new Border("Left Border",
-                                    sf::FloatRect(0.0f, 0.0f, fSize, SCREEN_HEIGHT)));
+                                    sf::FloatRect(-fSize, 0.0f, fSize, SCREEN_HEIGHT)));
 
     this->registerObject(new Border("Bottom Border",
-                                    sf::FloatRect(0.0f, SCREEN_HEIGHT - fSize, SCREEN_WIDTH, fSize)));
+                                    sf::FloatRect(0.0f, SCREEN_HEIGHT, SCREEN_WIDTH, fSize)));
 
     this->registerObject(new Border("Right Border",
-                                    sf::FloatRect(SCREEN_WIDTH - fSize, 0.0f, fSize, SCREEN_HEIGHT)));
+                                    sf::FloatRect(SCREEN_WIDTH, 0.0f, fSize, SCREEN_HEIGHT)));
 }
