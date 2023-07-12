@@ -6,6 +6,7 @@
 #include "../../AnimatedTexture.hpp"
 #include "../../GameObject.hpp"
 
+#include "../../Component/Script/TankBulletMovement.hpp"
 #include "../../Component/Renderer/Renderer.hpp"
 #include "../../Component/Physics/Collider.hpp"
 

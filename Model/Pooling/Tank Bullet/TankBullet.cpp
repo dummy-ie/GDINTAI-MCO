@@ -14,7 +14,10 @@ void TankBullet::initialize() {
     Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
     pRendererComponent->assignDrawable(this->pSprite);
 
+    TankBulletMovement *pMovementComponent = new TankBulletMovement(this->strName + " Bullet Movement");
+
     this->attachComponent(pRendererComponent);
+    this->attachComponent(pMovementComponent);
 
     this->pCollider = new Collider(this->strName + " Collider");
     this->pCollider->setListener(this);
@@ -54,7 +57,16 @@ void TankBullet::onActivate() {
 
 void TankBullet::onRelease() {}
 
-void TankBullet::onCollisionEnter(GameObject* pGameObject) {}
+void TankBullet::onCollisionEnter(GameObject* pGameObject) {
+    if((pGameObject->getName().find("Tank") != std::string::npos && pGameObject->getName().find(this->pTank->getName()) == std::string::npos)||
+        pGameObject->getName().find("Border") != std::string::npos) {
+        Collider* pCollider = (Collider*)pGameObject->findComponentByName(pGameObject->getName() + " Collider");
+        pCollider->setCollided(this->pCollider, false);
+
+        this->pCollider->setCleanUp(true);
+        ObjectPoolManager::getInstance()->getPool(this->ETag)->releasePoolable(this);
+    }
+}
 
 void TankBullet::onCollisionContinue(GameObject* pGameObject) {}
 
