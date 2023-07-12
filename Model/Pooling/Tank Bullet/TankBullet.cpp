@@ -8,7 +8,6 @@ TankBullet::TankBullet(std::string strName, AnimatedTexture* pTexture, Tank* pTa
 }
 
 void TankBullet::initialize() {
-    std::cout << "hi";
     this->setFrame(0);
     this->centerSpriteOrigin();
 
@@ -26,9 +25,28 @@ void TankBullet::initialize() {
 void TankBullet::onActivate() {
     float fHalfWidth = this->pTank->getSprite()->getGlobalBounds().width / 2.0f;
     float fSpacing = 9.0f;
+    int nRotation = this->pTank->getSprite()->getRotation();
 
-    this->pSprite->setPosition(this->pTank->getSprite()->getPosition().x + fHalfWidth + fSpacing,
-                               this->pTank->getSprite()->getPosition().y);
+    this->pSprite->setRotation(nRotation);
+    switch (nRotation) {
+        case 0:
+            this->pSprite->setPosition(this->pTank->getSprite()->getPosition().x,
+                                       this->pTank->getSprite()->getPosition().y - fHalfWidth - fSpacing);
+            break;
+        case 90:
+            this->pSprite->setPosition(this->pTank->getSprite()->getPosition().x + fHalfWidth + fSpacing,
+                                       this->pTank->getSprite()->getPosition().y);
+            break;
+        case 180:
+            this->pSprite->setPosition(this->pTank->getSprite()->getPosition().x,
+                                       this->pTank->getSprite()->getPosition().y + fHalfWidth + fSpacing);
+            break;
+        case 270:
+            this->pSprite->setPosition(this->pTank->getSprite()->getPosition().x - fHalfWidth - fSpacing,
+                                       this->pTank->getSprite()->getPosition().y);
+            break;
+    }
+
     this->pCollider->cleanCollisions();
     this->pCollider->setCleanUp(false);
     PhysicsManager::getInstance()->trackCollider(this->pCollider);

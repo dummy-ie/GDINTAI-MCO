@@ -15,6 +15,7 @@ void GameSpace::onLoadObjects()
     this->createNullObjectComponents();
     this->createMap();
     this->createTanks();
+    
     this->createObjectPools();
     this->createBorders();
 }
@@ -36,6 +37,7 @@ void GameSpace::createObjectPools() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
 
     Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
+
     GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::TANK_BULLET, 1, new TankBullet("Player Bullet", pTexture, pPlayer), NULL);
     pBulletPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
@@ -57,11 +59,11 @@ void GameSpace::createMap()
         {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0},
         {1, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 0, 1},
         {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0},
-        // {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
-        // {0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0},
-        // {0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0},
-        // {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
-        // {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0} // 13x13
+        {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
+        {0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0},
+        {0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0},
+        {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
+        {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0} // 13x13
     };
 
     Map *pMap = new Map(vecMap);

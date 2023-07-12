@@ -21,7 +21,7 @@ void GameObjectPool::initialize() {
         if(this->pParent != NULL)
             this->pParent->attachChild(pPoolableObject);
         else
-            //GameObjectManager::getInstance()->addObject(pPoolableObject);
+            GameObjectManager::getInstance()->addObject(pPoolableObject);
         
         pPoolableObject->setEnabled(false);
         this->vecAvailableObject.push_back(pPoolableObject);
