@@ -31,6 +31,10 @@ void TextureManager::loadTankFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/enemy.png");
     this->mapTexture[AssetType::ENEMY_TANK].push_back(pTexture);
+
+    pTexture = new sf::Texture();
+    pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(944, 128, 8, 8));
+    this->mapTexture[AssetType::BULLET].push_back(pTexture);
 }
 
 void TextureManager::loadWallFolder() {

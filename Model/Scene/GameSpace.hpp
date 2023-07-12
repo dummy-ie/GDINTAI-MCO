@@ -19,6 +19,8 @@
 
 #include "../Entity/Tile/Wall.hpp"
 
+#include "../Pooling/Tank Bullet/TankBullet.hpp"
+
 namespace scenes {
     using namespace controllers;
     using namespace models;
@@ -36,6 +38,7 @@ namespace scenes {
 
         private:
             void createNullObjectComponents();
+            void createObjectPools();
             void createMap();
             void createTanks();
             void createBorders();

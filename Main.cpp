@@ -42,6 +42,8 @@
 
 #include "Model/Pooling/PoolableObject.cpp"
 
+#include "Model/Pooling/Tank Bullet/TankBullet.cpp"
+
 #include "Model/Scene/GameMenu.cpp"
 #include "Model/Scene/GameSpace.cpp"
 

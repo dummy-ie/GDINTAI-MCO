@@ -7,6 +7,8 @@ enum class AssetType : int {
     PLAYER_TANK,
     ENEMY_TANK,
 
+    BULLET,
+
     STONE,
     BRICK,
     BUSH
