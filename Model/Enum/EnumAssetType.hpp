@@ -11,7 +11,9 @@ enum class AssetType : int {
 
     STONE,
     BRICK,
-    BUSH
+    BUSH,
+
+    BULLET_EXPLOSION
 };
 
 #endif

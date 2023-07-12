@@ -1,7 +1,6 @@
-#ifndef COMPONENTS_TANK_BULLET_MOVEMENT_HPP
-#define COMPONENTS_TANK_BULLET_MOVEMENT_HPP
+#ifndef COMPONENTS_TANK_BULLET_EXPLODE_HPP
+#define COMPONENTS_TANK_BULLET_EXPLODE_HPP
 
-#include "../../Entity/Map.hpp"
 #include "../../../Config/Settings.hpp"
 #include "../../Enum/EnumComponentType.hpp"
 #include "../../Pooling/PoolableObject.hpp"
@@ -11,15 +10,13 @@
 namespace components {
     using namespace models;
 
-    class TankBulletMovement : public Component {
+    class TankBulletExplode : public Component {
         private:
-            bool bEnabled;
             float fFrameInterval;
             float fTicks;
-            float fSpeed;
 
         public:
-            TankBulletMovement(std::string strName);
+            TankBulletExplode(std::string strName);
 
         public:
             void perform();

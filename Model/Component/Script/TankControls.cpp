@@ -20,7 +20,7 @@ void TankControls::perform() {
         float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
 
         if (pInput->isUp() || pInput->isDown() || pInput->isRight() || pInput->isLeft()) {
-            this->fTicks++;
+            this->fTicks += this->tDeltaTime.asSeconds();
             if (this->fTicks > this->fFrameInterval) {
                 this->fTicks = 0.0f;
                 this->getOwner()->incrementFrame();

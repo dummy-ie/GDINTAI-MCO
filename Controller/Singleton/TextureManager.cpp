@@ -35,6 +35,13 @@ void TextureManager::loadTankFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(944, 128, 8, 8));
     this->mapTexture[AssetType::BULLET].push_back(pTexture);
+
+    int nOffset = 31;
+    for (int i = 0; i < 5; i++) {
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(1108, nOffset * i, 31, 31));
+        this->mapTexture[AssetType::BULLET].push_back(pTexture);
+    }
 }
 
 void TextureManager::loadWallFolder() {

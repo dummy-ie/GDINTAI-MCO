@@ -7,6 +7,7 @@
 #include "../../GameObject.hpp"
 
 #include "../../Component/Script/TankBulletMovement.hpp"
+#include "../../Component/Script/TankBulletExplode.hpp"
 #include "../../Component/Renderer/Renderer.hpp"
 #include "../../Component/Physics/Collider.hpp"
 
@@ -28,8 +29,9 @@ namespace models {
     class TankBullet : public PoolableObject, public CollisionListener {
         private:
             Tank* pTank;
+            TankBulletExplode* pExplodeComponent;
+            TankBulletMovement* pMovementComponent;
             Collider* pCollider;
-            float fSpeed;
 
         public:
             TankBullet(std::string strName, AnimatedTexture* pTexture, Tank* pTank);

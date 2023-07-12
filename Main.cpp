@@ -27,6 +27,7 @@
 
 #include "Model/Component/Script/TankControls.cpp"
 #include "Model/Component/Script/TankBulletMovement.cpp"
+#include "Model/Component/Script/TankBulletExplode.cpp"
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Tank.cpp"

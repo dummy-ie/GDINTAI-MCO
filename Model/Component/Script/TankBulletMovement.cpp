@@ -4,6 +4,7 @@ using namespace components;
 
 TankBulletMovement::TankBulletMovement(std::string strName)
                      : Component(strName, ComponentType::SCRIPT) {
+    this->bEnabled = true;
     this->fFrameInterval = 0.01f;
     this->fTicks = 0.0f;
     this->fSpeed = 230.0f;
@@ -19,7 +20,7 @@ void TankBulletMovement::perform() {
     }
     else {
         this->fTicks += this->tDeltaTime.asSeconds();
-
+        
         if(this->fTicks > this->fFrameInterval) {
             this->fTicks = 0.0f;
 

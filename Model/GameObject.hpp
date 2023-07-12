@@ -64,6 +64,9 @@ namespace models {
 
             int getFrameSize();
             int getCurrentFrame();
+
+            // Temporary?
+            void setAnimatedTexture(AnimatedTexture* pTexture);
     };
 }
 

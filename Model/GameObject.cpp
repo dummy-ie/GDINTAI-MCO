@@ -201,3 +201,7 @@ int GameObject::getCurrentFrame() {
     }
     return -1;
 }
+
+void GameObject::setAnimatedTexture(AnimatedTexture* pTexture) {
+    this->pTexture = pTexture;
+}

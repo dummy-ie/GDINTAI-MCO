@@ -36,9 +36,9 @@ void GameSpace::createNullObjectComponents()
 void GameSpace::createObjectPools() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
 
-    Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
+    Tank* pTank = (Tank*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
 
-    GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::TANK_BULLET, 1, new TankBullet("Player Bullet", pTexture, pPlayer), NULL);
+    GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::TANK_BULLET, 1, new TankBullet("Player Bullet", pTexture, pTank), NULL);
     pBulletPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
 
