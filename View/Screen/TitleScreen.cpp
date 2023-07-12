@@ -11,7 +11,7 @@ TitleScreen::~TitleScreen() {}
 void TitleScreen::initialize() {
     float fSpacing = 100;
 
-    Text* pText = new Text(this->strName + " Title", "Tanky Tanks", FontManager::getInstance()->getFont(FontType::DEFAULT), 64);
+    Text* pText = new Text(this->strName + " Title", "Tanky Tanks", FontManager::getInstance()->getFont(FontType::DEFAULT), 48);
     float fWidth = pText->getText()->getLocalBounds().width;
     pText->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, 21);
     this->attachChild(pText);
@@ -28,7 +28,7 @@ void TitleScreen::initialize() {
     this->pExit = new Text(this->strName + " Exit", "Exit", FontManager::getInstance()->getFont(FontType::DEFAULT), 24);
     this->attachChild(this->pExit);
     fWidth = this->pExit->getText()->getLocalBounds().width;
-    this->pExit->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, 200 + fSpacing * 2);
+    this->pExit->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, 100 + fSpacing * 2);
     CBounds = this->pExit->getText()->getGlobalBounds();
     pButton = new Button(this->strName + " Exit Button", CBounds);
     this->attachChild(pButton);
