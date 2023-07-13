@@ -55,7 +55,11 @@ void TankBullet::onActivate() {
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
 }
 
-void TankBullet::onRelease() {}
+void TankBullet::onRelease() {
+    this->pCollider->cleanCollisions();
+    //this->pCollider->setCleanUp(false);
+    PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+}
 
 void TankBullet::onCollisionEnter(GameObject* pGameObject) {
     if((pGameObject->getName().find("Tank") != std::string::npos && pGameObject->getName().find(this->pTank->getName()) == std::string::npos)||
