@@ -17,6 +17,7 @@ void TankBullet::initialize() {
     this->attachComponent(pRendererComponent);
 
     this->pCollider = new Collider(this->strName + " Collider");
+    this->pCollider->setOffset(sf::FloatRect(15.f, 15.f, -27.f, -27.f));
     this->pCollider->setListener(this);
 
     this->attachComponent(this->pCollider);
@@ -58,13 +59,16 @@ void TankBullet::onActivate() {
 void TankBullet::onRelease() {}
 
 void TankBullet::onCollisionEnter(GameObject* pGameObject) {
-    if((pGameObject->getName().find("Tank") != std::string::npos && pGameObject->getName().find(this->pTank->getName()) == std::string::npos)||
+    if((pGameObject->getName().find("Tank") != std::string::npos && pGameObject->getName() != this->pTank->getName())||
         pGameObject->getName().find("Border") != std::string::npos) {
         this->detachComponent(this->pMovementComponent);
         this->attachComponent(new TankBulletExplode(this->strName + " Bullet Explode"));
         Collider* pCollider = (Collider*)pGameObject->findComponentByName(pGameObject->getName() + " Collider");
         pCollider->setCollided(this->pCollider, false);
-        this->pCollider->setCleanUp(true);
+        // this->pCollider->setCleanUp(true);
+        PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+        PhysicsManager::getInstance()->cleanUp();
+        
     }
 }
 
