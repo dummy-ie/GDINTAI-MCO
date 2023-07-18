@@ -26,6 +26,8 @@
 #include "Model/Component/Renderer/Renderer.cpp"
 
 #include "Model/Component/Script/TankControls.cpp"
+#include "Model/Component/Script/TankBulletMovement.cpp"
+#include "Model/Component/Script/TankBulletExplode.cpp"
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Tank.cpp"
@@ -41,6 +43,8 @@
 #include "Model/Entity/Tile/Wall.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
+
+#include "Model/Pooling/Tank Bullet/TankBullet.cpp"
 
 #include "Model/Scene/GameMenu.cpp"
 #include "Model/Scene/GameSpace.cpp"

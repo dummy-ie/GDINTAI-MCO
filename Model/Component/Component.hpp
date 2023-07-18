@@ -26,7 +26,7 @@ namespace components {
             void detachOwner();
 
         public:
-            virtual void perform() = 0;
+            virtual void perform() {};
         
         public:
             GameObject* getOwner();

@@ -20,6 +20,15 @@ void Border::initialize() {
 
 void Border::onCollisionEnter(GameObject* pGameObject) {
     // std::cout << "[BORDER] : ENTER" << std::endl;
+    std::cout << this->getName() << std::endl;
+    std::cout << pGameObject->getName() << std::endl;
+    if (this->getName().find("Brick") != std::string::npos 
+    && pGameObject->getName().find("Bullet") != std::string::npos)
+    {
+        std::cout << "bullet hit a brick wall" << std::endl;
+        // this->getParent().killyourselfNOW();
+        GameObjectManager::getInstance()->deleteObject(this->getParent());
+    }
 }
 
 void Border::onCollisionContinue(GameObject* pGameObject) {

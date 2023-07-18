@@ -18,10 +18,13 @@ void TankControls::perform() {
     }
     else {
         float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
-        this->fTicks++;
-        if (this->fTicks > this->fFrameInterval) {
-            this->fTicks = 0.0f;
-            this->getOwner()->incrementFrame();
+
+        if (pInput->isUp() || pInput->isDown() || pInput->isRight() || pInput->isLeft()) {
+            this->fTicks += this->tDeltaTime.asSeconds();
+            if (this->fTicks > this->fFrameInterval) {
+                this->fTicks = 0.0f;
+                this->getOwner()->incrementFrame();
+            }
         }
 
         if(pInput->isUp()) {
@@ -86,9 +89,10 @@ void TankControls::perform() {
         // ((Player*)(this->getOwner()))->pRectangle->setPosition(this->getOwner()->getSprite()->getPosition().x + 8.f, this->getOwner()->getSprite()->getPosition().y - 3.f);
 
         if(pInput->isSpace()) {
-            this->getOwner()->getSprite()->setPosition(100, 100);
+            //this->getOwner()->getSprite()->setPosition(100, 100);
             pInput->resetSpace();
-            //ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_BULLET)->requestPoolable();
+            // not working
+            ObjectPoolManager::getInstance()->getPool(PoolTag::TANK_BULLET)->requestPoolable();
         }
     }
 }
