@@ -37,7 +37,7 @@ void TextureManager::loadWallFolder() {
     sf::Texture* pTexture = NULL;
 
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/texture.png", sf::IntRect(928, 144, 16, 16));
+    pTexture->loadFromFile("View/Image/bigStone.png");
     this->mapTexture[AssetType::STONE].push_back(pTexture);
 
     pTexture = new sf::Texture();

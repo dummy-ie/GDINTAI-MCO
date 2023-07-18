@@ -62,7 +62,6 @@
 
 
 int main(int argc, const char** argv) {
-    std::cout << "i hate you world" << std::endl;
     Game CGame;
     CGame.run();
 
