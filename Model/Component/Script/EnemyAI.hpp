@@ -43,7 +43,7 @@ namespace ai {
         /*in pseudocode
             if(x && y are within bounds) && if(vecBoard[x][y] was not visited)
         */
-        if (x < 0 || x >= nRows || y < 0 || y >= nCols || vecVisited[x][y]){
+        if (x < 0 || x >= nRows || y < 0 || y >= nCols || vecVisited[x][y] || vecBoard[x][y] == 1 || vecBoard[x][y] == 2){
             return false;
         }
         return true;

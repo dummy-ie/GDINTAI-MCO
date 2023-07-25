@@ -198,6 +198,10 @@ sf::RectangleShape *Tank::getRectangle()
     return this->pRectangle;
 }
 
+sf::FloatRect Tank::getGlobalBounds() {
+    return this->getSprite()->getGlobalBounds();
+}
+
 void Tank::moveBounds(float x, float y)
 {
     this->CBounds = sf::FloatRect(this->CBounds.left + x, this->CBounds.top + y, this->CBounds.width, this->CBounds.height);

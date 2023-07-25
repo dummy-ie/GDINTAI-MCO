@@ -9,9 +9,6 @@ namespace models {
     class Player : public Tank {
         // public:
         //     sf::RectangleShape* pRectangle;
-
-        private:
-            sf::FloatRect COffset;
             
         public:
             Player(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
@@ -19,9 +16,6 @@ namespace models {
 
         public:
             void initialize();
-
-        public:
-            sf::FloatRect getGlobalBounds();
             
     };
 }

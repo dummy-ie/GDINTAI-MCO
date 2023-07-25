@@ -15,6 +15,7 @@ namespace models {
     class Tank : public PoolableObject, public CollisionListener {
         protected:
             //std::vector<Base*> vecBase;
+            sf::FloatRect COffset;
             sf::FloatRect CBounds;
             bool bTopBounds;
             bool bLeftBounds;
@@ -47,6 +48,7 @@ namespace models {
 
         public:
             sf::RectangleShape* getRectangle();
+            sf::FloatRect getGlobalBounds();
             void moveBounds(float x, float y);
     };
 }

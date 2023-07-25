@@ -9,7 +9,6 @@ Player::~Player() {}
 void Player::initialize() {
     this->setFrame(0);
     this->centerSpriteOrigin();
-    this->centerSpriteOrigin();
 
     // this->attachComponent(pRendererComponent);
 
@@ -46,8 +45,4 @@ void Player::initialize() {
     this->attachComponent(pControlsComponent);
 
     PhysicsManager::getInstance()->trackCollider(pCollider);
-}
-
-sf::FloatRect Player::getGlobalBounds() {
-    return this->getSprite()->getGlobalBounds();
 }

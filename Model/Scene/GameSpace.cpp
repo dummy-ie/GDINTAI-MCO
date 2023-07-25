@@ -86,10 +86,12 @@ void GameSpace::createTanks()
     pPlayer->getSprite()->setPosition(16.f, 16.f);
     pPlayer->getRectangle()->setPosition(16.f, 16.f);
 
-    // EType = AssetType::ENEMY_TANK;
-    // pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
-    // Enemy* pEnemy = new Enemy(PoolTag::TANK, "Enemy Tank", pTexture);
-    // this->registerObject(pEnemy);
+    EType = AssetType::ENEMY_TANK;
+    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
+    Enemy* pEnemy = new Enemy(PoolTag::TANK, "Enemy Tank", pTexture);
+    this->registerObject(pEnemy);
+    pEnemy->getSprite()->setPosition(208.f, 208.f);
+    pEnemy->getRectangle()->setPosition(208.f, 208.f);
 }
 
 void GameSpace::createBorders()
