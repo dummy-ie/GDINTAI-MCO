@@ -12,6 +12,8 @@ namespace controllers {
             void setMap(std::vector<std::vector<int>> vecMap);
             void setMap(int x, int y, int value);
 
+            bool isKindaCentered(float x, float y, int nX, int nY);
+
         /* * * * * * * * * * * * * * * * * * * * * 
          *       SINGLETON-RELATED CONTENT       * 
          * * * * * * * * * * * * * * * * * * * * */

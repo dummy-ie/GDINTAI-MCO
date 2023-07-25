@@ -25,6 +25,38 @@ void MapManager::setMap(int x, int y, int value){
     this->vecMap[x][y] = value;
 }
 
+bool MapManager::isKindaCentered(float x, float y, int nX, int nY){
+    float range = 1.0;
+
+    float tileCenterX, tileCenterY;
+
+    float dist;
+
+    int nRow = this->vecMap.size();
+    int nCol = (nRow > 0) ? this->vecMap[0].size() : 0;
+
+    //down
+    if(nY + 1 < nRow){
+        
+    }
+    //up
+    if(nY - 1 > 0){
+
+    }
+    //right
+    if(nX + 1 < nCol){
+
+    }
+    //left
+    if(nX - 1 > 0){
+
+    }
+
+
+    bool inRange;
+    return inRange;
+}
+
 /* * * * * * * * * * * * * * * * * * * * * 
  *       SINGLETON-RELATED CONTENT       * 
  * * * * * * * * * * * * * * * * * * * * */
