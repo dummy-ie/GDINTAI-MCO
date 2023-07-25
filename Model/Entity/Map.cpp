@@ -96,3 +96,8 @@ void Map::initialize()
 // Map::~Map()
 // {
 // }
+
+
+std::vector<std::vector<int>> Map::getMap(){
+    return this->vecMap;
+}

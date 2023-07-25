@@ -2,6 +2,7 @@
 #define MODEL_ENEMY_HPP
 
 #include "../../Enum/EnumPoolTag.hpp"
+//#include "../../Component/Script/EnemyAI.hpp"
 
 #include "../Tank.hpp"
 

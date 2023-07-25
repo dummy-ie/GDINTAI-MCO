@@ -2,11 +2,14 @@
 #include "string"
 #include "unordered_map"
 #include "vector"
+#include "queue"
+#include "cmath"
 
 #include "SFML/Graphics.hpp"
 
 #include "Controller/Singleton/GameObjectManager.cpp"
 #include "Controller/Singleton/FontManager.cpp"
+#include "Controller/Singleton/MapManager.cpp"
 #include "Controller/Singleton/ObjectPoolManager.cpp"
 #include "Controller/Singleton/TextureManager.cpp"
 
@@ -25,6 +28,7 @@
 
 #include "Model/Component/Renderer/Renderer.cpp"
 
+#include "Model/Component/Script/EnemyAI.cpp"
 #include "Model/Component/Script/TankControls.cpp"
 #include "Model/Component/Script/TankBulletMovement.cpp"
 #include "Model/Component/Script/TankBulletExplode.cpp"

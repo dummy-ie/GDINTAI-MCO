@@ -20,6 +20,9 @@ namespace models {
         Map(std::vector<std::vector<int>> vecMap);
         void initialize();
         // ~Map();
+
+    public:
+        std::vector<std::vector<int>> getMap();
     };   
 }
 

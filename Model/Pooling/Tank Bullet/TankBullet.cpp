@@ -57,9 +57,9 @@ void TankBullet::onActivate() {
 }
 
 void TankBullet::onRelease() {
-    this->pCollider->cleanCollisions();
+    //this->pCollider->cleanCollisions();
     //this->pCollider->setCleanUp(false);
-    PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+    //PhysicsManager::getInstance()->untrackCollider(this->pCollider);
 }
 
 void TankBullet::onCollisionEnter(GameObject* pGameObject) {

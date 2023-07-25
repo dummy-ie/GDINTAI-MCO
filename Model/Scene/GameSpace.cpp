@@ -69,6 +69,8 @@ void GameSpace::createMap()
     Map *pMap = new Map(vecMap);
     this->registerObject(pMap);
 
+    MapManager::getInstance()->setMap(vecMap);
+
     // AssetType EType = AssetType::STONE;
     // AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
     // Wall* pWall = new Wall("Stone Wall", pTexture, sf::Vector2f(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2));

@@ -3,6 +3,8 @@
 
 #include "../Scene.hpp"
 
+#include "../../Controller/Singleton/MapManager.hpp"
+
 #include "../../Config/Settings.hpp"
 
 #include "../Enum/EnumAssetType.hpp"
