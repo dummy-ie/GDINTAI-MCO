@@ -31,14 +31,14 @@ void EnemyAI::perform() {
             this->nY = vecPosition[1];
         }
 
-        if(MapManager::getInstance()->isCentered(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y,this->nX,this->nY,1.0)){
+        if(MapManager::getInstance()->isCentered(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y,this->nX,this->nY,1.5)){
             //std::cout << "AI location update " << this->nX << " " << this->nY << std::endl;
             vecPosition = MapManager::getInstance()->getClosestTile(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y);
             this->nX = vecPosition[0];
             this->nY = vecPosition[1];
         }
 
-        //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
+        std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
         
         Player* pPlayer;
         pPlayer = dynamic_cast<Player*>(GameObjectManager::getInstance()->findObjectByName("Player Tank"));
@@ -51,9 +51,10 @@ void EnemyAI::perform() {
             
             std::vector<std::vector<int>> vecMap = MapManager::getInstance()->getMap();
             std::vector<Point> vecPath = findPath(vecMap, pointStart, pointEnd);
-            
-            if(!vecPath.empty()){
-                float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
+
+            float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
+
+            if(!vecPath.empty() && vecPath.size() > 2){
 
                 //right
                 if(vecPath[1].x > this->nX){
@@ -68,7 +69,7 @@ void EnemyAI::perform() {
                     }
                 }
                 //left
-                if(vecPath[1].x < this->nX){
+                else if(vecPath[1].x < this->nX){
                     this->getOwner()->getSprite()->setRotation(270.0f);
                     pCollider->setOffset(sf::FloatRect(0.f, 4.f, -24.f, -8.f));
                     // ((Player*)(this->getOwner()))->pRectangle->setRotation(270.0f);
@@ -82,7 +83,7 @@ void EnemyAI::perform() {
                     // }
                 }
                 //up
-                if(vecPath[1].y < this->nY){
+                else if(vecPath[1].y < this->nY){
                     this->getOwner()->getSprite()->setRotation(0.0f);
                     pCollider->setOffset(sf::FloatRect(4.f, 0.f, -8.f, -24.f));
                     if (pOwner->isTopBounds())
@@ -95,7 +96,7 @@ void EnemyAI::perform() {
                     // }
                 }
                 //down
-                if(vecPath[1].y > this->nY){
+                else if(vecPath[1].y > this->nY){
                     this->getOwner()->getSprite()->setRotation(180.0f);
                     pCollider->setOffset(sf::FloatRect(4.f, 24.f, -8.f, -24.f));
                     // ((Player*)(this->getOwner()))->pRectangle->setRotation(180.0f);
@@ -154,9 +155,67 @@ void EnemyAI::perform() {
                 //std::cout << "Next tile value is " << vecMap[vecPath[1].y][vecPath[1].x] << std::endl;
                 //std::cout << "AI headed to " << vecPath[1].x << " " << vecPath[1].y << std::endl << std::endl;
                 //std::cout << std::endl;
+
+            }
+            else if(!vecPath.empty()){
+                //right
+                if(vecPath[1].x > this->nX){
+                    this->getOwner()->getSprite()->setRotation(90.0f);
+                    pCollider->setOffset(sf::FloatRect(24.f, 4.f, -24.f, -8.f));
+                    // ((Player*)(this->getOwner()))->pRectangle->setRotation(90.0f);
+                }
+                //left
+                else if(vecPath[1].x < this->nX){
+                    this->getOwner()->getSprite()->setRotation(270.0f);
+                    pCollider->setOffset(sf::FloatRect(0.f, 4.f, -24.f, -8.f));
+                    // ((Player*)(this->getOwner()))->pRectangle->setRotation(270.0f);
+                }
+                //up
+                else if(vecPath[1].y < this->nY){
+                    this->getOwner()->getSprite()->setRotation(0.0f);
+                    pCollider->setOffset(sf::FloatRect(4.f, 0.f, -8.f, -24.f));
+                }
+                //down
+                else if(vecPath[1].y > this->nY){
+                    this->getOwner()->getSprite()->setRotation(180.0f);
+                    pCollider->setOffset(sf::FloatRect(4.f, 24.f, -8.f, -24.f));
+                }
+
+                pOwner->getRectangle()->setSize(sf::Vector2f(pCollider->getGlobalBounds().width, pCollider->getGlobalBounds().height));
+                pOwner->getRectangle()->setPosition(pCollider->getGlobalBounds().left,pCollider->getGlobalBounds().top);
+
+                bool bXSame = true;
+                bool bYSame = true;
+
+                int nPrevX = vecPath[0].x;
+                int nPrevY = vecPath[0].y;
+
+                int i = 0;
+
+                for(Point pointPath : vecPath){
+                    if(nPrevX != pointPath.x){
+                        bXSame = false;
+                    }
+                    if(nPrevY != pointPath.y){
+                        bYSame = false;
+                    }
+                    //std::cout << "Path " << i << ": " << pointPath.x << " " << pointPath.y << std::endl;
+                    i++;
+                    nPrevX = pointPath.x;
+                    nPrevY = pointPath.y;
+                }
+                
+                if((bXSame && !bYSame)|| (bYSame && !bXSame)) {
+                    //this->getOwner()->getSprite()->setPosition(100, 100);
+                    // not working
+                    //ObjectPoolManager::getInstance()->getPool(PoolTag::TANK_BULLET)->requestPoolable();
+                    std::cout << "AI wants to shoot" << std::endl;
+                }
             }
             else{
-                std::cout << "[AI] : No path." << std::endl;
+                //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
+                //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
+                std::cout << "[AI] : No path." << std::endl << std::endl;
             }
         }
         else{

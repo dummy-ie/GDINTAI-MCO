@@ -4,6 +4,8 @@ using namespace controllers;
 
 //get nearest tile from screen coordinates, doesnt clamp values so beware of out of bounds
 std::vector<int> MapManager::getClosestTile(float x, float y){
+    float tileCenterX, tileCenterY;
+
     //each tile be 32 pixels wide, please dont change
     int nX = x / 32;
     int nY = y / 32;
@@ -48,7 +50,7 @@ bool MapManager::isCentered(float x, float y, int nX, int nY, float range){
         inRange = (distance(x,y,tileCenterX,tileCenterY) <= range);
     }
     //up
-    if(nY - 1 > 0 && !inRange){
+    if(nY - 1 >= 0 && !inRange){
         tileCenterX = (nX * tileSize) + (tileSize / 2);
         tileCenterY = ((nY - 1) * tileSize) + (tileSize / 2);
         inRange = (distance(x,y,tileCenterX,tileCenterY) <= range);
@@ -60,7 +62,7 @@ bool MapManager::isCentered(float x, float y, int nX, int nY, float range){
         inRange = (distance(x,y,tileCenterX,tileCenterY) <= range);
     }
     //left
-    if(nX - 1 > 0 && !inRange){
+    if(nX - 1 >= 0 && !inRange){
         tileCenterX = ((nX - 1) * tileSize) + (tileSize / 2);
         tileCenterY = (nY * tileSize) + (tileSize / 2);
         inRange = (distance(x,y,tileCenterX,tileCenterY) <= range);
