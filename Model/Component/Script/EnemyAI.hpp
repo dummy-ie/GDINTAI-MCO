@@ -43,7 +43,7 @@ namespace ai {
         /*in pseudocode
             if(x && y are within bounds) && if(vecBoard[x][y] was not visited)
         */
-        if (x < 0 || x >= nRows || y < 0 || y >= nCols || vecVisited[x][y] || vecBoard[x][y] == 1 || vecBoard[x][y] == 2){
+        if (x < 0 || x >= nCols || y < 0 || y >= nRows || vecVisited[y][x] || vecBoard[y][x] == 1 || vecBoard[y][x] == 2){
             return false;
         }
         return true;
@@ -67,7 +67,7 @@ namespace ai {
             int newX = pointCurrent.x + dx[i];
             int newY = pointCurrent.y + dy[i];
             if (isValid(newX, newY, nRows, nCols, vecBoard, vecVisited)) {
-                vecVisited[newX][newY] = true;
+                vecVisited[newY][newX] = true;
                 vecNeighbors.push_back({newX, newY});
             }
         }
@@ -87,13 +87,13 @@ namespace ai {
 
         int h = calculateHeuristic(pointStart, pointEnd);
         Node* nodeStart = new Node(pointStart, 0, h, nullptr);
-        vecNodes[pointStart.x][pointStart.y] = nodeStart;
+        vecNodes[pointStart.y][pointStart.x] = nodeStart;
         queNode.push(nodeStart);
 
         //so we know if we've been there before
         vector<vector<bool>> vecVisited(nRows, vector<bool>(nCols, false));
 
-        vecVisited[pointStart.x][pointStart.y] = true;
+        vecVisited[pointStart.y][pointStart.x] = true;
 
         while (!queNode.empty()) {
             Node* nodeCurrent = queNode.top();
@@ -118,7 +118,7 @@ namespace ai {
                 Node* nodeNeighbor = vecNodes[newX][newY];
                 if (nodeNeighbor == nullptr) {
                     nodeNeighbor = new Node(pointNeighbor, g, h, nodeCurrent);
-                    vecNodes[newX][newY] = nodeNeighbor;
+                    vecNodes[newY][newX] = nodeNeighbor;
                     queNode.push(nodeNeighbor);
                 } 
                 else if (g < nodeNeighbor->g) {
@@ -133,12 +133,12 @@ namespace ai {
 
         //this too longer than expected, been crashing my BFS code that i based my A* code on
         //return empty vector if there is no Node for end point
-        if(vecNodes[pointEnd.x][pointEnd.y] == nullptr){
+        if(vecNodes[pointEnd.y][pointEnd.x] == nullptr){
             return {};
         }
 
         //pushes points into the path vector by traversing points pushed in the linked lists
-        Node* nodeCurrent = vecNodes[pointEnd.x][pointEnd.y];
+        Node* nodeCurrent = vecNodes[pointEnd.y][pointEnd.x];
         while (nodeCurrent != nullptr) {
             vecPath.push_back(nodeCurrent->pointPosition);
             nodeCurrent = nodeCurrent->pParent;
