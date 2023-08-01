@@ -8,6 +8,8 @@ EnemyAI::EnemyAI(std::string strName) : Component(strName, ComponentType::SCRIPT
     this->fFrameInterval = 20.f;
     this->fTicks = 0.0f;
 
+    this->nPrevMove = -1;
+
     this->nX = -1;
     this->nY = -1;
 }
@@ -67,6 +69,7 @@ void EnemyAI::perform() {
                         // pOwner->moveBounds(fOffset, 0.0f);
                         pOwner->getRectangle()->move(fOffset, 0.0f);
                     }
+                    this->nPrevMove = 0;
                 }
                 //left
                 else if(vecPath[1].x < this->nX){
@@ -81,6 +84,7 @@ void EnemyAI::perform() {
                     }
                         // ((Player*)(this->getOwner()))->pRectangle->move(-fOffset, 0.0f);
                     // }
+                    this->nPrevMove = 1;
                 }
                 //up
                 else if(vecPath[1].y < this->nY){
@@ -94,6 +98,7 @@ void EnemyAI::perform() {
                     }   
                         // ((Player*)(this->getOwner()))->pRectangle->move(0.0f, -fOffset);
                     // }
+                    this->nPrevMove = 2;
                 }
                 //down
                 else if(vecPath[1].y > this->nY){
@@ -109,6 +114,7 @@ void EnemyAI::perform() {
                         // ((Player*)(this->getOwner()))->pRectangle->move(0.0f, fOffset);
 
                     // }
+                    this->nPrevMove = 3;
                 }
                 /*
                 else{
@@ -216,6 +222,57 @@ void EnemyAI::perform() {
                 //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
                 //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
                 std::cout << "[AI] : No path." << std::endl << std::endl;
+                switch(this->nPrevMove){
+                    case 0:
+                        this->getOwner()->getSprite()->setRotation(90.0f);
+                        pCollider->setOffset(sf::FloatRect(24.f, 4.f, -24.f, -8.f));
+                        // ((Player*)(this->getOwner()))->pRectangle->setRotation(90.0f);
+                        if (pOwner->isRightBounds())
+                        {
+                            this->getOwner()->getSprite()->move(fOffset, 0.0f);
+                            // pOwner->moveBounds(fOffset, 0.0f);
+                            pOwner->getRectangle()->move(fOffset, 0.0f);
+                            //this->nPrevMove = 1;
+                        }
+                        break;
+                    case 1:
+                        this->getOwner()->getSprite()->setRotation(270.0f);
+                        pCollider->setOffset(sf::FloatRect(0.f, 4.f, -24.f, -8.f));
+                        // ((Player*)(this->getOwner()))->pRectangle->setRotation(270.0f);
+                        if (pOwner->isLeftBounds())
+                        {
+                            this->getOwner()->getSprite()->move(-fOffset, 0.0f);
+                            // pOwner->moveBounds(-fOffset, 0.0f);
+                            pOwner->getRectangle()->move(-fOffset, 0.0f);
+                            //this->nPrevMove = 0;
+                        }
+                        break;
+                    case 2:
+                        this->getOwner()->getSprite()->setRotation(0.0f);
+                        pCollider->setOffset(sf::FloatRect(4.f, 0.f, -8.f, -24.f));
+                        if (pOwner->isTopBounds())
+                        {
+                            this->getOwner()->getSprite()->move(0.0f, -fOffset);
+                            // pOwner->moveBounds(0.0f, -fOffset);
+                            pOwner->getRectangle()->move(0.0f, -fOffset);
+                            //this->nPrevMove = 3;
+                        }   
+                        break;
+                    case 3:
+                        this->getOwner()->getSprite()->setRotation(180.0f);
+                        pCollider->setOffset(sf::FloatRect(4.f, 24.f, -8.f, -24.f));
+                        // ((Player*)(this->getOwner()))->pRectangle->setRotation(180.0f);
+                        if (pOwner->isBottomBounds())
+                        {
+                            this->getOwner()->getSprite()->move(0.0f, fOffset);
+                            // pOwner->moveBounds(0.0f, fOffset);
+                            pOwner->getRectangle()->move(0.0f, fOffset);
+                            //this->nPrevMove = 2;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         else{

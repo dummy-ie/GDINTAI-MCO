@@ -157,6 +157,8 @@ namespace components {
             float fFrameInterval;
             float fTicks;
 
+            int nPrevMove;
+
             int nX, nY;
             
         public:
