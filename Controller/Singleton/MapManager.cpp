@@ -24,7 +24,7 @@ void MapManager::setMap(std::vector<std::vector<int>> vecMap) {
 }
 
 void MapManager::setMap(int x, int y, int value){
-    this->vecMap[x][y] = value;
+    this->vecMap[y][x] = value;
 }
 
 bool MapManager::isCentered(float x, float y, int nX, int nY, float range){
