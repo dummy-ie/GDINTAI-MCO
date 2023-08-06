@@ -16,6 +16,7 @@ namespace models {
     class Border : public GameObject, public CollisionListener {
         private:
             sf::FloatRect CBounds;
+            Collider* pCollider;
 
         public:
             Border(std::string strName, sf::FloatRect CBounds);

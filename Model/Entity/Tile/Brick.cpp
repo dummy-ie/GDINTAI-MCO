@@ -50,6 +50,7 @@ void Brick::damage() {
     this->pDamagerComponent->stop();
     if (this->getCurrentFrame() >= this->getFrameSize() - 1) {
         this->getParent()->detachChild(this);
-        
+        std::vector<int> vecLocation = MapManager::getInstance()->getClosestTile(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y);
+        MapManager::getInstance()->setMap(vecLocation[0], vecLocation[1], 0);
     }
 }

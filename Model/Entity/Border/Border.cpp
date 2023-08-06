@@ -9,13 +9,13 @@ Border::Border(std::string strName, sf::FloatRect CBounds) : GameObject(strName,
 Border::~Border() {}
 
 void Border::initialize() {
-    Collider* pCollider = new Collider(this->strName + " Collider");
-    pCollider->setListener(this);
+    this->pCollider = new Collider(this->strName + " Collider");
+    this->pCollider->setListener(this);
 
-    this->attachComponent(pCollider);
+    this->attachComponent(this->pCollider);
     //std::cout << this->strName << " ColliderLoc " << pCollider->getGlobalBounds().left << " x " << this->getGlobalBounds().top << std::endl;
     //std::cout << this->strName << " Collider " << pCollider->getGlobalBounds().width << " x " << this->getGlobalBounds().height << std::endl;
-    PhysicsManager::getInstance()->trackCollider(pCollider);
+    PhysicsManager::getInstance()->trackCollider(this->pCollider);
 }
 
 void Border::onCollisionEnter(GameObject* pGameObject) {
@@ -26,6 +26,7 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
     && pGameObject->getName().find("Bullet") != std::string::npos)
     {
         std::cout << "bullet hit a brick wall" << std::endl;
+        PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
     }
 }
