@@ -12,6 +12,7 @@ namespace components {
 
     class TankBulletExplode : public Component {
         private:
+            bool bExploding;
             float fFrameInterval;
             float fTicks;
 
@@ -20,6 +21,8 @@ namespace components {
 
         public:
             void perform();
+            void start();
+            void stop();
     };
 }
 

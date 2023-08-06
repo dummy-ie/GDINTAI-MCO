@@ -10,6 +10,7 @@
 #include "../EmptyGameObject.hpp"
 
 #include "Tile/Wall.hpp"
+#include "Tile/Brick.hpp"
 
 namespace models {
     class Map : public GameObject

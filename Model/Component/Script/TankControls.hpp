@@ -1,8 +1,8 @@
 #ifndef COMPONENTS_TANK_CONTROLS_HPP
 #define COMPONENTS_TANK_CONTROLS_HPP
 
-#include "../../Entity/Tank.hpp"
-#include "../../Entity/Tank/Player.hpp"
+#include "../../Pooling/Tank/Tank.hpp"
+#include "../../Pooling/Tank/Player.hpp"
 
 #include "../Component.hpp"
 #include "../Input/TankInput.hpp"

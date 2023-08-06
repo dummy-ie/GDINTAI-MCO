@@ -26,8 +26,7 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
     && pGameObject->getName().find("Bullet") != std::string::npos)
     {
         std::cout << "bullet hit a brick wall" << std::endl;
-        // this->getParent().killyourselfNOW();
-        GameObjectManager::getInstance()->deleteObject(this->getParent());
+        ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
     }
 }
 

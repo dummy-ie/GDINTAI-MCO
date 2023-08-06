@@ -9,6 +9,7 @@ Player::~Player() {}
 void Player::initialize() {
     this->setFrame(0);
     this->centerSpriteOrigin();
+    this->vecSpawn = sf::Vector2f(16.f, 16.f);
 
     // this->attachComponent(pRendererComponent);
 
@@ -38,11 +39,37 @@ void Player::initialize() {
     Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
     pRendererComponent->assignDrawable(this->pSprite);
     
+    this->pSprite->setPosition(this->vecSpawn);
+
+    this->pKillableComponent = new Killable(this->strName + " Killable");
+
+    this->pDamagerComponent = new Damager(this->strName + " Damager");
+    this->pDamagerComponent->setDamageable(this);
+
     this->attachComponent(pRendererComponent);
     this->attachComponent(pRectangleRenderer);
     this->attachComponent(pRectangleRenderer);
     this->attachComponent(pInputComponent);
     this->attachComponent(pControlsComponent);
+    this->attachComponent(this->pKillableComponent);
+    this->attachComponent(this->pDamagerComponent);
 
     PhysicsManager::getInstance()->trackCollider(pCollider);
+}
+
+void Player::onActivate()
+{   
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
+    GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::PLAYER_TANK_BULLET, 1, new TankBullet(PoolTag::PLAYER_TANK_BULLET, this->strName + " Bullet", pTexture, this), NULL);
+    pBulletPool->initialize();
+    ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
+
+    this->pSprite->setPosition(this->vecSpawn);
+}
+
+void Player::onRelease() {}
+
+PoolableObject *Player::clone() {
+    Player* pClone = new Player(this->ETag, this->strName, this->pTexture);
+    return pClone;
 }

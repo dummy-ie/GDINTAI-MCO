@@ -31,18 +31,28 @@ void GameSpace::createNullObjectComponents()
     EmptyGameObject *pComponentHolder = new EmptyGameObject("Physics Manager Holder");
     PhysicsManager::initialize("Physics Manager System", pComponentHolder);
     this->registerObject(pComponentHolder);
+
+    pComponentHolder = new EmptyGameObject("Tank Director Holder");
+    TankDirector* pTankDirector = new TankDirector("Tank Director");
+    pComponentHolder->attachComponent(pTankDirector);
+    this->registerObject(pComponentHolder);
 }
 
 void GameSpace::createObjectPools() {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
 
-    Tank* pTank = (Tank*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
+    //Tank* pPlayerTank = (Tank*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
 
-    GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::TANK_BULLET, 1, new TankBullet("Player Bullet", pTexture, pTank), NULL);
-    pBulletPool->initialize();
-    ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
+    //GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::PLAYER_TANK_BULLET, 1, new TankBullet(PoolTag::PLAYER_TANK_BULLET, "Player Bullet", pTexture, pPlayerTank), NULL);
+    //pBulletPool->initialize();
+    //ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
 
-    //pTank = (Tank*)GameObjectManager::getInstance()->findObjectByName("Enemy Tank");
+    //Tank* pEnemyTank = (Tank*)GameObjectManager::getInstance()->findObjectByName("Enemy Tank");
+
+    //pBulletPool = new GameObjectPool(PoolTag::ENEMY_TANK_BULLET, 1, new TankBullet(PoolTag::ENEMY_TANK_BULLET, "Enemy Bullet", pTexture, pEnemyTank), NULL);
+    //pBulletPool->initialize();
+    //ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
+
     //pBulletPool = new GameObjectPool(PoolTag::TANK_BULLET, 1, new TankBullet("Player Bullet", pTexture, pTank), NULL);
     //pBulletPool->initialize();
     //ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
@@ -79,19 +89,19 @@ void GameSpace::createMap()
 
 void GameSpace::createTanks()
 {
-    AssetType EType = AssetType::PLAYER_TANK;
-    AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
-    Player *pPlayer = new Player(PoolTag::TANK, "Player Tank", pTexture);
-    this->registerObject(pPlayer);
-    pPlayer->getSprite()->setPosition(16.f, 16.f);
-    pPlayer->getRectangle()->setPosition(16.f, 16.f);
+    //AssetType EType = AssetType::PLAYER_TANK;
+    //AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
+    //Player *pPlayer = new Player(PoolTag::PLAYER_TANK, "Player Tank", pTexture);
+    //this->registerObject(pPlayer);
+    //pPlayer->getSprite()->setPosition(16.f, 16.f);
+    //pPlayer->getRectangle()->setPosition(16.f, 16.f);
 
-    EType = AssetType::ENEMY_TANK;
-    pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
-    Enemy* pEnemy = new Enemy(PoolTag::TANK, "Enemy Tank", pTexture);
-    this->registerObject(pEnemy);
-    pEnemy->getSprite()->setPosition(208.f, 208.f);
-    pEnemy->getRectangle()->setPosition(208.f, 208.f);
+    //EType = AssetType::ENEMY_TANK;
+    //pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
+   // Enemy* pEnemy = new Enemy(PoolTag::ENEMY_TANK, "Enemy Tank", pTexture);
+    //this->registerObject(pEnemy);
+    //pEnemy->getSprite()->setPosition(208.f, 208.f);
+    //pEnemy->getRectangle()->setPosition(208.f, 208.f);
 }
 
 void GameSpace::createBorders()

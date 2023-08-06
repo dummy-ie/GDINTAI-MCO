@@ -17,23 +17,6 @@ void Tank::initialize()
     this->centerSpriteOrigin();
 }
 
-void Tank::onActivate()
-{
-    // float fHalfWidth = this->pShip->getSprite()->getGlobalBounds().width / 2.0f;
-    // float fSpacing = 9.0f;
-
-    // this->pSprite->setPosition(this->pShip->getSprite()->getPosition().x + fHalfWidth + fSpacing,
-    // this->pShip->getSprite()->getPosition().y);
-
-    // this->pCollider->cleanCollisions();
-    // this->pCollider->setCleanUp(false);
-    // PhysicsManager::getInstance()->trackCollider(this->pCollider);
-}
-
-void Tank::onRelease() {}
-
-PoolableObject *Tank::clone() {}
-
 bool Tank::isTopBounds()
 {
     return this->bTopBounds;
@@ -123,6 +106,9 @@ void Tank::onCollisionEnter(GameObject *pGameObject)
     // if(pGameObject->getName().find("Right Border") != std::string::npos) {
     //     this->bRightBounds = false;
     // }
+    if (pGameObject->getName().find("Bullet") != std::string::npos && pGameObject->getName() != this->strName + " Bullet" ) {
+        this->pDamagerComponent->start();
+    }
 }
 
 void Tank::onCollisionContinue(GameObject *pGameObject)
@@ -205,4 +191,10 @@ sf::FloatRect Tank::getGlobalBounds() {
 void Tank::moveBounds(float x, float y)
 {
     this->CBounds = sf::FloatRect(this->CBounds.left + x, this->CBounds.top + y, this->CBounds.width, this->CBounds.height);
+}
+
+void Tank::damage() {
+    std::cout << "damage" << std::endl;
+    this->pKillableComponent->setKilled(true);
+    this->pDamagerComponent->stop();
 }

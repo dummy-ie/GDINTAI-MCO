@@ -2,9 +2,13 @@
 #define MODEL_ENEMY_HPP
 
 #include "../../Enum/EnumPoolTag.hpp"
-#include "../../Component/Script/EnemyAI.hpp"
 
-#include "../Tank.hpp"
+#include "../../Component/Script/EnemyAI.hpp"
+#include "../../Component/Script/Damager.hpp"
+
+#include "../Tank Bullet/TankBullet.hpp"
+
+#include "Tank.hpp"
 
 namespace models {
     class Enemy : public Tank {
@@ -14,6 +18,11 @@ namespace models {
 
         public:
             void initialize();
+
+        public:
+            void onActivate();
+            void onRelease();
+            PoolableObject* clone();
     };
 }
 

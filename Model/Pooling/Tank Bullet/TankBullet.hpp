@@ -19,6 +19,8 @@
 
 namespace models {
     class Tank;
+    class Player;
+    class Enemy;
 }
 
 namespace models {
@@ -34,7 +36,7 @@ namespace models {
             Collider* pCollider;
 
         public:
-            TankBullet(std::string strName, AnimatedTexture* pTexture, Tank* pTank);
+            TankBullet(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, Tank* pTank);
 
         public:
             void initialize();

@@ -1,7 +1,7 @@
 #ifndef COMPONENTS_ENEMY_AI_HPP
 #define COMPONENTS_ENEMY_AI_HPP
 
-#include "../../Entity/Tank/Player.hpp"
+#include "../../Pooling/Tank/Player.hpp"
 
 #include "../Component.hpp"
 

@@ -92,7 +92,7 @@ void TankControls::perform() {
             //this->getOwner()->getSprite()->setPosition(100, 100);
             pInput->resetSpace();
             // not working
-            ObjectPoolManager::getInstance()->getPool(PoolTag::TANK_BULLET)->requestPoolable();
+            ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_TANK_BULLET)->requestPoolable();
         }
     }
 }

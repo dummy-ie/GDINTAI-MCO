@@ -13,7 +13,7 @@ namespace components {
 
     class TankBulletMovement : public Component {
         private:
-            bool bEnabled;
+            bool bMoving;
             float fFrameInterval;
             float fTicks;
             float fSpeed;
@@ -23,6 +23,8 @@ namespace components {
 
         public:
             void perform();
+            void start();
+            void stop();
     };
 }
 

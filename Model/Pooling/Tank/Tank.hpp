@@ -1,27 +1,35 @@
 #ifndef MODELS_TANK_HPP
 #define MODELS_TANK_HPP
 
-#include "../Enum/EnumPoolTag.hpp"
+#include "../../Enum/EnumPoolTag.hpp"
 
-#include "../Pooling/PoolableObject.hpp"
+#include "../PoolableObject.hpp"
 
-#include "../Component/Input/TankInput.hpp"
-#include "../Component/Script/TankControls.hpp"
-#include "../Component/Physics/Collider.hpp"
+#include "../../Component/Input/TankInput.hpp"
+#include "../../Component/Script/TankControls.hpp"
+#include "../../Component/Script/Killable.hpp"
+#include "../../Component/Physics/Collider.hpp"
 
-#include "../Component/Physics/Interface/CollisionListener.hpp"
+#include "../../Component/Script/Interface/Damageable.hpp"
+
+#include "../../Component/Physics/Interface/CollisionListener.hpp"
 
 namespace models {
-    class Tank : public PoolableObject, public CollisionListener {
+    using namespace components;
+    using namespace interfaces;
+    class Tank : public PoolableObject, public CollisionListener, public Damageable {
         protected:
             //std::vector<Base*> vecBase;
             sf::FloatRect COffset;
             sf::FloatRect CBounds;
+            sf::Vector2f vecSpawn = sf::Vector2f(0.0f, 0.0f);
             bool bTopBounds;
             bool bLeftBounds;
             bool bBottomBounds;
             bool bRightBounds;
             sf::RectangleShape* pRectangle;
+            Killable* pKillableComponent;
+            Damager* pDamagerComponent;
 
         public:
             Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
@@ -31,9 +39,9 @@ namespace models {
             void initialize();
 
         public:
-            void onActivate();
-            void onRelease();
-            PoolableObject* clone();
+            virtual void onActivate() = 0;
+            virtual void onRelease() = 0;
+            virtual PoolableObject* clone() = 0;
         
         public:
             bool isTopBounds();
@@ -50,6 +58,9 @@ namespace models {
             sf::RectangleShape* getRectangle();
             sf::FloatRect getGlobalBounds();
             void moveBounds(float x, float y);
+
+        public:
+            virtual void damage();
     };
 }
 
