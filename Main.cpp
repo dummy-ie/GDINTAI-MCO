@@ -47,6 +47,7 @@
 
 //#include "Model/Entity/Tile/Base.cpp"
 #include "Model/Entity/Tile/Wall.cpp"
+#include "Model/Entity/Tile/Brick.cpp"
 
 #include "Model/Pooling/PoolableObject.cpp"
 

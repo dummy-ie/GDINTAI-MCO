@@ -73,11 +73,11 @@ void Map::initialize()
                         AssetType EType = AssetType::BRICK;
                         AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
 
-                        Wall *pWall = new Wall(
+                        Brick *pBrick = new Brick(
                             "Brick Wall", 
                             pTexture, 
                             sf::Vector2f(j * nOffset + k * 16 + 8, i * nOffset + l * 16 + 8)); 
-                        this->attachChild(pWall);
+                        this->attachChild(pBrick);
                         // std::cout << "created a wall" << std::endl;
                     }
                 }

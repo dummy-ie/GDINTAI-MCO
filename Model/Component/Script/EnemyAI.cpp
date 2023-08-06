@@ -40,7 +40,7 @@ void EnemyAI::perform() {
             this->nY = vecPosition[1];
         }
 
-        std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
+        //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
         
         Player* pPlayer;
         pPlayer = dynamic_cast<Player*>(GameObjectManager::getInstance()->findObjectByName("Player Tank"));
@@ -154,7 +154,7 @@ void EnemyAI::perform() {
                     //this->getOwner()->getSprite()->setPosition(100, 100);
                     // not working
                     ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY_TANK_BULLET)->requestPoolable();
-                    std::cout << "AI wants to shoot" << std::endl;
+                    //std::cout << "AI wants to shoot" << std::endl;
                 }
                 
                 //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
@@ -215,7 +215,7 @@ void EnemyAI::perform() {
                     //this->getOwner()->getSprite()->setPosition(100, 100);
                     // not working
                     //ObjectPoolManager::getInstance()->getPool(PoolTag::TANK_BULLET)->requestPoolable();
-                    std::cout << "AI wants to shoot" << std::endl;
+                    //std::cout << "AI wants to shoot" << std::endl;
                 }
             }
             else{
