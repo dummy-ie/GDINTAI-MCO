@@ -2,7 +2,7 @@
 
 using namespace models;
 
-TankBullet::TankBullet(std::string strName, AnimatedTexture* pTexture, Tank* pTank) : PoolableObject(PoolTag::TANK_BULLET, strName, pTexture) {
+TankBullet::TankBullet(PoolTag ETag, std::string strName, AnimatedTexture* pTexture, Tank* pTank) : PoolableObject(ETag, strName, pTexture) {
     this->pTank = pTank;
     this->pCollider = NULL;
 }
@@ -87,6 +87,6 @@ void TankBullet::onCollisionContinue(GameObject* pGameObject) {}
 void TankBullet::onCollisionExit(GameObject* pGameObject) {}
 
 PoolableObject* TankBullet::clone() {
-    PoolableObject* pClone = new TankBullet(this->strName, new AnimatedTexture(*this->pTexture), this->pTank);
+    PoolableObject* pClone = new TankBullet(this->ETag, this->strName, new AnimatedTexture(*this->pTexture), this->pTank);
     return pClone;
 }
