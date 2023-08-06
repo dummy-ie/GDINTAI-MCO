@@ -106,7 +106,7 @@ void Tank::onCollisionEnter(GameObject *pGameObject)
     // if(pGameObject->getName().find("Right Border") != std::string::npos) {
     //     this->bRightBounds = false;
     // }
-    if (pGameObject->getName().find("Bullet") != std::string::npos) {
+    if (pGameObject->getName().find("Bullet") != std::string::npos && pGameObject->getName() != this->strName + " Bullet" ) {
         this->pDamagerComponent->start();
     }
 }
@@ -195,6 +195,6 @@ void Tank::moveBounds(float x, float y)
 
 void Tank::damage() {
     std::cout << "damage" << std::endl;
-    //this->pKillableComponent->setKilled(true);
+    this->pKillableComponent->setKilled(true);
     this->pDamagerComponent->stop();
 }
