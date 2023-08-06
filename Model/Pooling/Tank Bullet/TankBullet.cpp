@@ -20,6 +20,12 @@ void TankBullet::initialize() {
     this->pCollider->setOffset(sf::FloatRect(15.f, 15.f, -27.f, -27.f));
     this->pCollider->setListener(this);
 
+    this->pMovementComponent = new TankBulletMovement(this->strName + " Bullet Movement");
+    this->attachComponent(this->pMovementComponent);
+
+    this->pExplodeComponent = new TankBulletExplode(this->strName + " Bullet Explode");
+    this->attachComponent(this->pExplodeComponent);
+
     this->attachComponent(this->pCollider);
 }
 
@@ -28,8 +34,7 @@ void TankBullet::onActivate() {
     float fSpacing = 3.0f;
     int nRotation = this->pTank->getSprite()->getRotation();
     
-    this->pMovementComponent = new TankBulletMovement(this->strName + " Bullet Movement");
-    this->attachComponent(this->pMovementComponent);
+    
 
     this->pSprite->setRotation(nRotation);
     switch (nRotation) {
@@ -50,7 +55,7 @@ void TankBullet::onActivate() {
                                        this->pTank->getSprite()->getPosition().y);
             break;
     }
-
+    this->pMovementComponent->start();
     this->pCollider->cleanCollisions();
     this->pCollider->setCleanUp(false);
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
@@ -60,16 +65,17 @@ void TankBullet::onRelease() {
     //this->pCollider->cleanCollisions();
     //this->pCollider->setCleanUp(false);
     //PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+    this->pExplodeComponent->stop();
 }
 
 void TankBullet::onCollisionEnter(GameObject* pGameObject) {
     if((pGameObject->getName().find("Tank") != std::string::npos && pGameObject->getName() != this->pTank->getName())||
         pGameObject->getName().find("Border") != std::string::npos) {
-        this->detachComponent(this->pMovementComponent);
-        this->attachComponent(new TankBulletExplode(this->strName + " Bullet Explode"));
         Collider* pCollider = (Collider*)pGameObject->findComponentByName(pGameObject->getName() + " Collider");
         pCollider->setCollided(this->pCollider, false);
         // this->pCollider->setCleanUp(true);
+        this->pExplodeComponent->start();
+        this->pMovementComponent->stop();
         PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         PhysicsManager::getInstance()->cleanUp();
         
