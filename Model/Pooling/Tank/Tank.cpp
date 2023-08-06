@@ -8,6 +8,8 @@ Tank::Tank(PoolTag ETag, std::string strName, AnimatedTexture *pTexture) : Poola
     this->bLeftBounds = true;
     this->bBottomBounds = true;
     this->bRightBounds = true;
+
+    this->fBonusSpeed = 0.f;
 }
 
 Tank::~Tank() {}
@@ -35,6 +37,14 @@ bool Tank::isBottomBounds()
 bool Tank::isRightBounds()
 {
     return this->bRightBounds;
+}
+
+void Tank::setBonusSpeed(float fBonusSpeed){
+    this->fBonusSpeed = fBonusSpeed;
+}
+
+float Tank::getBonusSpeed(){
+    return this->fBonusSpeed;
 }
 
 void Tank::onCollisionEnter(GameObject *pGameObject)

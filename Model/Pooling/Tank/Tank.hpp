@@ -31,6 +31,8 @@ namespace models {
             Killable* pKillableComponent;
             Damager* pDamagerComponent;
 
+            float fBonusSpeed;
+
         public:
             Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
             ~Tank();
@@ -48,6 +50,9 @@ namespace models {
             bool isLeftBounds();
             bool isBottomBounds();
             bool isRightBounds();
+
+            void setBonusSpeed(float fBonusSpeed);
+            float getBonusSpeed();
 
         public:
             virtual void onCollisionEnter(GameObject* pGameObject);
