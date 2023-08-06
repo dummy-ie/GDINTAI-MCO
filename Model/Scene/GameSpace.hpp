@@ -5,6 +5,8 @@
 
 #include "../../Controller/Singleton/MapManager.hpp"
 
+#include "../../Controller/Pooling/Component/Director/TankDirector.hpp"
+
 #include "../../Config/Settings.hpp"
 
 #include "../Enum/EnumAssetType.hpp"
@@ -16,8 +18,8 @@
 #include "../Entity/Background.hpp"
 #include "../Entity/Map.hpp"
 
-#include "../Entity/Tank/Player.hpp"
-#include "../Entity/Tank/Enemy.hpp"
+#include "../Pooling/Tank/Player.hpp"
+#include "../Pooling/Tank/Enemy.hpp"
 
 #include "../Entity/Tile/Wall.hpp"
 
@@ -28,6 +30,7 @@ namespace scenes {
     using namespace models;
     using namespace views;
     using namespace systems;
+    using namespace directors;
     class GameSpace : public Scene {
         public:
             GameSpace();

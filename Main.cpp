@@ -32,16 +32,18 @@
 #include "Model/Component/Script/TankControls.cpp"
 #include "Model/Component/Script/TankBulletMovement.cpp"
 #include "Model/Component/Script/TankBulletExplode.cpp"
+#include "Model/Component/Script/Killable.cpp"
+#include "Model/Component/Script/Damager.cpp"
 
 #include "Model/Entity/Background.cpp"
-#include "Model/Entity/Tank.cpp"
 #include "Model/Entity/Tile.cpp"
 #include "Model/Entity/Map.cpp"
 
 #include "Model/Entity/Border/Border.cpp"
 
-#include "Model/Entity/Tank/Player.cpp"
-#include "Model/Entity/Tank/Enemy.cpp"
+#include "Model/Pooling/Tank/Tank.cpp"
+#include "Model/Pooling/Tank/Player.cpp"
+#include "Model/Pooling/Tank/Enemy.cpp"
 
 //#include "Model/Entity/Tile/Base.cpp"
 #include "Model/Entity/Tile/Wall.cpp"
@@ -61,6 +63,7 @@
 #include "View/Screen/TitleScreen.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
+#include "Controller/Pooling/Component/Director/TankDirector.cpp"
 
 #include "Controller/System/PhysicsManager.cpp"
 #include "Controller/System/SceneManager.cpp"

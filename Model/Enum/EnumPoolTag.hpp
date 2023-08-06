@@ -3,8 +3,10 @@
 
 enum class PoolTag : int {
     NONE = -1,
-    TANK,
+    PLAYER_TANK,
     PLAYER_TANK_BULLET,
+
+    ENEMY_TANK,
     ENEMY_TANK_BULLET,
 };
 

@@ -153,7 +153,7 @@ void EnemyAI::perform() {
                 if((bXSame && !bYSame)|| (bYSame && !bXSame)) {
                     //this->getOwner()->getSprite()->setPosition(100, 100);
                     // not working
-                    //ObjectPoolManager::getInstance()->getPool(PoolTag::TANK_BULLET)->requestPoolable();
+                    ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY_TANK_BULLET)->requestPoolable();
                     std::cout << "AI wants to shoot" << std::endl;
                 }
                 

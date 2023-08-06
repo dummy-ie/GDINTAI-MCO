@@ -19,6 +19,8 @@
 
 namespace models {
     class Tank;
+    class Player;
+    class Enemy;
 }
 
 namespace models {

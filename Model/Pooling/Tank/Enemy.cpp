@@ -9,6 +9,7 @@ Enemy::~Enemy() {}
 void Enemy::initialize() {
     this->setFrame(0);
     this->centerSpriteOrigin();
+    this->vecSpawn = sf::Vector2f(208.f, 208.f);
 
     EnemyAI* pEnemyAIComponent = new EnemyAI(this->strName + " AI");
 
@@ -35,9 +36,35 @@ void Enemy::initialize() {
     Renderer* pRendererComponent = new Renderer(this->strName + " Sprite");
     pRendererComponent->assignDrawable(this->pSprite);
 
+    this->pSprite->setPosition(this->vecSpawn);
+    
+    this->pKillableComponent = new Killable(this->strName + " Killable");
+
+    this->pDamagerComponent = new Damager(this->strName + " Damager");
+    this->pDamagerComponent->setDamageable(this);
+
     this->attachComponent(pEnemyAIComponent);
     this->attachComponent(pRendererComponent);
     this->attachComponent(pRectangleRenderer);
+    this->attachComponent(this->pKillableComponent);
+    this->attachComponent(this->pDamagerComponent);
 
     PhysicsManager::getInstance()->trackCollider(pCollider);
+}
+
+void Enemy::onActivate()
+{
+    this->pSprite->setPosition(this->vecSpawn);
+
+    AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::BULLET));
+    GameObjectPool* pBulletPool = new GameObjectPool(PoolTag::ENEMY_TANK_BULLET, 1, new TankBullet(PoolTag::ENEMY_TANK_BULLET, this->strName + " Bullet", pTexture, this), NULL);
+    pBulletPool->initialize();
+    ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
+}
+
+void Enemy::onRelease() {}
+
+PoolableObject *Enemy::clone() {
+    Enemy* pClone = new Enemy(this->ETag, this->strName, this->pTexture);
+    return pClone;
 }
