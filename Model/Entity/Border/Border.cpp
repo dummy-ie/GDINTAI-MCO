@@ -30,6 +30,14 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
         PhysicsManager::getInstance()->cleanUp();
         ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
     }
+    if (this->getName().find("Base") != std::string::npos 
+    && pGameObject->getName().find("Bullet") != std::string::npos)
+    {
+        std::cout << "bullet hit a base" << std::endl;
+        PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+        PhysicsManager::getInstance()->cleanUp();
+        ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
+    }
 }
 
 void Border::onCollisionContinue(GameObject* pGameObject) {
