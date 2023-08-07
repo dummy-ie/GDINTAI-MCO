@@ -67,8 +67,9 @@
 
 #include "View/Screen/TitleScreen.cpp"
 #include "View/Screen/MapSelectionScreen.cpp"
-#include "View/Screen/TimerView.cpp"
 #include "View/Screen/LeaderboardScreen.cpp"
+#include "View/Screen/TimerView.cpp"
+#include "View/Screen/GameOverScreen.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Pooling/Component/Director/TankDirector.cpp"
@@ -81,6 +82,7 @@
 #include "Controller/Game.cpp"
 
 int main(int argc, const char** argv) {
+    srand(std::time(NULL));
     Game CGame;
     CGame.run();
 

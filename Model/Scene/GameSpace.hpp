@@ -27,6 +27,7 @@
 #include "../Pooling/Tank Bullet/TankBullet.hpp"
 
 #include "../../View/Screen/TimerView.hpp"
+#include "../../View/Screen/GameOverScreen.hpp"
 
 namespace scenes {
     using namespace controllers;
@@ -51,6 +52,8 @@ namespace scenes {
             void createTanks();
             void createBorders();
             void createTimer();
+            void createScore();
+            void createGameOverInterface();
     };
 }
 

@@ -19,6 +19,8 @@ void GameSpace::onLoadObjects()
     this->createObjectPools();
     this->createBorders();
     this->createTimer();
+    this->createScore();
+    this->createGameOverInterface();
 }
 
 void GameSpace::onUnloadResources()
@@ -118,4 +120,15 @@ void GameSpace::createTimer()
 {
     TimerView* pTimerView = new TimerView("Game Space Timer");
     this->registerObject(pTimerView);
+}
+
+void GameSpace::createScore()
+{
+}
+
+void GameSpace::createGameOverInterface()
+{
+    GameOverScreen* pGameOver = new GameOverScreen("Game Over Screen");
+    this->registerObject(pGameOver);
+    // pGameOver->setEnabled(true);
 }
