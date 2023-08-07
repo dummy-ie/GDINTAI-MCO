@@ -11,6 +11,7 @@
 
 #include "Tile/Wall.hpp"
 #include "Tile/Brick.hpp"
+#include "Tile/Base.hpp"
 
 namespace models {
     class Map : public GameObject

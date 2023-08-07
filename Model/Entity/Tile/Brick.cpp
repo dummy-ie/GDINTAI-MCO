@@ -18,7 +18,7 @@ void Brick::initialize() {
     this->setFrame(0);
     this->getSprite()->setPosition(this->CPosition);
 
-    this->pRectangle = new sf::RectangleShape(sf::Vector2f(16.f, 16.f));
+    this->pRectangle = new sf::RectangleShape(sf::Vector2f(32.f, 32.f));
     this->pRectangle->setFillColor(this->CColor);
     this->pRectangle->setOrigin(8.f, 8.f);
     this->pRectangle->setPosition(this->getSprite()->getPosition());

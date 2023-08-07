@@ -12,6 +12,8 @@
 
 #include "../Tank/Tank.hpp"
 
+#include "../../Entity/Tile/Base.hpp"
+
 #include "../PoolableObject.hpp"
 
 #include "../../../Controller/Singleton/ObjectPoolManager.hpp"

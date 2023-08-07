@@ -7,7 +7,7 @@ TankDirector::TankDirector(std::string strName) : Component(strName, ComponentTy
     this->fTicks = 10.0f;
 
     this->createPlayer(PoolTag::PLAYER_TANK, 1);
-    this->createEnemy(PoolTag::ENEMY_TANK, 0);
+    this->createEnemy(PoolTag::ENEMY_TANK, 1);
 }
 
 TankDirector::~TankDirector() {}
@@ -16,8 +16,6 @@ void TankDirector::createPlayer(PoolTag ETag, int nPoolSize) {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER_TANK));
     Player* pPlayer = new Player(ETag, "Player Tank", pTexture);
 
-    
-    
     GameObjectPool* pGameObjectPool = new GameObjectPool(ETag, nPoolSize, pPlayer);
     pGameObjectPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pGameObjectPool);

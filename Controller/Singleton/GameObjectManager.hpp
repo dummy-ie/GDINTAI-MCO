@@ -27,6 +27,7 @@ namespace controllers {
             void deleteAllObjects();
             
             GameObject* findObjectByName(std::string strName);
+            std::vector<GameObject*> findAllObjectsByName(std::string strName);
 
         private:
             static GameObjectManager* P_SHARED_INSTANCE;

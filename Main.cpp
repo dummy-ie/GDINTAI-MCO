@@ -49,7 +49,7 @@
 
 #include "Model/Pooling/Item/Item.cpp"
 
-//#include "Model/Entity/Tile/Base.cpp"
+#include "Model/Entity/Tile/Base.cpp"
 #include "Model/Entity/Tile/Wall.cpp"
 #include "Model/Entity/Tile/Brick.cpp"
 

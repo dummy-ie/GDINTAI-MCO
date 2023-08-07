@@ -66,7 +66,9 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
         PhysicsManager::getInstance()->cleanUp();
         
         Tank* pTank = dynamic_cast<Tank*>(pGameObject);
-
+        Enemy* pEnemy = dynamic_cast<Enemy*>(pGameObject);
+        std::vector<GameObject*> vecObjects;
+        
         if(pTank){
             switch(this->EType){
                 case ItemType::SPEED_UP:
@@ -83,9 +85,23 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
                     break;
                 case ItemType::CHAOS:
                     std::cout << "chaos" << std::endl;
+                    if(pEnemy){
+                        vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Enemy Base");
+                        for(int i = 0; i < vecObjects.size(); i++){
+                            Base* pBase = (Base*)vecObjects[i];
+                            pBase->randomizePosition();
+                        }
+                    }
+                    else{
+                        vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Player Base");
+                        for(int i = 0; i < vecObjects.size(); i++){
+                            Base* pBase = (Base*)vecObjects[i];
+                            pBase->randomizePosition();
+                        }
+                    }
                     break;
                 default:
-                        break;
+                    break;
             }
             ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->releasePoolable(this);
         }   

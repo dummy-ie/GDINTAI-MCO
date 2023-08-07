@@ -26,6 +26,28 @@ std::vector<int> MapManager::getRandomTile(int nTile){
     return vecPositions[nRand];
 }
 
+std::vector<std::vector<int>> MapManager::getAllTile(int nTile){
+    int nRow = this->vecMap.size();
+    int nCol = (nRow > 0) ? this->vecMap[0].size() : 0;
+    if(nRow == 0){
+        return {};
+    }
+
+    std::vector<std::vector<int>> vecPositions;
+    for (int i = 0; i < nRow; ++i) {
+        for (int j = 0; j < nCol; ++j) {
+            if (this->vecMap[i][j] == nTile) {
+                vecPositions.push_back({j, i});
+            }
+        }
+    }
+
+    if(vecPositions.empty()){
+        return {};
+    }
+
+    return vecPositions;
+}
 //get nearest tile from screen coordinates, doesnt clamp values so beware of out of bounds
 std::vector<int> MapManager::getClosestTile(float x, float y){
     float tileCenterX, tileCenterY;

@@ -70,6 +70,20 @@ GameObject* GameObjectManager::findObjectByName(std::string strName) {
     }
 }
 
+std::vector<GameObject*> GameObjectManager::findAllObjectsByName(std::string strName) {
+    std::vector<GameObject*> vecObjects;
+    for (GameObject* pGameObject : this->vecGameObject) {
+        if(pGameObject->getName().find("strName") != std::string::npos || pGameObject->getName() == strName){
+            vecObjects.push_back(pGameObject);
+        }
+    }
+    if(vecObjects.empty()){
+        std::cout << "[ERROR] : Object [" << strName << "] NOT found." << std::endl;
+        return {};
+    }
+    return vecObjects;
+}
+
 GameObjectManager* GameObjectManager::P_SHARED_INSTANCE = NULL;
 GameObjectManager::GameObjectManager() {}
 GameObjectManager::GameObjectManager(const GameObjectManager&) {}

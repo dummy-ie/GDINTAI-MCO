@@ -8,6 +8,7 @@ namespace controllers {
 
         public:
             std::vector<int> getRandomTile(int nTile);
+            std::vector<std::vector<int>> getAllTile(int nTile);
             std::vector<int> getClosestTile(float x, float y);
             std::vector<std::vector<int>> getMap();
             void setMap(std::vector<std::vector<int>> vecMap);

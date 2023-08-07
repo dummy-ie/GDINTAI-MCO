@@ -62,9 +62,17 @@ void Enemy::initialize() {
 
 void Enemy::onActivate()
 {
-    this->pSprite->setPosition(this->vecSpawn);
+    std::vector<GameObject*> vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Enemy Base");
+    if(!vecObjects.empty()){
+        int nRand = std::rand() % (vecObjects.size()-1);
+        this->pSprite->setPosition(vecObjects[nRand]->getSprite()->getPosition());
+    }
+    else{
+        this->pSprite->setPosition(this->vecSpawn);
+    }
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
     this->pEnemyAIComponent->reset();
+    
 }
 
 void Enemy::onRelease() {
