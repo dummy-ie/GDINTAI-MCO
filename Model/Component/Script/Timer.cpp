@@ -21,15 +21,15 @@ void Timer::perform()
             this->pTimeable->setTime(this->fTicks);
             if (this->fTicks <= 0.f && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN))
             {
-                GameOverScreen* pGameOverScreen = (GameOverScreen*)(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN));
+                GameOverScreen *pGameOverScreen = (GameOverScreen *)(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN));
                 pGameOverScreen->setEnabled(true);
                 this->stop();
 
-                ScoreView* pScoreView = NULL;
+                ScoreView *pScoreView = NULL;
                 int nScore = 0;
                 if (ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW))
                 {
-                    pScoreView = (ScoreView*)(ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW));
+                    pScoreView = (ScoreView *)(ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW));
                     if (pScoreView->nPlayerBaseKills > pScoreView->nEnemyBaseKills)
                     {
                         pGameOverScreen->setGameStatus(0);
@@ -39,19 +39,20 @@ void Timer::perform()
                     else if (pScoreView->nPlayerBaseKills < pScoreView->nEnemyBaseKills)
                         pGameOverScreen->setGameStatus(1);
                     else if (pScoreView->nPlayerBaseKills == pScoreView->nEnemyBaseKills)
-                        pGameOverScreen->setGameStatus(2);
-                    else if (pScoreView->nPlayerKills > pScoreView->nEnemyKills)
                     {
-                        pGameOverScreen->setGameStatus(0);
-                        nScore += pScoreView->nPlayerBaseKills;
-                        nScore += pScoreView->nPlayerKills;
+                        if (pScoreView->nPlayerKills > pScoreView->nEnemyKills)
+                        {
+                            pGameOverScreen->setGameStatus(0);
+                            nScore += pScoreView->nPlayerBaseKills;
+                            nScore += pScoreView->nPlayerKills;
+                        }
+                        else if (pScoreView->nPlayerKills < pScoreView->nEnemyKills)
+                            pGameOverScreen->setGameStatus(1);
+                        else if (pScoreView->nPlayerKills == pScoreView->nEnemyKills)
+                            pGameOverScreen->setGameStatus(2);
                     }
-                    else if (pScoreView->nPlayerKills < pScoreView->nEnemyKills)
-                        pGameOverScreen->setGameStatus(1);
-                    else if (pScoreView->nPlayerKills == pScoreView->nEnemyKills)
-                        pGameOverScreen->setGameStatus(2);
                 }
-        
+
                 std::ofstream scores("File/scores.txt", std::ios::app);
                 scores << nScore << std::endl;
                 scores.close();
@@ -76,7 +77,7 @@ void Timer::perform()
 void Timer::reset()
 {
     this->bIsCounting = true;
-    this->fTicks = 120.0f;
+    this->fTicks = 30.0f;
     // this->fUpdateTicks = 0.0f;
 }
 
