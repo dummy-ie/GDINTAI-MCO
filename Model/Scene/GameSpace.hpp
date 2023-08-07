@@ -28,6 +28,7 @@
 
 #include "../../View/Screen/TimerView.hpp"
 #include "../../View/Screen/GameOverScreen.hpp"
+#include "../../View/Screen/ScoreView.hpp"
 
 namespace scenes {
     using namespace controllers;

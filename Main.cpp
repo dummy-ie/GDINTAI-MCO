@@ -74,6 +74,7 @@
 #include "View/Screen/LeaderboardScreen.cpp"
 #include "View/Screen/TimerView.cpp"
 #include "View/Screen/GameOverScreen.cpp"
+#include "View/Screen/ScoreView.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Pooling/Component/Director/TankDirector.cpp"

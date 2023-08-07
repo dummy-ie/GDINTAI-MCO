@@ -8,7 +8,8 @@ enum class ViewTag : int {
     MAP_SELECT_SCREEN,
     LEADERBOARD_SCREEN,
     TIMER_VIEW,
-    GAME_OVER_SCREEN
+    GAME_OVER_SCREEN,
+    SCORE_VIEW
 };
 
 #endif
