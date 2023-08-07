@@ -45,7 +45,6 @@ void Brick::initialize() {
 }
 
 void Brick::damage() {
-    std::cout << "damage";
     this->incrementFrame();
     this->pDamagerComponent->stop();
     if (this->getCurrentFrame() >= this->getFrameSize() - 1) {
