@@ -13,6 +13,10 @@
 #include "Controller/Singleton/ObjectPoolManager.cpp"
 #include "Controller/Singleton/TextureManager.cpp"
 
+#include "Controller/System/PhysicsManager.cpp"
+#include "Controller/System/SceneManager.cpp"
+#include "Controller/System/ViewManager.cpp"
+
 #include "Model/AnimatedTexture.cpp"
 #include "Model/EmptyGameObject.cpp"
 #include "Model/GameObject.cpp"
@@ -74,10 +78,6 @@
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Pooling/Component/Director/TankDirector.cpp"
 #include "Controller/Pooling/Component/Director/ItemDirector.cpp"
-
-#include "Controller/System/PhysicsManager.cpp"
-#include "Controller/System/SceneManager.cpp"
-#include "Controller/System/ViewManager.cpp"
 
 #include "Controller/Game.cpp"
 

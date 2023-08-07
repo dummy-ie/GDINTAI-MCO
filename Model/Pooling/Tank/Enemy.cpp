@@ -31,7 +31,11 @@ void Enemy::initialize() {
     pRectangle = new sf::RectangleShape(sf::Vector2f(this->pCollider->getGlobalBounds().width, this->pCollider->getGlobalBounds().height));
     // pRectangle->setOrigin(8.f, 8.f);
     pRectangle->setPosition(100.f + this->pCollider->getGlobalBounds().left, 100.f + this->pCollider->getGlobalBounds().top);
-    pRectangle->setFillColor(sf::Color(255.f, 0.f, 0.f, 100.f));
+
+    if (COLLIDER_VISIBILITY)
+        pRectangle->setFillColor(sf::Color(255.f, 0.f, 0.f, 100.f));
+    else
+        pRectangle->setFillColor(sf::Color(255.f, 0.f, 0.f, 0.f));
     // pRendererComponent = new Renderer(this->strName + " Rectangle");
     // pRendererComponent->assignDrawable(this->pRectangle);
     Renderer* pRectangleRenderer = new Renderer(this->strName + " Rectangle");

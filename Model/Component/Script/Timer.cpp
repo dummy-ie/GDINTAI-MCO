@@ -19,6 +19,14 @@ void Timer::perform()
         if (this->bIsCounting)
         {
             this->pTimeable->setTime(this->fTicks);
+            if (this->fTicks <= 0.f && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN))
+            {
+                ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
+                this->stop();
+            }
+
+            if (ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled())
+                this->stop();
         }
         // this->pTimeable->update();
     }

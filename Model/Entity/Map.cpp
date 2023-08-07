@@ -145,6 +145,10 @@ void Map::removeBase(Base* pBase){
         if(nIndex != -1){
             this->vecPlayerBase.erase(this->vecPlayerBase.begin() + nIndex);
             std::cout<<"removed "<<nIndex<<" player base"<<std::endl;
+
+            if (this->vecPlayerBase.empty() && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN))
+                ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
+                
         }
     }
     else if(!this->vecEnemyBase.empty()){
@@ -156,6 +160,8 @@ void Map::removeBase(Base* pBase){
         if(nIndex != -1){
             this->vecEnemyBase.erase(this->vecEnemyBase.begin() + nIndex);
             std::cout<<"removed "<<nIndex<<" enemy base"<<std::endl;
+            if (this->vecEnemyBase.empty() && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN))
+                ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
         }
     }
 }
