@@ -31,15 +31,26 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
         ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
     }
     if ((this->getName().find("Enemy Base") != std::string::npos 
-    && pGameObject->getName().find("Player Tank Bullet") != std::string::npos)
+    && pGameObject->getName().find("Player Tank") != std::string::npos)
     || (this->getName().find("Player Base") != std::string::npos 
-    && pGameObject->getName().find("Enemy Tank Bullet") != std::string::npos))
+    && pGameObject->getName().find("Enemy Tank") != std::string::npos))
     {
         std::cout << "bullet hit a base" << std::endl;
         PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         PhysicsManager::getInstance()->cleanUp();
         ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
     }
+
+    /*if ((this->getName().find("Enemy Base") != std::string::npos 
+    && pGameObject->getName().find("Player Tank") != std::string::npos)
+    || (this->getName().find("Player Base") != std::string::npos 
+    && pGameObject->getName().find("Enemy Tank") != std::string::npos))
+    {
+        std::cout << "bullet hit a base" << std::endl;
+        PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+        PhysicsManager::getInstance()->cleanUp();
+        ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
+    }*/
 }
 
 void Border::onCollisionContinue(GameObject* pGameObject) {

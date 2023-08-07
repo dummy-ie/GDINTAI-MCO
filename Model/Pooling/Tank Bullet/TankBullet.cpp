@@ -82,7 +82,7 @@ void TankBullet::onCollisionEnter(GameObject* pGameObject) {
             ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
             pScoreView->incrementPlayerKill();
         }
-        if (pGameObject->getName().find("Enemy Base") != std::string::npos) {
+        if (pGameObject->getName().find("Enemy Base") != std::string::npos && this->strName != "Enemy Tank Bullet") {
             ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
             pScoreView->incrementPlayerBaseKill();
         }
@@ -90,7 +90,7 @@ void TankBullet::onCollisionEnter(GameObject* pGameObject) {
             ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
             pScoreView->incrementEnemyKill();
         }
-        if (pGameObject->getName().find("Player Base") != std::string::npos) {
+        if (pGameObject->getName().find("Player Base") != std::string::npos && this->strName != "Player Tank Bullet") {
             ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
             pScoreView->incrementEnemyBaseKill();
         }
