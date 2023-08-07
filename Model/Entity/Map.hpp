@@ -2,9 +2,11 @@
 #define MODELS_MAP_HPP
 
 #include <vector>
+
 #include "../GameObject.hpp"
 #include "../Enum/EnumAssetType.hpp"
 #include "../Enum/EnumSceneTag.hpp"
+#include "../Enum/EnumViewTag.hpp"
 
 #include "../AnimatedTexture.hpp"
 #include "../EmptyGameObject.hpp"

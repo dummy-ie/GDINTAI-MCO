@@ -94,5 +94,6 @@ void TankControls::perform() {
             // not working
             ObjectPoolManager::getInstance()->getPool(PoolTag::PLAYER_TANK_BULLET)->requestPoolable();
         }
+        pOwner->collisionReset();
     }
 }
