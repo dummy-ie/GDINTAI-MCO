@@ -66,7 +66,7 @@ void Item::onCollisionContinue(GameObject* pGameObject) {}
 
 void Item::onCollisionExit(GameObject* pGameObject) {}
 
-void Item::getType(){
+ItemType Item::getType(){
     return this->EType;
 }
 
