@@ -16,6 +16,9 @@
 #include "../../../Controller/Singleton/ObjectPoolManager.hpp"
 #include "../../../Controller/System/PhysicsManager.hpp"
 
+#include "../../Enum/EnumViewTag.hpp"
+#include "../../../View/Screen/ScoreView.hpp"
+#include "../../../Controller/System/ViewManager.hpp"
 
 namespace models {
     class Tank;

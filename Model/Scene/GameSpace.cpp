@@ -124,6 +124,8 @@ void GameSpace::createTimer()
 
 void GameSpace::createScore()
 {
+    ScoreView* pScoreView = new ScoreView("Game Space Score");
+    this->registerObject(pScoreView);
 }
 
 void GameSpace::createGameOverInterface()
