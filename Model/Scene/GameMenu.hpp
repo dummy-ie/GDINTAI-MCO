@@ -15,6 +15,7 @@
 #include "../Entity/Background.hpp"
 
 #include "../../View/Screen/TitleScreen.hpp"
+#include "../../View/Screen/MapSelectionScreen.hpp"
 //#include "../../View/Screen/Leaderboards.hpp"
 
 namespace scenes {
@@ -31,7 +32,8 @@ namespace scenes {
             void onUnloadResources();
 
         private:
-            void createUserInterface();
+            void createMenuInterface();
+            void createMapSelectionInterface();
             void createBackground();
     };
 }
