@@ -46,12 +46,17 @@ void Base::initialize() {
 
 void Base::damage() {
     this->incrementFrame();
+    if(this->ETeam == TeamTag::ENEMY){
+        this->incrementFrame();
+    }
     this->pDamagerComponent->stop();
     if (this->getCurrentFrame() >= this->getFrameSize() - 1) {
         this->getParent()->detachChild(this);
         std::vector<int> vecLocation = MapManager::getInstance()->getClosestTile(this->getSprite()->getPosition().x, this->getSprite()->getPosition().y);
-        MapManager::getInstance()->setMap(vecLocation[0], vecLocation[1], 0);
+        //MapManager::getInstance()->setMap(vecLocation[0], vecLocation[1], 0);
     }
+    Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
+    pMap->removeBase(this);
 }
 
 void Base::randomizePosition(){
@@ -61,7 +66,7 @@ void Base::randomizePosition(){
         MapManager::getInstance()->setMap(vecPosition[0],vecPosition[1],0);
         this->pSprite->setPosition((vecPosition[0]*32 - 16)+32,(vecPosition[1]*32 - 16)+32);
         this->pRectangle->setPosition((vecPosition[0]*32 - 16)+32,(vecPosition[1]*32 - 16)+32);
-        MapManager::getInstance()->setMap(vecPosition[0],vecPosition[1],4);
+        //MapManager::getInstance()->setMap(vecPosition[0],vecPosition[1],4);
     }
     else{
         

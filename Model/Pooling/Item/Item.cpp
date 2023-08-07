@@ -67,9 +67,10 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
         
         Tank* pTank = dynamic_cast<Tank*>(pGameObject);
         Enemy* pEnemy = dynamic_cast<Enemy*>(pGameObject);
-        std::vector<GameObject*> vecObjects;
+        Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
+        std::vector<Base*> vecBases;
         
-        if(pTank){
+        if(pTank && pMap){
             switch(this->EType){
                 case ItemType::SPEED_UP:
                     std::cout << "speed" << std::endl;
@@ -86,16 +87,14 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
                 case ItemType::CHAOS:
                     std::cout << "chaos" << std::endl;
                     if(pEnemy){
-                        vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Enemy Base");
-                        for(int i = 0; i < vecObjects.size(); i++){
-                            Base* pBase = (Base*)vecObjects[i];
+                        vecBases = pMap->vecEnemyBase;
+                        for(Base* pBase : vecBases){
                             pBase->randomizePosition();
                         }
                     }
                     else{
-                        vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Player Base");
-                        for(int i = 0; i < vecObjects.size(); i++){
-                            Base* pBase = (Base*)vecObjects[i];
+                        vecBases = pMap->vecPlayerBase;
+                        for(Base* pBase : vecBases){
                             pBase->randomizePosition();
                         }
                     }

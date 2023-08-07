@@ -4,7 +4,7 @@ using namespace ai;
 using namespace components;
 
 EnemyAI::EnemyAI(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpeed = TANK_SPEED;
+    this->fSpeed = AI_SPEED;
     this->fFrameInterval = 0.01f;
     this->fTicks = 0.0f;
     this->fTimeStuck = 0.f;
@@ -60,8 +60,21 @@ void EnemyAI::perform() {
             Point pointStart = {vecPlayerPosition[0],vecPlayerPosition[1]};
             Point pointEnd = {this->nX, this->nY};
             
+            std::vector<Point> vecPoint;
+            vecPoint.push_back(pointStart);
+
+            Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
+            for(Base* pBase : pMap->vecPlayerBase){
+                std::vector<int> vecBasePosition = MapManager::getInstance()->getClosestTile(pBase->getSprite()->getPosition().x,pBase->getSprite()->getPosition().y);
+                Point pointBase = {vecBasePosition[0],vecBasePosition[1]};
+                //std::cout<<vecBasePosition[0]<<" "<<vecBasePosition[1]<<std::endl;
+                //vecPoint.push_back(pointBase);
+            }
+
             std::vector<std::vector<int>> vecMap = MapManager::getInstance()->getMap();
             std::vector<Point> vecPath = findPath(vecMap, pointStart, pointEnd);
+
+            
 
             float fOffset = (this->fSpeed + pOwner->getBonusSpeed()) * this->tDeltaTime.asSeconds();
 

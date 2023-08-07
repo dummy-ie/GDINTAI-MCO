@@ -30,6 +30,7 @@ Map::Map(std::vector<std::vector<int>> vecMap) : GameObject("Map"), vecMap(vecMa
     The tiles can be considered children of this gameobject?
     idk
     */
+   std::cout<<this->strName<<std::endl;
 }
 
 void Map::initialize()
@@ -102,8 +103,8 @@ void Map::initialize()
                     pTexture, 
                     sf::Vector2f(j * nOffset + 16, i * nOffset + 16),
                     TeamTag::PLAYER); 
-                //this->attachChild(pBase);
-                GameObjectManager::getInstance()->addObject(pBase);
+                this->attachChild(pBase);
+                this->vecPlayerBase.push_back(pBase);
                 std::cout << "created player base" << std::endl;
                 break;
             }
@@ -117,8 +118,9 @@ void Map::initialize()
                     pTexture, 
                     sf::Vector2f(j * nOffset + 16, i * nOffset + 16),
                     TeamTag::ENEMY); 
-                //this->attachChild(pBase);
-                GameObjectManager::getInstance()->addObject(pBase);
+                this->attachChild(pBase);
+                this->vecEnemyBase.push_back(pBase);
+                std::cout << "created enemy base" << std::endl;
                 break;
             }
             default:
@@ -131,6 +133,32 @@ void Map::initialize()
 // Map::~Map()
 // {
 // }
+
+void Map::removeBase(Base* pBase){
+    int nIndex = -1;
+    if(pBase->getTeam() == TeamTag::PLAYER && !this->vecPlayerBase.empty()){
+        for(int i = 0; i < this->vecPlayerBase.size(); i++){
+            if(this->vecPlayerBase[i] == pBase){
+                nIndex = i;
+            }
+        }
+        if(nIndex != -1){
+            this->vecPlayerBase.erase(this->vecPlayerBase.begin() + nIndex);
+            std::cout<<"removed "<<nIndex<<" player base"<<std::endl;
+        }
+    }
+    else if(!this->vecEnemyBase.empty()){
+        for(int i = 0; i < this->vecEnemyBase.size(); i++){
+            if(this->vecEnemyBase[i] == pBase){
+                nIndex = i;
+            }
+        }
+        if(nIndex != -1){
+            this->vecEnemyBase.erase(this->vecEnemyBase.begin() + nIndex);
+            std::cout<<"removed "<<nIndex<<" enemy base"<<std::endl;
+        }
+    }
+}
 
 
 std::vector<std::vector<int>> Map::getMap(){

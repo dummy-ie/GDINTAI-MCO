@@ -16,5 +16,6 @@ const float TANK_SPEED = 80.f;
 const float BONUS_SPEED = 20.f;
 
 const float AI_STUCK_TIMER = 5.f;
+const float AI_SPEED = 80.f;
 
 #endif
