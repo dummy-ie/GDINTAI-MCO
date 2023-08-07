@@ -17,6 +17,7 @@ const float TANK_SPEED = 80.f;
 const float BONUS_SPEED = 20.f;
 
 const float AI_STUCK_TIMER = 5.f;
+const float AI_WANDER_TIMER = 300.f;
 const float AI_SPEED = 80.f;
 
 const std::vector<std::vector<int>> MAP_STAGE_1 = {
@@ -37,7 +38,7 @@ const std::vector<std::vector<int>> MAP_STAGE_1 = {
 
 const std::vector<std::vector<int>> MAP_STAGE_2 = {
         {0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0},
-        {5, 2, 0, 1, 0, 0, 5, 2, 0, 2, 5, 2, 0},
+        {0, 2, 5, 1, 0, 0, 5, 2, 0, 2, 5, 2, 0},
         {0, 2, 0, 0, 0, 0, 2, 2, 0, 2, 1, 2, 0},
         {0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0},
         {0, 0, 0, 2, 0, 0, 1, 0, 0, 2, 0, 2, 1},
@@ -52,8 +53,8 @@ const std::vector<std::vector<int>> MAP_STAGE_2 = {
     };
 
 const std::vector<std::vector<int>> MAP_STAGE_3 = { 
-        {0, 0, 0, 0, 5, 0, 0, 0, 1, 1, 1, 0, 0},
-        {0, 2, 0, 0, 2, 0, 0, 0, 1, 0, 5, 1, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
+        {0, 2, 0, 5, 2, 0, 0, 0, 1, 0, 5, 1, 0},
         {2, 0, 2, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0},
         {0, 2, 0, 2, 0, 0, 2, 0, 5, 2, 1, 1, 0},
         {0, 0, 2, 0, 0, 1, 2, 0, 0, 2, 0, 0, 0},

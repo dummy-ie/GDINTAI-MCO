@@ -8,6 +8,7 @@ EnemyAI::EnemyAI(std::string strName) : Component(strName, ComponentType::SCRIPT
     this->fFrameInterval = 0.01f;
     this->fTicks = 0.0f;
     this->fTimeStuck = 0.f;
+    this->fTimeWander = 99999.f;
 
     this->nPrevMove = -1;
 
@@ -46,7 +47,16 @@ void EnemyAI::perform() {
             this->fTimeStuck = 0;
             this->getOwner()->getSprite()->setPosition((vecPosition[0]*32-16)+32,(vecPosition[1]*32-16)+32);
             pOwner->getRectangle()->setPosition((vecPosition[0]*32-16)+32,(vecPosition[1]*32-16)+32);
+            this->nX = vecPosition[0];
+            this->nY = vecPosition[1];
+            pOwner->collisionReset();
             std::cout<<"unstucking ai"<<std::endl;
+        }
+
+        if(this->fTimeWander > AI_WANDER_TIMER){
+            this->fTimeWander = 0;
+            std::vector<int> wanderPosition = MapManager::getInstance()->getRandomTile(0);
+            this->wanderPoint = {wanderPosition[0],wanderPosition[1]};
         }
 
         //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
@@ -73,6 +83,24 @@ void EnemyAI::perform() {
 
             std::vector<std::vector<int>> vecMap = MapManager::getInstance()->getMap();
             std::vector<Point> vecPath = findPath(vecMap, pointStart, pointEnd);
+
+            bool bShoot = false;
+
+            if(vecPath.empty()){
+                bShoot = true;
+                vecPath = findPath(vecMap, pointStart, pointEnd, bShoot);
+            }
+
+            int nRand = std::rand() % 5000;
+            if(nRand > 4980){
+                bShoot = true;
+            }
+            /*
+            nRand = std::rand() % 100;
+            if(vecPath.empty() && nRand > 98){
+                vecPath = findPath(vecMap, wanderPoint, pointEnd, bShoot);
+            }
+            */
 
             float fOffset = (this->fSpeed + pOwner->getBonusSpeed()) * this->tDeltaTime.asSeconds();
 
@@ -186,11 +214,11 @@ void EnemyAI::perform() {
                     nPrevY = pointPath.y;
                 }
                 
-                if((bXSame && !bYSame)|| (bYSame && !bXSame)) {
+                if((bXSame && !bYSame) || (bYSame && !bXSame) || bShoot) {
                     ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY_TANK_BULLET)->requestPoolable();
                 }
                 
-                std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
+                //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
                 //std::cout << "Next tile value is " << vecMap[vecPath[1].y][vecPath[1].x] << std::endl;
                 //std::cout << "AI headed to " << vecPath[1].x << " " << vecPath[1].y << std::endl << std::endl;
                 //std::cout << std::endl;
@@ -310,6 +338,7 @@ void EnemyAI::perform() {
                         break;
                 }
             }
+            pOwner->collisionReset();
         }
         else{
             std::cout << "[AI] : Unable to locate player." << std::endl;

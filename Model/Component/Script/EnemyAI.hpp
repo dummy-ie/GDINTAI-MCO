@@ -39,11 +39,11 @@ namespace ai {
     };
 
     //check if point is valid, return boolean if true or false
-    bool isValid(int x, int y, int nRows, int nCols, vector<vector<int>>& vecBoard, vector<vector<bool>>& vecVisited) {
+    bool isValid(int x, int y, int nRows, int nCols, vector<vector<int>>& vecBoard, vector<vector<bool>>& vecVisited, bool bShoot = false) {
         /*in pseudocode
             if(x && y are within bounds) && if(vecBoard[x][y] was not visited)
         */
-        if (x < 0 || x >= nCols || y < 0 || y >= nRows || vecVisited[y][x] || vecBoard[y][x] == 1 || vecBoard[y][x] == 2){
+        if (x < 0 || x >= nCols || y < 0 || y >= nRows || vecVisited[y][x] || vecBoard[y][x] == 1 || (!bShoot && vecBoard[y][x] == 2)){
             return false;
         }
         return true;
@@ -62,7 +62,7 @@ namespace ai {
     }
 
     //finds point above, right, below, and to the left of the point in that order; returns vector of valid points
-    vector<Point> getNeighbors(Point pointCurrent, int nRows, int nCols, vector<vector<int>>& vecBoard, vector<vector<bool>>& vecVisited) {
+    vector<Point> getNeighbors(Point pointCurrent, int nRows, int nCols, vector<vector<int>>& vecBoard, vector<vector<bool>>& vecVisited, bool bShoot = false) {
         // up, right, down, left; used to get direction
         int dx[] = {-1, 0, 1, 0}; 
         int dy[] = {0, 1, 0, -1};
@@ -73,7 +73,7 @@ namespace ai {
         for (int i = 0; i < 4; i++) {
             int newX = pointCurrent.x + dx[i];
             int newY = pointCurrent.y + dy[i];
-            if (isValid(newX, newY, nRows, nCols, vecBoard, vecVisited)) {
+            if (isValid(newX, newY, nRows, nCols, vecBoard, vecVisited, bShoot)) {
                 vecVisited[newY][newX] = true;
                 vecNeighbors.push_back({newX, newY});
             }
@@ -83,7 +83,7 @@ namespace ai {
     }
 
     //uses queue and a loop to find a path to the destination, returns a vector of points which represents the path found going to the player
-    vector<Point> findPath(vector<vector<int>>& vecBoard, Point pointStart, Point pointEnd) {
+    vector<Point> findPath(vector<vector<int>>& vecBoard, Point pointStart, Point pointEnd, bool bShoot = false) {
         int nRows = vecBoard.size();
         int nCols = vecBoard[0].size();
         
@@ -113,7 +113,7 @@ namespace ai {
 
             vecVisited[pointCurrent.x][pointCurrent.y] = true;
 
-            vector<Point> vecNeighbors = getNeighbors(pointCurrent, nRows, nCols, vecBoard, vecVisited);
+            vector<Point> vecNeighbors = getNeighbors(pointCurrent, nRows, nCols, vecBoard, vecVisited, bShoot);
             for (Point pointNeighbor : vecNeighbors) {
                 int newX = pointNeighbor.x;
                 int newY = pointNeighbor.y;
@@ -168,96 +168,19 @@ namespace ai {
         return path;
     }
 
-    vector<Point> findPath(vector<vector<int>>& vecBoard, vector<Point>& startPoints,Point pointEnd) {
-    int nRows = vecBoard.size();
-    int nCols = vecBoard[0].size();
-    
-    // Priority queue for open nodes
-    priority_queue<Node*, vector<Node*>, CompareNodes> queNode;
-
-    vector<vector<Node*>> vecNodes(nRows, vector<Node*>(nCols, nullptr));
-    vector<vector<bool>> vecVisited(nRows, vector<bool>(nCols, false));
-
-    vector<vector<Point>> vecPaths;
-
-    // Loop through each start point
-    for (const Point& pointStart : startPoints) {
-        int h = calculateHeuristic(pointStart, pointEnd, vecBoard);
-        Node* nodeStart = new Node(pointStart, 0, h, nullptr);
-        vecNodes[pointStart.y][pointStart.x] = nodeStart;
-        queNode.push(nodeStart);
-        vecVisited[pointStart.y][pointStart.x] = true;
-
-        while (!queNode.empty()) {
-            Node* nodeCurrent = queNode.top();
-            queNode.pop();
-
-            Point pointCurrent = nodeCurrent->pointPosition;
-            if (pointCurrent.x == pointEnd.x && pointCurrent.y == pointEnd.y) {
-                vecPaths.push_back(getPathFromNode(nodeCurrent));
-                break;
-            }
-
-            vecVisited[pointCurrent.y][pointCurrent.x] = true;
-
-            vector<Point> vecNeighbors = getNeighbors(pointCurrent, nRows, nCols, vecBoard, vecVisited);
-            for (Point pointNeighbor : vecNeighbors) {
-                int newX = pointNeighbor.x;
-                int newY = pointNeighbor.y;
-
-                int g = nodeCurrent->g + 1; // cost to move to the neighbor is always 1
-                int h = calculateHeuristic(pointNeighbor, pointEnd, vecBoard);
-                int f = g + h;
-
-                Node* nodeNeighbor = vecNodes[newX][newY];
-                if (nodeNeighbor == nullptr) {
-                    nodeNeighbor = new Node(pointNeighbor, g, h, nodeCurrent);
-                    vecNodes[newY][newX] = nodeNeighbor;
-                    queNode.push(nodeNeighbor);
-                } 
-                else if (g < nodeNeighbor->g) {
-                    nodeNeighbor->g = g;
-                    nodeNeighbor->f = f;
-                    nodeNeighbor->pParent = nodeCurrent;
-                }
-            }
-        }
-
-        // Clear visited for the next iteration
-        for (int y = 0; y < nRows; y++) {
-            fill(vecVisited[y].begin(), vecVisited[y].end(), false);
-        }
-    }
-
-    // Find the shortest path among all paths
-    if (vecPaths.empty()) {
-        return {}; // No valid paths found
-    }
-
-    vector<Point> shortestPath = vecPaths[0];
-    int shortestPathLength = shortestPath.size();
-    
-    for (const vector<Point>& path : vecPaths) {
-        int pathLength = path.size();
-        if (pathLength < shortestPathLength) {
-            shortestPath = path;
-            shortestPathLength = pathLength;
-        }
-    }
-
-    return shortestPath;
-}
 }
 
 namespace components {
     using namespace controllers;
-
+    using namespace ai;
     class EnemyAI : public Component {
         private:
+            Point wanderPoint;
             float fSpeed;
             float fFrameInterval;
             float fTicks;
             float fTimeStuck;
+            float fTimeWander;
 
             int nPrevMove;
 

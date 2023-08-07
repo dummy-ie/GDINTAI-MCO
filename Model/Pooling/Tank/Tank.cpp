@@ -189,6 +189,13 @@ void Tank::onCollisionExit(GameObject *pGameObject)
     // }
 }
 
+void Tank::collisionReset(){
+    this->bTopBounds = true;
+    this->bLeftBounds = true;
+    this->bBottomBounds = true;
+    this->bRightBounds = true;
+}
+
 sf::RectangleShape *Tank::getRectangle()
 {
     return this->pRectangle;
