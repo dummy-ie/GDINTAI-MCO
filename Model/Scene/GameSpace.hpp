@@ -26,6 +26,8 @@
 
 #include "../Pooling/Tank Bullet/TankBullet.hpp"
 
+#include "../../View/Screen/TimerView.hpp"
+
 namespace scenes {
     using namespace controllers;
     using namespace models;
@@ -48,6 +50,7 @@ namespace scenes {
             void createMap();
             void createTanks();
             void createBorders();
+            void createTimer();
     };
 }
 

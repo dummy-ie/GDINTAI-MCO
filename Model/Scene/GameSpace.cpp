@@ -18,6 +18,7 @@ void GameSpace::onLoadObjects()
     
     this->createObjectPools();
     this->createBorders();
+    this->createTimer();
 }
 
 void GameSpace::onUnloadResources()
@@ -128,4 +129,10 @@ void GameSpace::createBorders()
 
     this->registerObject(new Border("Right Border",
                                     sf::FloatRect(SCREEN_WIDTH, 0.0f, fSize, SCREEN_HEIGHT)));
+}
+
+void GameSpace::createTimer()
+{
+    TimerView* pTimerView = new TimerView("Game Space Timer");
+    this->registerObject(pTimerView);
 }

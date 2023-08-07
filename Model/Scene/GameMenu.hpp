@@ -16,7 +16,7 @@
 
 #include "../../View/Screen/TitleScreen.hpp"
 #include "../../View/Screen/MapSelectionScreen.hpp"
-//#include "../../View/Screen/Leaderboards.hpp"
+#include "../../View/Screen/LeaderboardScreen.hpp"
 
 namespace scenes {
     using namespace models;
@@ -34,6 +34,7 @@ namespace scenes {
         private:
             void createMenuInterface();
             void createMapSelectionInterface();
+            void createLeaderboardInterface();
             void createBackground();
     };
 }

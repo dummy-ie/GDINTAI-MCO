@@ -22,6 +22,10 @@ namespace views {
             sf::Text* getText();
             void setText(std::string strText);
             void setColor(sf::Color CColor);
+            
+        public:
+            virtual void setPosition(sf::Vector2f vecPosition);
+            virtual sf::FloatRect getGlobalBounds();
     };
 }
 

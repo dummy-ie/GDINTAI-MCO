@@ -29,3 +29,12 @@ void Text::setText(std::string strText) {
 void Text::setColor(sf::Color CColor) {
     this->pText->setFillColor(CColor);
 }
+
+void Text::setPosition(sf::Vector2f vecPosition) {
+    GameObject::setPosition(vecPosition);
+    this->pText->setPosition(vecPosition);
+}
+
+sf::FloatRect Text::getGlobalBounds() {
+    return this->pText->getGlobalBounds();
+}

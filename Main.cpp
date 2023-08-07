@@ -35,6 +35,7 @@
 #include "Model/Component/Script/Killable.cpp"
 #include "Model/Component/Script/Damager.cpp"
 #include "Model/Component/Script/Speeder.cpp"
+#include "Model/Component/Script/Timer.cpp"
 
 #include "Model/Entity/Background.cpp"
 #include "Model/Entity/Tile.cpp"
@@ -66,6 +67,8 @@
 
 #include "View/Screen/TitleScreen.cpp"
 #include "View/Screen/MapSelectionScreen.cpp"
+#include "View/Screen/TimerView.cpp"
+#include "View/Screen/LeaderboardScreen.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Pooling/Component/Director/TankDirector.cpp"
@@ -76,7 +79,6 @@
 #include "Controller/System/ViewManager.cpp"
 
 #include "Controller/Game.cpp"
-
 
 int main(int argc, const char** argv) {
     Game CGame;

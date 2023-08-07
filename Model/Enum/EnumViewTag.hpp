@@ -5,7 +5,9 @@ enum class ViewTag : int {
     NONE = -1,
     TITLE_SCREEN,
     SETTINGS_SCREEN,
-    MAP_SELECT_SCREEN
+    MAP_SELECT_SCREEN,
+    LEADERBOARD_SCREEN,
+    TIMER_VIEW
 };
 
 #endif

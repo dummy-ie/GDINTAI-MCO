@@ -51,6 +51,10 @@ namespace models {
         public:
             virtual void setFrame(int nFrame);
 
+            virtual sf::Vector2f getPosition();
+            virtual void setPosition(sf::Vector2f vecPosition);
+            virtual void setPosition(float fX, float fY, float fZ);
+
         public:
             bool isEnabled();
             void setEnabled(bool bEnabled);
