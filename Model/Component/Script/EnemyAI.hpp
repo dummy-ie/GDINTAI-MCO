@@ -53,9 +53,9 @@ namespace ai {
     int calculateHeuristic(Point pointCurrent, Point pointEnd, vector<vector<int>>& vecBoard) {
         int value = vecBoard[pointCurrent.y][pointCurrent.x];
         if (value == 3) {
-            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) - 1;
+            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) - 3;
         } else if (value == 4) {
-            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) + 1;
+            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) + 10;
         } else {
             return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y);
         }
@@ -163,6 +163,7 @@ namespace components {
             float fSpeed;
             float fFrameInterval;
             float fTicks;
+            float fTimeStuck;
 
             int nPrevMove;
 
@@ -173,6 +174,7 @@ namespace components {
 
         public:
             void perform();
+            void reset();
     };
 }
 

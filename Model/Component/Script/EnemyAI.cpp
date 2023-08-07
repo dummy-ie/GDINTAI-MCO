@@ -5,8 +5,9 @@ using namespace components;
 
 EnemyAI::EnemyAI(std::string strName) : Component(strName, ComponentType::SCRIPT) {
     this->fSpeed = TANK_SPEED;
-    this->fFrameInterval = 20.f;
+    this->fFrameInterval = 0.01f;
     this->fTicks = 0.0f;
+    this->fTimeStuck = 0.f;
 
     this->nPrevMove = -1;
 
@@ -22,22 +23,30 @@ void EnemyAI::perform() {
     std::vector<int> vecPosition;
     std::vector<int> vecPlayerPosition;
     
+    this->fTicks += this->tDeltaTime.asSeconds();
+
     if(pOwner == NULL) {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
-    else {
-
+    else if (this->fTicks > this->fFrameInterval){
+        this->fTicks = 0.f;
+        vecPosition = MapManager::getInstance()->getClosestTile(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y);
         if(this->nX == -1 || this->nY == -1){
-            vecPosition = MapManager::getInstance()->getClosestTile(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y);
             this->nX = vecPosition[0];
             this->nY = vecPosition[1];
         }
 
         if(MapManager::getInstance()->isCentered(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y,this->nX,this->nY,1.5)){
             //std::cout << "AI location update " << this->nX << " " << this->nY << std::endl;
-            vecPosition = MapManager::getInstance()->getClosestTile(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y);
             this->nX = vecPosition[0];
             this->nY = vecPosition[1];
+        }
+
+        if(this->fTimeStuck > AI_STUCK_TIMER){
+            this->fTimeStuck = 0;
+            this->getOwner()->getSprite()->setPosition((vecPosition[0]*32-16)+32,(vecPosition[1]*32-16)+32);
+            pOwner->getRectangle()->setPosition((vecPosition[0]*32-16)+32,(vecPosition[1]*32-16)+32);
+            std::cout<<"unstucking ai"<<std::endl;
         }
 
         //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
@@ -68,6 +77,10 @@ void EnemyAI::perform() {
                         this->getOwner()->getSprite()->move(fOffset, 0.0f);
                         // pOwner->moveBounds(fOffset, 0.0f);
                         pOwner->getRectangle()->move(fOffset, 0.0f);
+                        this->fTimeStuck += this->tDeltaTime.asSeconds();
+                    }
+                    else{
+                        this->fTimeStuck = 0;
                     }
                     this->nPrevMove = 0;
                 }
@@ -81,6 +94,10 @@ void EnemyAI::perform() {
                         this->getOwner()->getSprite()->move(-fOffset, 0.0f);
                         // pOwner->moveBounds(-fOffset, 0.0f);
                         pOwner->getRectangle()->move(-fOffset, 0.0f);
+                        this->fTimeStuck += this->tDeltaTime.asSeconds();
+                    }
+                    else{
+                        this->fTimeStuck = 0;
                     }
                         // ((Player*)(this->getOwner()))->pRectangle->move(-fOffset, 0.0f);
                     // }
@@ -95,7 +112,11 @@ void EnemyAI::perform() {
                         this->getOwner()->getSprite()->move(0.0f, -fOffset);
                         // pOwner->moveBounds(0.0f, -fOffset);
                         pOwner->getRectangle()->move(0.0f, -fOffset);
+                        this->fTimeStuck += this->tDeltaTime.asSeconds();
                     }   
+                    else{
+                        this->fTimeStuck = 0;
+                    }
                         // ((Player*)(this->getOwner()))->pRectangle->move(0.0f, -fOffset);
                     // }
                     this->nPrevMove = 2;
@@ -110,6 +131,10 @@ void EnemyAI::perform() {
                         this->getOwner()->getSprite()->move(0.0f, fOffset);
                         // pOwner->moveBounds(0.0f, fOffset);
                         pOwner->getRectangle()->move(0.0f, fOffset);
+                        this->fTimeStuck += this->tDeltaTime.asSeconds();
+                    }
+                    else{
+                        this->fTimeStuck = 0;
                     }
                         // ((Player*)(this->getOwner()))->pRectangle->move(0.0f, fOffset);
 
@@ -222,6 +247,7 @@ void EnemyAI::perform() {
                 //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
                 //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
                 std::cout << "[AI] : No path." << std::endl << std::endl;
+                this->fTimeStuck += this->tDeltaTime.asSeconds();
                 switch(this->nPrevMove){
                     case 0:
                         this->getOwner()->getSprite()->setRotation(90.0f);
@@ -232,7 +258,11 @@ void EnemyAI::perform() {
                             this->getOwner()->getSprite()->move(fOffset, 0.0f);
                             // pOwner->moveBounds(fOffset, 0.0f);
                             pOwner->getRectangle()->move(fOffset, 0.0f);
+                            this->fTimeStuck += this->tDeltaTime.asSeconds();
                             //this->nPrevMove = 1;
+                        }
+                        else{
+                            this->fTimeStuck = 0;
                         }
                         break;
                     case 1:
@@ -244,7 +274,11 @@ void EnemyAI::perform() {
                             this->getOwner()->getSprite()->move(-fOffset, 0.0f);
                             // pOwner->moveBounds(-fOffset, 0.0f);
                             pOwner->getRectangle()->move(-fOffset, 0.0f);
+                            this->fTimeStuck += this->tDeltaTime.asSeconds();
                             //this->nPrevMove = 0;
+                        }
+                        else{
+                            this->fTimeStuck = 0;
                         }
                         break;
                     case 2:
@@ -255,8 +289,12 @@ void EnemyAI::perform() {
                             this->getOwner()->getSprite()->move(0.0f, -fOffset);
                             // pOwner->moveBounds(0.0f, -fOffset);
                             pOwner->getRectangle()->move(0.0f, -fOffset);
+                            this->fTimeStuck += this->tDeltaTime.asSeconds();
                             //this->nPrevMove = 3;
                         }   
+                        else{
+                            this->fTimeStuck = 0;
+                        }
                         break;
                     case 3:
                         this->getOwner()->getSprite()->setRotation(180.0f);
@@ -267,7 +305,11 @@ void EnemyAI::perform() {
                             this->getOwner()->getSprite()->move(0.0f, fOffset);
                             // pOwner->moveBounds(0.0f, fOffset);
                             pOwner->getRectangle()->move(0.0f, fOffset);
+                            this->fTimeStuck += this->tDeltaTime.asSeconds();
                             //this->nPrevMove = 2;
+                        }
+                        else{
+                            this->fTimeStuck = 0;
                         }
                         break;
                     default:
@@ -280,5 +322,14 @@ void EnemyAI::perform() {
         }
 
         
+    }
+}
+
+void EnemyAI::reset(){
+    Tank* pOwner = (Tank*)this->pOwner;
+    std::vector<int> vecPosition = MapManager::getInstance()->getClosestTile(pOwner->getSprite()->getPosition().x,pOwner->getSprite()->getPosition().y);
+    if(pOwner){
+        this->nX = vecPosition[0];
+        this->nY = vecPosition[1];
     }
 }

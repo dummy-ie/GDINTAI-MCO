@@ -33,6 +33,7 @@ namespace models {
             Killable* pKillableComponent;
             Damager* pDamagerComponent;
             Speeder* pSpeederComponent;
+            Collider* pCollider;
 
             float fBonusSpeed;
 
