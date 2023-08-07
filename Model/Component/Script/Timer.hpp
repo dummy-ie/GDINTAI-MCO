@@ -1,6 +1,11 @@
 #ifndef COMPONENTS_TIMER_HPP
 #define COMPONENTS_TIMER_HPP
 
+#include <fstream>
+
+#include "../../../View/Screen/ScoreView.hpp"
+#include "../../../View/Screen/GameOverScreen.hpp"
+
 #include "../../Enum/EnumComponentType.hpp"
 
 #include "../Component.hpp"

@@ -145,9 +145,16 @@ void LeaderboardScreen::loadScores()
         return;
     }
 
+
     for (size_t i = 0; i < std::min(5, (int)vecFile.size()); i++)
     {
-        this->vecScores.at(i)->setText(std::to_string(vecFile.at(i)));
+        std::stringstream CStream;
+        CStream << std::setfill('0') << std::setw(5) << vecFile.at(i);
+        std::string strScore = CStream.str();
+
+        for (size_t j = 0; j < strScore.length(); j++)
+            this->vecScores.at(i)->setText(std::string(1, strScore.at(j)));
+        
         // std::cout << "reading: " << vecScores.at(i) << std::endl;
         // int ms = (int)(vecScores.at(i) * 1000.f);
 

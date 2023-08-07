@@ -41,21 +41,33 @@ void ScoreView::initialize() {
 }
 
 void ScoreView::incrementPlayerKill() {
+    if (ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled())
+        return;
+
     this->nPlayerKills++;
     this->txtPlayerKill->setText(std::to_string(this->nPlayerKills));
 }
 
 void ScoreView::incrementPlayerBaseKill() {
+    if (ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled())
+        return;
+
     this->nPlayerBaseKills++;
     this->txtPlayerBase->setText(std::to_string(this->nPlayerBaseKills));
 }
 
 void ScoreView::incrementEnemyKill() {
+    if (ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled())
+        return;
+    
     this->nEnemyKills++;
     this->txtEnemyKill->setText(std::to_string(this->nEnemyKills));
 }
 
 void ScoreView::incrementEnemyBaseKill() {
+    if (ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled())
+        return;
+    
     this->nEnemyBaseKills++;
     this->txtEnemyBase->setText(std::to_string(this->nEnemyBaseKills));
 }
