@@ -50,8 +50,15 @@ namespace ai {
     }
 
     //heuristics
-    int calculateHeuristic(Point pointCurrent, Point pointEnd) {
-        return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y);
+    int calculateHeuristic(Point pointCurrent, Point pointEnd, vector<vector<int>>& vecBoard) {
+        int value = vecBoard[pointCurrent.y][pointCurrent.x];
+        if (value == 3) {
+            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) - 1;
+        } else if (value == 4) {
+            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) + 1;
+        } else {
+            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y);
+        }
     }
 
     //finds point above, right, below, and to the left of the point in that order; returns vector of valid points
@@ -85,7 +92,7 @@ namespace ai {
 
         vector<vector<Node*>> vecNodes(nRows, vector<Node*>(nCols, nullptr));
 
-        int h = calculateHeuristic(pointStart, pointEnd);
+        int h = calculateHeuristic(pointStart, pointEnd, vecBoard);
         Node* nodeStart = new Node(pointStart, 0, h, nullptr);
         vecNodes[pointStart.y][pointStart.x] = nodeStart;
         queNode.push(nodeStart);
@@ -112,7 +119,7 @@ namespace ai {
                 int newY = pointNeighbor.y;
 
                 int g = nodeCurrent->g + 1; // cost to move to the neighbor is always 1
-                int h = calculateHeuristic(pointNeighbor, pointEnd);
+                int h = calculateHeuristic(pointNeighbor, pointEnd, vecBoard);
                 int f = g + h;
 
                 Node* nodeNeighbor = vecNodes[newX][newY];
