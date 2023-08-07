@@ -16,12 +16,17 @@
 namespace models {
     class Map : public GameObject
     {
+    public:
+        std::vector<Base*> vecEnemyBase;
+        std::vector<Base*> vecPlayerBase;
     private:
         std::vector<std::vector<int>> vecMap;
     public:
         Map(std::vector<std::vector<int>> vecMap);
         void initialize();
         // ~Map();
+
+        void removeBase(Base* pBase);
 
     public:
         std::vector<std::vector<int>> getMap();

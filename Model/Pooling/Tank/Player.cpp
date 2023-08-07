@@ -67,10 +67,16 @@ void Player::initialize() {
 void Player::onActivate()
 {   
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
-    std::vector<GameObject*> vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Player Base");
-    if(!vecObjects.empty()){
-        int nRand = std::rand() % (vecObjects.size()-1);
-        this->pSprite->setPosition(vecObjects[nRand]->getSprite()->getPosition());
+    Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
+    if(!pMap->vecPlayerBase.empty()){
+        int nRand;
+        if(pMap->vecPlayerBase.size() == 1){
+            nRand = 0;
+        }
+        else{
+            nRand = std::rand() % (pMap->vecPlayerBase.size()-1);
+        }
+        this->pSprite->setPosition(pMap->vecPlayerBase[nRand]->getSprite()->getPosition());
     }
     else{
         this->pSprite->setPosition(this->vecSpawn);

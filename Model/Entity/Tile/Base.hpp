@@ -10,6 +10,8 @@
 #include "../../Component/Script/Interface/Damageable.hpp"
 #include "../../Component/Script/Damager.hpp"
 
+#include "../Map.hpp"
+
 namespace models {
     class Base : public Tile, public Damageable {
         private:
