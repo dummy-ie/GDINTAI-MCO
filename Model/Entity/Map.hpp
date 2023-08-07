@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "../../View/Screen/GameOverScreen.hpp"
+
 #include "../GameObject.hpp"
 #include "../Enum/EnumAssetType.hpp"
 #include "../Enum/EnumSceneTag.hpp"

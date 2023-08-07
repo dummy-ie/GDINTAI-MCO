@@ -30,6 +30,37 @@ void GameOverScreen::initialize() {
     this->pButton = new Button(this->strName + " Continue Button", CBounds);
     this->attachChild(this->pButton);
     this->pButton->setListener(this);
+
+    this->pGameStatus = new Text(this->strName + " Game Status", "DRAW", FontManager::getInstance()->getFont(FontType::DEFAULT), 24);
+    this->attachChild(this->pGameStatus);
+    fWidth = this->pGameStatus->getText()->getLocalBounds().width;
+    this->pGameStatus->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, this->pContinue->getPosition().y + this->pGameStatus->getGlobalBounds().height + fSpacing * 2.5);
+    this->pGameStatus->getText()->setOutlineThickness(5.f);
+    this->pGameStatus->getText()->setOutlineColor(sf::Color::White);
+}
+
+void GameOverScreen::setGameStatus(int nStatus)
+{
+    switch (nStatus)
+    {
+    case 0:
+        this->pGameStatus->setText("You WIN");
+        break;
+    case 1:
+        this->pGameStatus->setText("You LOSE");
+        break;
+    case 2:
+        this->pGameStatus->setText("DRAW");
+        break;
+    
+    default:
+        this->pGameStatus->setText("L Bozo");
+        break;
+    }
+
+    float fWidth = this->pGameStatus->getText()->getLocalBounds().width;
+    float fSpacing = 100;
+    this->pGameStatus->getText()->setPosition(SCREEN_WIDTH / 2 - fWidth / 2, this->pContinue->getPosition().y + this->pGameStatus->getGlobalBounds().height + fSpacing * 2.5);
 }
 
 void GameOverScreen::onClick(Button* pButton) {

@@ -146,8 +146,11 @@ void Map::removeBase(Base* pBase){
             this->vecPlayerBase.erase(this->vecPlayerBase.begin() + nIndex);
             std::cout<<"removed "<<nIndex<<" player base"<<std::endl;
 
-            if (this->vecPlayerBase.empty() && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN))
+            if (this->vecPlayerBase.empty() && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && !(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled()))
+            {
+                ((GameOverScreen*)(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)))->setGameStatus(1);
                 ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
+            }
                 
         }
     }
@@ -160,8 +163,11 @@ void Map::removeBase(Base* pBase){
         if(nIndex != -1){
             this->vecEnemyBase.erase(this->vecEnemyBase.begin() + nIndex);
             std::cout<<"removed "<<nIndex<<" enemy base"<<std::endl;
-            if (this->vecEnemyBase.empty() && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN))
+            if (this->vecEnemyBase.empty() && ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN) && !(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->isEnabled()))
+            {
+                ((GameOverScreen*)(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)))->setGameStatus(0);
                 ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
+            }
         }
     }
 }

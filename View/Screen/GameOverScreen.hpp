@@ -19,6 +19,7 @@ namespace views {
         private:
             Text* pGameOver;
             Text* pContinue;
+            Text* pGameStatus;
 
             Button* pButton;
 
@@ -28,6 +29,8 @@ namespace views {
 
         public:
             void initialize();
+
+            void setGameStatus(int nStatus);
             
         public:
             void onClick(Button* pButton);
