@@ -13,6 +13,10 @@ void Enemy::initialize() {
 
     EnemyAI* pEnemyAIComponent = new EnemyAI(this->strName + " AI");
 
+    this->pSpeederComponent = new Speeder(this->strName + " Speeder");
+    this->pSpeederComponent->setSpeedable(this);
+    this->attachComponent(this->pSpeederComponent);
+
     // this->CBounds = sf::FloatRect(100.f + 7.f, 100.f - 2.f, this->getSprite()->getGlobalBounds().width - 14.f, 1.f);
     //sf::FloatRect COffset = sf::FloatRect(this->getGlobalBounds().left + 7.f, this->getGlobalBounds().top - 2.f, this->getSprite()->getGlobalBounds().width - 14.f, 1.f);
     Collider* pCollider = new Collider(this->strName + " Collider");

@@ -13,6 +13,10 @@ void Player::initialize() {
 
     // this->attachComponent(pRendererComponent);
 
+    this->pSpeederComponent = new Speeder(this->strName + " Speeder");
+    this->pSpeederComponent->setSpeedable(this);
+    this->attachComponent(this->pSpeederComponent);
+
     TankInput* pInputComponent = new TankInput(this->strName + " Input");
     TankControls* pControlsComponent = new TankControls(this->strName + " Controls");
 

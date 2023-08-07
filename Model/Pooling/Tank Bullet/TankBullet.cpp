@@ -84,7 +84,9 @@ void TankBullet::onCollisionEnter(GameObject* pGameObject) {
 
 void TankBullet::onCollisionContinue(GameObject* pGameObject) {}
 
-void TankBullet::onCollisionExit(GameObject* pGameObject) {}
+void TankBullet::onCollisionExit(GameObject* pGameObject) {
+    PhysicsManager::getInstance()->cleanUp();
+}
 
 PoolableObject* TankBullet::clone() {
     PoolableObject* pClone = new TankBullet(this->ETag, this->strName, new AnimatedTexture(*this->pTexture), this->pTank);

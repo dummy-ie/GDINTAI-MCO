@@ -36,6 +36,11 @@ void GameSpace::createNullObjectComponents()
     TankDirector* pTankDirector = new TankDirector("Tank Director");
     pComponentHolder->attachComponent(pTankDirector);
     this->registerObject(pComponentHolder);
+
+    pComponentHolder = new EmptyGameObject("Item Director Holder");
+    ItemDirector* pItemDirector = new ItemDirector("Item Director");
+    pComponentHolder->attachComponent(pItemDirector);
+    this->registerObject(pComponentHolder);
 }
 
 void GameSpace::createObjectPools() {

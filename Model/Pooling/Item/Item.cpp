@@ -20,6 +20,8 @@ void Item::initialize() {
     this->pCollider->setListener(this);
 
     this->attachComponent(this->pCollider);
+
+    this->pSprite->setPosition(-100,-100);
 }
 
 void Item::randomizeType(){
@@ -33,10 +35,26 @@ void Item::onActivate() {
     this->pCollider->setCleanUp(false);
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
     this->randomizeType();
+
+    std::vector<int> vecPosition = MapManager::getInstance()->getRandomTile(0);
+
+    if(vecPosition[0] != -1){
+        this->pSprite->setPosition((vecPosition[0]*32 - 16)+32,(vecPosition[1]*32 - 16)+32);
+        MapManager::getInstance()->setMap(vecPosition[0],vecPosition[1],3);
+        std::cout<< vecPosition[0] << " " << vecPosition[1] << std::endl;
+    }
+    else{
+        ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->releasePoolable(this);
+    }
 }
 
 void Item::onRelease() {
-    
+    if(this->pSprite->getPosition().x > 0){
+        std::vector<int> vecPosition = MapManager::getInstance()->getClosestTile(this->pSprite->getPosition().x,this->pSprite->getPosition().y);
+        MapManager::getInstance()->setMap(vecPosition[0],vecPosition[1],3);
+        this->pSprite->setPosition(-100,-100);
+    }
+    std::cout << "Item removed" << std::endl;
 }
 
 void Item::onCollisionEnter(GameObject* pGameObject) {
@@ -47,24 +65,42 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
         PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         PhysicsManager::getInstance()->cleanUp();
         
-        switch(this->EType){
-            case ItemType::SPEED_UP:
-                break;
-            case ItemType::SPEED_DOWN:
-                break;
-            case ItemType::MINES:
-                break;
-            case ItemType::CHAOS:
-                break;
-            default:
+        Tank* pTank = dynamic_cast<Tank*>(pGameObject);
+
+        if(pTank){
+            switch(this->EType){
+                case ItemType::SPEED_UP:
+                    std::cout << "speed" << std::endl;
+                    pTank->speed(30.f);
                     break;
-        }
+                case ItemType::SPEED_DOWN:
+                    std::cout << "speedn't" << std::endl;
+                    pTank->speed(-30.f);
+                    break;
+                case ItemType::MINES:
+                    std::cout << "mines" << std::endl;
+                    pTank->damage();
+                    break;
+                case ItemType::CHAOS:
+                    std::cout << "chaos" << std::endl;
+                    break;
+                default:
+                        break;
+            }
+            ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->releasePoolable(this);
+        }   
+        
     }
 }
 
-void Item::onCollisionContinue(GameObject* pGameObject) {}
+void Item::onCollisionContinue(GameObject* pGameObject) {
+    pCollider->setCollided(this->pCollider, false);
+}
 
-void Item::onCollisionExit(GameObject* pGameObject) {}
+void Item::onCollisionExit(GameObject* pGameObject) {
+    pCollider->setCollided(this->pCollider, false);
+    PhysicsManager::getInstance()->cleanUp();
+}
 
 ItemType Item::getType(){
     return this->EType;

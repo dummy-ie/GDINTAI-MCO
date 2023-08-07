@@ -13,7 +13,7 @@ std::vector<int> MapManager::getRandomTile(int nTile){
     for (int i = 0; i < nRow; ++i) {
         for (int j = 0; j < nCol; ++j) {
             if (this->vecMap[i][j] == nTile) {
-                vecPositions.push_back({i, j});
+                vecPositions.push_back({j, i});
             }
         }
     }

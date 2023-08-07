@@ -17,7 +17,7 @@ void TankControls::perform() {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
-        float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
+        float fOffset = (this->fSpeed + pOwner->getBonusSpeed()) * this->tDeltaTime.asSeconds();
 
         if (pInput->isUp() || pInput->isDown() || pInput->isRight() || pInput->isLeft()) {
             this->fTicks += this->tDeltaTime.asSeconds();

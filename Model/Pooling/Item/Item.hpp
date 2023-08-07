@@ -15,6 +15,7 @@
 #include "../PoolableObject.hpp"
 
 #include "../../../Controller/Singleton/ObjectPoolManager.hpp"
+#include "../../../Controller/Singleton/MapManager.hpp"
 #include "../../../Controller/System/PhysicsManager.hpp"
 
 namespace models {

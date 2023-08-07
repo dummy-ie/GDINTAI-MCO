@@ -54,7 +54,7 @@ void EnemyAI::perform() {
             std::vector<std::vector<int>> vecMap = MapManager::getInstance()->getMap();
             std::vector<Point> vecPath = findPath(vecMap, pointStart, pointEnd);
 
-            float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
+            float fOffset = (this->fSpeed + pOwner->getBonusSpeed()) * this->tDeltaTime.asSeconds();
 
             if(!vecPath.empty() && vecPath.size() > 2){
 

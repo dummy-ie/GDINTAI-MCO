@@ -6,6 +6,7 @@
 #include "../../Controller/Singleton/MapManager.hpp"
 
 #include "../../Controller/Pooling/Component/Director/TankDirector.hpp"
+#include "../../Controller/Pooling/Component/Director/ItemDirector.hpp"
 
 #include "../../Config/Settings.hpp"
 

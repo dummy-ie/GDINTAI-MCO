@@ -208,3 +208,18 @@ void Tank::damage() {
     this->pKillableComponent->setKilled(true);
     this->pDamagerComponent->stop();
 }
+
+void Tank::speed(float fBonusSpeed){
+    if(this->pSpeederComponent != NULL){
+        this->pSpeederComponent->stop();
+        this->pSpeederComponent->start();
+        this->fBonusSpeed += fBonusSpeed;
+    }
+    else{
+        cout<<"missing speeder component"<<std::endl;
+    }
+}
+
+void Tank::unspeed(){
+    this->fBonusSpeed = 0.f;
+}

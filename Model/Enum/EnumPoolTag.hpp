@@ -8,6 +8,10 @@ enum class PoolTag : int {
 
     ENEMY_TANK,
     ENEMY_TANK_BULLET,
+
+    ITEM,
+
+    BASE
 };
 
 #endif
