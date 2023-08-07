@@ -66,26 +66,9 @@ void GameSpace::createObjectPools() {
 
 void GameSpace::createMap()
 {
-    std::vector<std::vector<int>> vecMap = { // 0 is outside the game space, 0 is free
-        {4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4}, // padding layer
-        {0, 2, 0, 2, 0, 2, 4, 2, 0, 2, 0, 2, 0},
-        {0, 2, 0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 0},
-        {0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0, 2, 0}, // the game still struggles with a lot of colliders
-        {0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0}, 
-        {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0},
-        {1, 0, 2, 2, 0, 0, 0, 0, 0, 2, 2, 0, 1},
-        {0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0},
-        {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
-        {0, 2, 0, 2, 0, 2, 5, 2, 0, 2, 0, 2, 0},
-        {0, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 0},
-        {0, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 0},
-        {5, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 5} // 13x13
-    };
-
-    Map *pMap = new Map(vecMap);
+    Map *pMap = new Map(MapManager::getInstance()->getMap());
     this->registerObject(pMap);
 
-    MapManager::getInstance()->setMap(vecMap);
 
     // AssetType EType = AssetType::STONE;
     // AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));

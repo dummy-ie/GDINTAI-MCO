@@ -74,6 +74,23 @@ void MapSelectionScreen::onHover(Button *pButton)
 void MapSelectionScreen::onRelease(Button* pButton) {
     if (pButton->getName().find("Start Button") != std::string::npos) {
         std::cout << "[GAME START]" << std::endl;
+        switch (nMapSelection)
+        {
+        case 1:
+            MapManager::getInstance()->setMap(MAP_STAGE_1);
+            break;
+        case 2:
+            MapManager::getInstance()->setMap(MAP_STAGE_2);
+            break;
+        case 3:
+            MapManager::getInstance()->setMap(MAP_STAGE_3);
+            break;
+        
+        default:
+            MapManager::getInstance()->setMap(MAP_STAGE_1);
+            std::cout << "Invalid map selection! Defaulting to 1..." << std::endl;
+            break;
+        }
         SceneManager::getInstance()->loadScene(SceneTag::GAME_SPACE);
     }
 
