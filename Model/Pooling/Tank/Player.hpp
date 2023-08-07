@@ -13,11 +13,15 @@
 namespace models {
     class Player : public Tank {
         public:
+            bool isDead;
+
+        public:
             Player(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
             ~Player();
 
         public:
             void initialize();
+            void randomizePosition();
 
         public:
             void onActivate();
