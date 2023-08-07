@@ -149,7 +149,7 @@ void LeaderboardScreen::loadScores()
     for (size_t i = 0; i < std::min(5, (int)vecFile.size()); i++)
     {
         std::stringstream CStream;
-        CStream << std::setfill('0') << std::setw(5) << vecFile.at(i);
+        CStream << std::setfill('0') << std::setw(4) << vecFile.at(i);
         std::string strScore = CStream.str();
 
         for (size_t j = 0; j < strScore.length(); j++)

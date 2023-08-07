@@ -167,6 +167,18 @@ void Map::removeBase(Base* pBase){
             {
                 ((GameOverScreen*)(ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)))->setGameStatus(0);
                 ViewManager::getInstance()->getView(ViewTag::GAME_OVER_SCREEN)->setEnabled(true);
+                ScoreView* pScoreView = NULL;
+                int nScore = 0;
+                if (ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW))
+                {
+                    pScoreView = (ScoreView*)(ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW));
+                    nScore += pScoreView->nPlayerBaseKills;
+                    nScore += pScoreView->nPlayerKills;
+                }
+        
+                std::ofstream scores("File/scores.txt", std::ios::app);
+                scores << nScore << std::endl;
+                scores.close();
             }
         }
     }
