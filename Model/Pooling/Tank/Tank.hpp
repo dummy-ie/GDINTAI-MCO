@@ -62,6 +62,7 @@ namespace models {
             virtual void onCollisionEnter(GameObject* pGameObject);
             virtual void onCollisionContinue(GameObject* pGameObject);
             virtual void onCollisionExit(GameObject* pGameObject);
+            void collisionReset();
 
         public:
             sf::RectangleShape* getRectangle();
