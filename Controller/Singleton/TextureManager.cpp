@@ -54,7 +54,7 @@ void TextureManager::loadWallFolder() {
     this->mapTexture[AssetType::STONE].push_back(pTexture);
 
     pTexture = new sf::Texture();
-    pTexture->loadFromFile("View/Image/brick.png");
+    pTexture->loadFromFile("View/Image/brick_32.png");
     this->mapTexture[AssetType::BRICK].push_back(pTexture);
 
     pTexture = new sf::Texture();

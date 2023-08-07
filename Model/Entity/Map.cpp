@@ -66,7 +66,7 @@ void Map::initialize()
                 // spawn a wall at x = i * nOffset and y = j * nOffset
             case 2:
             {
-                for (size_t k = 0; k < 2; k++)
+                /*for (size_t k = 0; k < 2; k++)
                 {
                     for (size_t l = 0; l < 2; l++)
                     {
@@ -80,8 +80,15 @@ void Map::initialize()
                         this->attachChild(pBrick);
                         // std::cout << "created a wall" << std::endl;
                     }
-                }
+                }*/
+                AssetType EType = AssetType::BRICK;
+                AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
 
+                Brick *pBrick = new Brick(
+                    "Brick Wall", 
+                    pTexture, 
+                    sf::Vector2f(j * nOffset + 16, i * nOffset + 16)); 
+                this->attachChild(pBrick);
                 break;
             }
                 // spawn a base at x = i * nOffset and y = j * nOffset
