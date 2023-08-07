@@ -68,13 +68,11 @@ void EnemyAI::perform() {
                 std::vector<int> vecBasePosition = MapManager::getInstance()->getClosestTile(pBase->getSprite()->getPosition().x,pBase->getSprite()->getPosition().y);
                 Point pointBase = {vecBasePosition[0],vecBasePosition[1]};
                 //std::cout<<vecBasePosition[0]<<" "<<vecBasePosition[1]<<std::endl;
-                //vecPoint.push_back(pointBase);
+                vecPoint.push_back(pointBase);
             }
 
             std::vector<std::vector<int>> vecMap = MapManager::getInstance()->getMap();
             std::vector<Point> vecPath = findPath(vecMap, pointStart, pointEnd);
-
-            
 
             float fOffset = (this->fSpeed + pOwner->getBonusSpeed()) * this->tDeltaTime.asSeconds();
 
@@ -189,13 +187,10 @@ void EnemyAI::perform() {
                 }
                 
                 if((bXSame && !bYSame)|| (bYSame && !bXSame)) {
-                    //this->getOwner()->getSprite()->setPosition(100, 100);
-                    // not working
                     ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY_TANK_BULLET)->requestPoolable();
-                    //std::cout << "AI wants to shoot" << std::endl;
                 }
                 
-                //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
+                std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
                 //std::cout << "Next tile value is " << vecMap[vecPath[1].y][vecPath[1].x] << std::endl;
                 //std::cout << "AI headed to " << vecPath[1].x << " " << vecPath[1].y << std::endl << std::endl;
                 //std::cout << std::endl;
@@ -243,22 +238,16 @@ void EnemyAI::perform() {
                     if(nPrevY != pointPath.y){
                         bYSame = false;
                     }
-                    //std::cout << "Path " << i << ": " << pointPath.x << " " << pointPath.y << std::endl;
                     i++;
                     nPrevX = pointPath.x;
                     nPrevY = pointPath.y;
                 }
                 
                 if((bXSame && !bYSame)|| (bYSame && !bXSame)) {
-                    //this->getOwner()->getSprite()->setPosition(100, 100);
-                    // not working
-                    //ObjectPoolManager::getInstance()->getPool(PoolTag::TANK_BULLET)->requestPoolable();
-                    //std::cout << "AI wants to shoot" << std::endl;
+                    ObjectPoolManager::getInstance()->getPool(PoolTag::ENEMY_TANK_BULLET)->requestPoolable();
                 }
             }
             else{
-                //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;
-                //std::cout << "AI going to " << pointStart.x << " " << pointStart.y << std::endl;
                 std::cout << "[AI] : No path." << std::endl << std::endl;
                 this->fTimeStuck += this->tDeltaTime.asSeconds();
                 switch(this->nPrevMove){
@@ -281,14 +270,11 @@ void EnemyAI::perform() {
                     case 1:
                         this->getOwner()->getSprite()->setRotation(270.0f);
                         pCollider->setOffset(sf::FloatRect(0.f, 4.f, -24.f, -8.f));
-                        // ((Player*)(this->getOwner()))->pRectangle->setRotation(270.0f);
                         if (pOwner->isLeftBounds())
                         {
                             this->getOwner()->getSprite()->move(-fOffset, 0.0f);
-                            // pOwner->moveBounds(-fOffset, 0.0f);
                             pOwner->getRectangle()->move(-fOffset, 0.0f);
                             this->fTimeStuck += this->tDeltaTime.asSeconds();
-                            //this->nPrevMove = 0;
                         }
                         else{
                             this->fTimeStuck = 0;
@@ -300,10 +286,8 @@ void EnemyAI::perform() {
                         if (pOwner->isTopBounds())
                         {
                             this->getOwner()->getSprite()->move(0.0f, -fOffset);
-                            // pOwner->moveBounds(0.0f, -fOffset);
                             pOwner->getRectangle()->move(0.0f, -fOffset);
                             this->fTimeStuck += this->tDeltaTime.asSeconds();
-                            //this->nPrevMove = 3;
                         }   
                         else{
                             this->fTimeStuck = 0;
@@ -312,14 +296,11 @@ void EnemyAI::perform() {
                     case 3:
                         this->getOwner()->getSprite()->setRotation(180.0f);
                         pCollider->setOffset(sf::FloatRect(4.f, 24.f, -8.f, -24.f));
-                        // ((Player*)(this->getOwner()))->pRectangle->setRotation(180.0f);
                         if (pOwner->isBottomBounds())
                         {
                             this->getOwner()->getSprite()->move(0.0f, fOffset);
-                            // pOwner->moveBounds(0.0f, fOffset);
                             pOwner->getRectangle()->move(0.0f, fOffset);
                             this->fTimeStuck += this->tDeltaTime.asSeconds();
-                            //this->nPrevMove = 2;
                         }
                         else{
                             this->fTimeStuck = 0;

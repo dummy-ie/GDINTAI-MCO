@@ -39,7 +39,8 @@ PoolableObject* GameObjectPool::requestPoolable() {
         this->setEnabled(pPoolableObject, true);
     }
     else
-        std::cout << "[ERROR] : GameObjectPool::requestPoolable() FAILED due to no available objects." << std::endl;
+        if(ERROR_LOGGING)
+            std::cout << "[ERROR] : GameObjectPool::requestPoolable() FAILED due to no available objects." << std::endl;
 
     return pPoolableObject;
 }
@@ -52,7 +53,8 @@ std::vector<PoolableObject*> GameObjectPool::requestPoolableBatch(int nRequestSi
             vecPoolableBatch.push_back(this->requestPoolable());
     }
     else
-        std::cout << "[ERROR] : Not enough poolable objects. REQUESTED : " << nRequestSize << " | AVAILABLE : " << this->vecAvailableObject.size() << std::endl;
+        if(ERROR_LOGGING)
+            std::cout << "[ERROR] : Not enough poolable objects. REQUESTED : " << nRequestSize << " | AVAILABLE : " << this->vecAvailableObject.size() << std::endl;
 
     return vecPoolableBatch;
 }

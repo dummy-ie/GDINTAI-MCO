@@ -2,6 +2,7 @@
 #define CONFIGS_SETTINGS_HPP
 
 const bool COLLIDER_VISIBILITY = false;
+const bool ERROR_LOGGING = false;
 
 const int SCREEN_WIDTH  = 416;
 const int SCREEN_HEIGHT = 416;

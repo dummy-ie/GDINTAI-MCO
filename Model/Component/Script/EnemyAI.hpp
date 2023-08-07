@@ -153,6 +153,100 @@ namespace ai {
 
         return vecPath;
     }
+
+    vector<Point> getPathFromNode(Node* endNode) {
+        vector<Point> path;
+        Node* currentNode = endNode;
+
+        while (currentNode != nullptr) {
+            path.push_back(currentNode->pointPosition);
+            currentNode = currentNode->pParent;
+        }
+
+        reverse(path.begin(), path.end()); // Reverse the path to get correct order
+
+        return path;
+    }
+
+    vector<Point> findPath(vector<vector<int>>& vecBoard, vector<Point>& startPoints,Point pointEnd) {
+    int nRows = vecBoard.size();
+    int nCols = vecBoard[0].size();
+    
+    // Priority queue for open nodes
+    priority_queue<Node*, vector<Node*>, CompareNodes> queNode;
+
+    vector<vector<Node*>> vecNodes(nRows, vector<Node*>(nCols, nullptr));
+    vector<vector<bool>> vecVisited(nRows, vector<bool>(nCols, false));
+
+    vector<vector<Point>> vecPaths;
+
+    // Loop through each start point
+    for (const Point& pointStart : startPoints) {
+        int h = calculateHeuristic(pointStart, pointEnd, vecBoard);
+        Node* nodeStart = new Node(pointStart, 0, h, nullptr);
+        vecNodes[pointStart.y][pointStart.x] = nodeStart;
+        queNode.push(nodeStart);
+        vecVisited[pointStart.y][pointStart.x] = true;
+
+        while (!queNode.empty()) {
+            Node* nodeCurrent = queNode.top();
+            queNode.pop();
+
+            Point pointCurrent = nodeCurrent->pointPosition;
+            if (pointCurrent.x == pointEnd.x && pointCurrent.y == pointEnd.y) {
+                vecPaths.push_back(getPathFromNode(nodeCurrent));
+                break;
+            }
+
+            vecVisited[pointCurrent.y][pointCurrent.x] = true;
+
+            vector<Point> vecNeighbors = getNeighbors(pointCurrent, nRows, nCols, vecBoard, vecVisited);
+            for (Point pointNeighbor : vecNeighbors) {
+                int newX = pointNeighbor.x;
+                int newY = pointNeighbor.y;
+
+                int g = nodeCurrent->g + 1; // cost to move to the neighbor is always 1
+                int h = calculateHeuristic(pointNeighbor, pointEnd, vecBoard);
+                int f = g + h;
+
+                Node* nodeNeighbor = vecNodes[newX][newY];
+                if (nodeNeighbor == nullptr) {
+                    nodeNeighbor = new Node(pointNeighbor, g, h, nodeCurrent);
+                    vecNodes[newY][newX] = nodeNeighbor;
+                    queNode.push(nodeNeighbor);
+                } 
+                else if (g < nodeNeighbor->g) {
+                    nodeNeighbor->g = g;
+                    nodeNeighbor->f = f;
+                    nodeNeighbor->pParent = nodeCurrent;
+                }
+            }
+        }
+
+        // Clear visited for the next iteration
+        for (int y = 0; y < nRows; y++) {
+            fill(vecVisited[y].begin(), vecVisited[y].end(), false);
+        }
+    }
+
+    // Find the shortest path among all paths
+    if (vecPaths.empty()) {
+        return {}; // No valid paths found
+    }
+
+    vector<Point> shortestPath = vecPaths[0];
+    int shortestPathLength = shortestPath.size();
+    
+    for (const vector<Point>& path : vecPaths) {
+        int pathLength = path.size();
+        if (pathLength < shortestPathLength) {
+            shortestPath = path;
+            shortestPathLength = pathLength;
+        }
+    }
+
+    return shortestPath;
+}
 }
 
 namespace components {

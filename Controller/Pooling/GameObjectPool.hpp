@@ -2,6 +2,9 @@
 #define CONTROLLERS_GAME_OBJECT_POOL_HPP
 
 #include "iostream"
+
+#include "../../Config/Settings.hpp"
+
 #include "../../Model/Enum/EnumPoolTag.hpp"
 #include "../../Model/GameObject.hpp"
 #include "../../Model/Pooling/PoolableObject.hpp"
