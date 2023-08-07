@@ -27,6 +27,7 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
     {
         std::cout << "bullet hit a brick wall" << std::endl;
         PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+        PhysicsManager::getInstance()->cleanUp();
         ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
     }
 }
