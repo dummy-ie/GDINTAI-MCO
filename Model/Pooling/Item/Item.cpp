@@ -71,11 +71,11 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
             switch(this->EType){
                 case ItemType::SPEED_UP:
                     std::cout << "speed" << std::endl;
-                    pTank->speed(30.f);
+                    pTank->speed(BONUS_SPEED);
                     break;
                 case ItemType::SPEED_DOWN:
                     std::cout << "speedn't" << std::endl;
-                    pTank->speed(-30.f);
+                    pTank->speed(-BONUS_SPEED);
                     break;
                 case ItemType::MINES:
                     std::cout << "mines" << std::endl;

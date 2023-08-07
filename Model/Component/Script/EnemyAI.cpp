@@ -4,7 +4,7 @@ using namespace ai;
 using namespace components;
 
 EnemyAI::EnemyAI(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpeed = 80.f;
+    this->fSpeed = TANK_SPEED;
     this->fFrameInterval = 20.f;
     this->fTicks = 0.0f;
 

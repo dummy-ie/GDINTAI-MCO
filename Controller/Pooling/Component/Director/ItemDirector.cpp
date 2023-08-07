@@ -3,7 +3,7 @@
 using namespace directors;
 
 ItemDirector::ItemDirector(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpawnInterval = 5.0f;
+    this->fSpawnInterval = ITEM_SPAWNRATE;
     this->fTicks = 10.0f;
 
     this->createItem(PoolTag::ITEM, 5);
@@ -31,6 +31,6 @@ void ItemDirector::perform() {
     if(this->fTicks > this->fSpawnInterval) {
         this->fTicks = 0.0f;
         this->spawn();
-        this->fSpawnInterval = 5.f + (std::rand() % 6);
+        this->fSpawnInterval = ITEM_SPAWNRATE + (std::rand() % 6);
     }
 }
