@@ -2,7 +2,9 @@
 
 using namespace models;
 
-Player::Player(PoolTag ETag, std::string strName, AnimatedTexture* pTexture) : Tank(ETag, strName, pTexture) {}
+Player::Player(PoolTag ETag, std::string strName, AnimatedTexture* pTexture) : Tank(ETag, strName, pTexture) {
+    this->isDead = false;
+}
 
 Player::~Player() {}
 
@@ -64,6 +66,23 @@ void Player::initialize() {
     ObjectPoolManager::getInstance()->registerObjectPool(pBulletPool);
 }
 
+void Player::randomizePosition() {
+    Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
+    if(!pMap->vecPlayerBase.empty()){
+        int nRand;
+        if(pMap->vecPlayerBase.size() == 1){
+            nRand = 0;
+        }
+        else{
+            nRand = std::rand() % (pMap->vecPlayerBase.size()-1);
+        }
+        this->pSprite->setPosition(pMap->vecPlayerBase[nRand]->getSprite()->getPosition());
+    }
+    else{
+        this->pSprite->setPosition(this->vecSpawn);
+    }
+}
+
 void Player::onActivate()
 {   
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
@@ -81,10 +100,27 @@ void Player::onActivate()
     else{
         this->pSprite->setPosition(this->vecSpawn);
     }
+    this->isDead = false;
 }
 
 void Player::onRelease() {
     PhysicsManager::getInstance()->untrackCollider(this->pCollider);
+
+    Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
+    if(!pMap->vecPlayerBase.empty()){
+        int nRand;
+        if(pMap->vecPlayerBase.size() == 1){
+            nRand = 0;
+        }
+        else{
+            nRand = std::rand() % (pMap->vecPlayerBase.size()-1);
+        }
+        this->pSprite->setPosition(pMap->vecPlayerBase[nRand]->getSprite()->getPosition());
+    }
+    else{
+        this->pSprite->setPosition(this->vecSpawn);
+    }
+    this->isDead = true;
 }
 
 PoolableObject *Player::clone() {

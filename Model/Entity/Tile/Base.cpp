@@ -57,6 +57,11 @@ void Base::damage() {
     }
     Map* pMap = (Map*)GameObjectManager::getInstance()->findObjectByName("Map");
     pMap->removeBase(this);
+
+    Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
+    if(pPlayer){
+        pPlayer->randomizePosition();
+    }
 }
 
 void Base::randomizePosition(){

@@ -105,7 +105,7 @@ void Map::initialize()
                     TeamTag::PLAYER); 
                 this->attachChild(pBase);
                 this->vecPlayerBase.push_back(pBase);
-                std::cout << "created player base" << std::endl;
+                //std::cout << "created player base" << std::endl;
                 break;
             }
                 
@@ -120,7 +120,7 @@ void Map::initialize()
                     TeamTag::ENEMY); 
                 this->attachChild(pBase);
                 this->vecEnemyBase.push_back(pBase);
-                std::cout << "created enemy base" << std::endl;
+                //std::cout << "created enemy base" << std::endl;
                 break;
             }
             default:

@@ -54,6 +54,7 @@ void Item::onRelease() {
         MapManager::getInstance()->setMap(vecPosition[0],vecPosition[1],3);
         this->pSprite->setPosition(-100,-100);
     }
+    PhysicsManager::getInstance()->untrackCollider(this->pCollider);
     std::cout << "Item removed" << std::endl;
 }
 
@@ -62,7 +63,6 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
         Collider* pCollider = (Collider*)pGameObject->findComponentByName(pGameObject->getName() + " Collider");
         pCollider->setCollided(this->pCollider, false);
         // this->pCollider->setCleanUp(true);
-        PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         PhysicsManager::getInstance()->cleanUp();
         
         Tank* pTank = dynamic_cast<Tank*>(pGameObject);
@@ -104,18 +104,12 @@ void Item::onCollisionEnter(GameObject* pGameObject) {
             }
             ObjectPoolManager::getInstance()->getPool(PoolTag::ITEM)->releasePoolable(this);
         }   
-        
     }
 }
 
-void Item::onCollisionContinue(GameObject* pGameObject) {
-    pCollider->setCollided(this->pCollider, false);
-}
+void Item::onCollisionContinue(GameObject* pGameObject) {}
 
-void Item::onCollisionExit(GameObject* pGameObject) {
-    pCollider->setCollided(this->pCollider, false);
-    PhysicsManager::getInstance()->cleanUp();
-}
+void Item::onCollisionExit(GameObject* pGameObject) {}
 
 ItemType Item::getType(){
     return this->EType;

@@ -5,6 +5,8 @@
 
 #include "../Border/Border.hpp"
 
+#include "../../Pooling/Tank/Player.hpp"
+
 #include "../../Enum/EnumTeamTag.hpp"
 
 #include "../../Component/Script/Interface/Damageable.hpp"
