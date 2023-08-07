@@ -11,11 +11,13 @@ namespace views {
     using namespace controllers;
     using namespace systems;
     class ScoreView : public View {
-        private:
+        public:
             int nPlayerKills;
             int nPlayerBaseKills;
             int nEnemyKills;
             int nEnemyBaseKills;
+
+        private:
             Text* txtPlayerKill;
             Text* txtPlayerBase;
             Text* txtEnemyKill;

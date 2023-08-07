@@ -1,7 +1,10 @@
 #ifndef VIEWS_LEADERBOARD_SCREEN_HPP
 #define VIEWS_LEADERBOARD_SCREEN_HPP
 
+#include <vector>
+#include <iomanip>
 #include <fstream>
+#include <sstream>
 
 #include "../View.hpp"
 #include "../Text.hpp"
