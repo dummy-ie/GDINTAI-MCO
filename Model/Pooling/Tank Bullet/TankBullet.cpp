@@ -78,11 +78,11 @@ void TankBullet::onCollisionEnter(GameObject* pGameObject) {
         this->pMovementComponent->stop();
         PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         PhysicsManager::getInstance()->cleanUp();
-        if (pGameObject->getName().find("Enemy Tank") != std::string::npos) {
+        if (pGameObject->getName().find("Enemy Tank") != std::string::npos && !(pGameObject->getName().find("Bullet") != std::string::npos)) {
             ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
             pScoreView->incrementPlayerKill();
         }
-        if (pGameObject->getName().find("Player Tank") != std::string::npos) {
+        if (pGameObject->getName().find("Player Tank") != std::string::npos && !(pGameObject->getName().find("Bullet") != std::string::npos)) {
             ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
             pScoreView->incrementEnemyKill();
         }
