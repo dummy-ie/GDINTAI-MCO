@@ -70,7 +70,7 @@ void TankBullet::onRelease() {
 
 void TankBullet::onCollisionEnter(GameObject* pGameObject) {
     if((pGameObject->getName().find("Tank") != std::string::npos && pGameObject->getName() != this->pTank->getName())||
-        pGameObject->getName().find("Border") != std::string::npos) {
+        pGameObject->getName().find("Border") != std::string::npos || pGameObject->getName().find("Based") != std::string::npos) {
         Collider* pCollider = (Collider*)pGameObject->findComponentByName(pGameObject->getName() + " Collider");
         pCollider->setCollided(this->pCollider, false);
         // this->pCollider->setCleanUp(true);

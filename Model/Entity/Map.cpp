@@ -92,7 +92,35 @@ void Map::initialize()
                 break;
             }
                 // spawn a base at x = i * nOffset and y = j * nOffset
+            case 4:
+            {
+                AssetType EType = AssetType::BASE;
+                AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
+
+                Base *pBase = new Base(
+                    "Player Base", 
+                    pTexture, 
+                    sf::Vector2f(j * nOffset + 16, i * nOffset + 16),
+                    TeamTag::PLAYER); 
+                //this->attachChild(pBase);
+                GameObjectManager::getInstance()->addObject(pBase);
+                std::cout << "created player base" << std::endl;
                 break;
+            }
+                
+            case 5:{
+                AssetType EType = AssetType::BASE;
+                AnimatedTexture *pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(EType));
+
+                Base *pBase = new Base(
+                    "Enemy Base", 
+                    pTexture, 
+                    sf::Vector2f(j * nOffset + 16, i * nOffset + 16),
+                    TeamTag::ENEMY); 
+                //this->attachChild(pBase);
+                GameObjectManager::getInstance()->addObject(pBase);
+                break;
+            }
             default:
                 break;
             }

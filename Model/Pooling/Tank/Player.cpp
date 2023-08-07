@@ -67,7 +67,14 @@ void Player::initialize() {
 void Player::onActivate()
 {   
     PhysicsManager::getInstance()->trackCollider(this->pCollider);
-    this->pSprite->setPosition(this->vecSpawn);
+    std::vector<GameObject*> vecObjects = GameObjectManager::getInstance()->findAllObjectsByName("Player Base");
+    if(!vecObjects.empty()){
+        int nRand = std::rand() % (vecObjects.size()-1);
+        this->pSprite->setPosition(vecObjects[nRand]->getSprite()->getPosition());
+    }
+    else{
+        this->pSprite->setPosition(this->vecSpawn);
+    }
 }
 
 void Player::onRelease() {

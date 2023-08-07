@@ -5,6 +5,8 @@
 
 #include "../Border/Border.hpp"
 
+#include "../../Enum/EnumTeamTag.hpp"
+
 #include "../../Component/Script/Interface/Damageable.hpp"
 #include "../../Component/Script/Damager.hpp"
 
@@ -14,9 +16,10 @@ namespace models {
             sf::Color CColor;
             sf::RectangleShape* pRectangle;
             Damager* pDamagerComponent;
+            TeamTag ETeam;
             
         public:
-            Base(std::string strName, AnimatedTexture* pTexture);
+            Base(std::string strName, AnimatedTexture* pTexture, sf::Vector2f CPosition, TeamTag ETeam);
             ~Base();
 
         public:
@@ -24,6 +27,9 @@ namespace models {
 
         public:
             void damage();
+            void randomizePosition();
+
+            TeamTag getTeam();
     };
 }
 

@@ -16,8 +16,6 @@ void TankDirector::createPlayer(PoolTag ETag, int nPoolSize) {
     AnimatedTexture* pTexture = new AnimatedTexture(TextureManager::getInstance()->getTexture(AssetType::PLAYER_TANK));
     Player* pPlayer = new Player(ETag, "Player Tank", pTexture);
 
-    
-    
     GameObjectPool* pGameObjectPool = new GameObjectPool(ETag, nPoolSize, pPlayer);
     pGameObjectPool->initialize();
     ObjectPoolManager::getInstance()->registerObjectPool(pGameObjectPool);
