@@ -43,7 +43,6 @@ void TitleScreen::onClick(Button* pButton) {
     {
         this->pExit->setColor(sf::Color::White);
     }
-    
 }
 
 void TitleScreen::onHover(Button *pButton)
@@ -58,8 +57,14 @@ void TitleScreen::onHover(Button *pButton)
 
 void TitleScreen::onRelease(Button* pButton) {
     if (pButton->getName().find("Start Button") != std::string::npos) {
-        std::cout << "[GAME START]" << std::endl;
-        SceneManager::getInstance()->loadScene(SceneTag::GAME_SPACE);
+        std::cout << "[MAP SELECT START]" << std::endl;
+        // SceneManager::getInstance()->loadScene(SceneTag::GAME_SPACE);
+        if (ViewManager::getInstance()->getView(ViewTag::MAP_SELECT_SCREEN))
+            ViewManager::getInstance()->getView(ViewTag::MAP_SELECT_SCREEN)->setEnabled(true);
+        else
+            std::cout << "map select screen doesn't exist" << std::endl;
+        
+        this->setEnabled(false);
     }
 
     if (pButton->getName().find("Exit Button") != std::string::npos) {

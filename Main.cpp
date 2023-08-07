@@ -65,6 +65,7 @@
 #include "View/View.cpp"
 
 #include "View/Screen/TitleScreen.cpp"
+#include "View/Screen/MapSelectionScreen.cpp"
 
 #include "Controller/Pooling/GameObjectPool.cpp"
 #include "Controller/Pooling/Component/Director/TankDirector.cpp"

@@ -12,8 +12,8 @@ void GameMenu::onLoadResources() {
 
 void GameMenu::onLoadObjects() {
     this->createBackground();
-
-    this->createUserInterface();
+    this->createMenuInterface();
+    this->createMapSelectionInterface();
 }
 
 void GameMenu::onUnloadResources() {
@@ -28,7 +28,13 @@ void GameMenu::createBackground() {
     this->registerObject(pBackground);
 }
 
-void GameMenu::createUserInterface() {
+void GameMenu::createMenuInterface() {
     TitleScreen* pTitleScreen = new TitleScreen("Title Screen");
     this->registerObject(pTitleScreen);
+}
+
+void GameMenu::createMapSelectionInterface()
+{
+    MapSelectionScreen* pMapSelectionScreen = new MapSelectionScreen("Map Selection Screen");
+    this->registerObject(pMapSelectionScreen);
 }
