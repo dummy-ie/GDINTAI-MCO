@@ -8,16 +8,18 @@
 #include "../../Component/Input/TankInput.hpp"
 #include "../../Component/Script/TankControls.hpp"
 #include "../../Component/Script/Killable.hpp"
+#include "../../Component/Script/Speeder.hpp"
 #include "../../Component/Physics/Collider.hpp"
 
 #include "../../Component/Script/Interface/Damageable.hpp"
+#include "../../Component/Script/Interface/Speedable.hpp"
 
 #include "../../Component/Physics/Interface/CollisionListener.hpp"
 
 namespace models {
     using namespace components;
     using namespace interfaces;
-    class Tank : public PoolableObject, public CollisionListener, public Damageable {
+    class Tank : public PoolableObject, public CollisionListener, public Damageable, public Speedable {
         protected:
             //std::vector<Base*> vecBase;
             sf::FloatRect COffset;
@@ -30,6 +32,10 @@ namespace models {
             sf::RectangleShape* pRectangle;
             Killable* pKillableComponent;
             Damager* pDamagerComponent;
+            Speeder* pSpeederComponent;
+            Collider* pCollider;
+
+            float fBonusSpeed;
 
         public:
             Tank(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
@@ -49,6 +55,9 @@ namespace models {
             bool isBottomBounds();
             bool isRightBounds();
 
+            void setBonusSpeed(float fBonusSpeed);
+            float getBonusSpeed();
+
         public:
             virtual void onCollisionEnter(GameObject* pGameObject);
             virtual void onCollisionContinue(GameObject* pGameObject);
@@ -61,6 +70,8 @@ namespace models {
 
         public:
             virtual void damage();
+            void speed(float fBonusSpeed);
+            void unspeed();
     };
 }
 

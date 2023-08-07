@@ -13,7 +13,11 @@ enum class AssetType : int {
     BRICK,
     BUSH,
 
-    BULLET_EXPLOSION
+    BULLET_EXPLOSION,
+
+    ITEM,
+
+    BASE
 };
 
 #endif

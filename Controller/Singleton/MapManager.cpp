@@ -2,6 +2,30 @@
 
 using namespace controllers;
 
+std::vector<int> MapManager::getRandomTile(int nTile){
+    int nRow = this->vecMap.size();
+    int nCol = (nRow > 0) ? this->vecMap[0].size() : 0;
+    if(nRow == 0){
+        return {-1,-1};
+    }
+
+    std::vector<std::vector<int>> vecPositions;
+    for (int i = 0; i < nRow; ++i) {
+        for (int j = 0; j < nCol; ++j) {
+            if (this->vecMap[i][j] == nTile) {
+                vecPositions.push_back({j, i});
+            }
+        }
+    }
+
+    if(vecPositions.empty()){
+        return {-1,-1};
+    }
+
+    int nRand = std::rand() % vecPositions.size();
+    return vecPositions[nRand];
+}
+
 //get nearest tile from screen coordinates, doesnt clamp values so beware of out of bounds
 std::vector<int> MapManager::getClosestTile(float x, float y){
     float tileCenterX, tileCenterY;

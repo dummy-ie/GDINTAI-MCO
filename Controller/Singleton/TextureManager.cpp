@@ -6,6 +6,8 @@ void TextureManager::loadAll() {
     this->loadBackgroundFolder();
     this->loadTankFolder();
     this->loadWallFolder();
+    this->loadItemFolder();
+    this->loadBaseFolder();
 }
 
 void TextureManager::loadBackgroundFolder() {
@@ -58,6 +60,26 @@ void TextureManager::loadWallFolder() {
     pTexture = new sf::Texture();
     pTexture->loadFromFile("View/Image/bush.png");
     this->mapTexture[AssetType::BUSH].push_back(pTexture);
+}
+
+void TextureManager::loadItemFolder() {
+    sf::Texture* pTexture = NULL;
+
+    for(int i = 0; i < 4 ; i++){
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/item_" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::ITEM].push_back(pTexture);
+    }
+}
+
+void TextureManager::loadBaseFolder() {
+    sf::Texture* pTexture = NULL;
+
+    for(int i = 0; i < 2 ; i++){
+        pTexture = new sf::Texture();
+        pTexture->loadFromFile("View/Image/base_" + std::to_string(i) + ".png");
+        this->mapTexture[AssetType::BASE].push_back(pTexture);
+    }
 }
 
 std::vector<sf::Texture*> TextureManager::getTexture(AssetType EType) {

@@ -3,7 +3,7 @@
 using namespace components;
 
 TankControls::TankControls(std::string strName) : Component(strName, ComponentType::SCRIPT) {
-    this->fSpeed = 80.f;
+    this->fSpeed = TANK_SPEED;
     this->fFrameInterval = 20.f;
     this->fTicks = 0.0f;
 }
@@ -17,7 +17,7 @@ void TankControls::perform() {
         std::cout << "[ERROR] : One or more dependencies are missing." << std::endl;
     }
     else {
-        float fOffset = this->fSpeed * this->tDeltaTime.asSeconds();
+        float fOffset = (this->fSpeed + pOwner->getBonusSpeed()) * this->tDeltaTime.asSeconds();
 
         if (pInput->isUp() || pInput->isDown() || pInput->isRight() || pInput->isLeft()) {
             this->fTicks += this->tDeltaTime.asSeconds();
