@@ -39,6 +39,14 @@ void Border::onCollisionEnter(GameObject* pGameObject) {
         PhysicsManager::getInstance()->untrackCollider(this->pCollider);
         PhysicsManager::getInstance()->cleanUp();
         ((Damager*)this->getParent()->findComponentByName(this->getParent()->getName() + " Damager"))->start();
+        if (this->getName().find("Player Base") != std::string::npos && pGameObject->getName().find("Enemy Tank") != std::string::npos) {
+            ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
+            pScoreView->incrementEnemyBaseKill();
+        }
+        if (this->getName().find("Enemy Base") != std::string::npos && this->strName != "Player Tank") {
+            ScoreView* pScoreView = (ScoreView*)ViewManager::getInstance()->getView(ViewTag::SCORE_VIEW);
+            pScoreView->incrementPlayerBaseKill();
+        }
     }
 
     /*if ((this->getName().find("Enemy Base") != std::string::npos 
