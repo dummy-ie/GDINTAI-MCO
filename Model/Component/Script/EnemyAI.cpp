@@ -8,7 +8,6 @@ EnemyAI::EnemyAI(std::string strName) : Component(strName, ComponentType::SCRIPT
     this->fFrameInterval = 0.01f;
     this->fTicks = 0.0f;
     this->fTimeStuck = 0.f;
-    this->fTimeWander = 99999.f;
 
     this->nPrevMove = -1;
 
@@ -51,12 +50,6 @@ void EnemyAI::perform() {
             this->nY = vecPosition[1];
             pOwner->collisionReset();
             std::cout<<"unstucking ai"<<std::endl;
-        }
-
-        if(this->fTimeWander > AI_WANDER_TIMER){
-            this->fTimeWander = 0;
-            std::vector<int> wanderPosition = MapManager::getInstance()->getRandomTile(0);
-            this->wanderPoint = {wanderPosition[0],wanderPosition[1]};
         }
 
         //std::cout << "AI location " << this->nX << " " << this->nY << std::endl;

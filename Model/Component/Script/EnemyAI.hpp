@@ -53,10 +53,9 @@ namespace ai {
     int calculateHeuristic(Point pointCurrent, Point pointEnd, vector<vector<int>>& vecBoard) {
         int value = vecBoard[pointCurrent.y][pointCurrent.x];
         if (value == 3) {
-            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) - 3;
-        } else if (value == 4) {
-            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) + 10;
-        } else {
+            return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y) - 10;
+        } 
+        else {
             return abs(pointCurrent.x - pointEnd.x) + abs(pointCurrent.y - pointEnd.y);
         }
     }
@@ -175,12 +174,10 @@ namespace components {
     using namespace ai;
     class EnemyAI : public Component {
         private:
-            Point wanderPoint;
             float fSpeed;
             float fFrameInterval;
             float fTicks;
             float fTimeStuck;
-            float fTimeWander;
 
             int nPrevMove;
 
