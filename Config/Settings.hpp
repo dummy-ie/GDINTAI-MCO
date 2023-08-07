@@ -15,4 +15,6 @@ const float ITEM_SPAWNRATE = 15.f;
 const float TANK_SPEED = 80.f;
 const float BONUS_SPEED = 20.f;
 
+const float AI_STUCK_TIMER = 5.f;
+
 #endif

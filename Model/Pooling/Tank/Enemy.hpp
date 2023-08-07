@@ -12,6 +12,9 @@
 
 namespace models {
     class Enemy : public Tank {
+        protected:
+            EnemyAI* pEnemyAIComponent;
+
         public:
             Enemy(PoolTag ETag, std::string strName, AnimatedTexture* pTexture);
             ~Enemy();
