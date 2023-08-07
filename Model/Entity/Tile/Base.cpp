@@ -60,7 +60,8 @@ void Base::damage() {
 
     Player* pPlayer = (Player*)GameObjectManager::getInstance()->findObjectByName("Player Tank");
     if(pPlayer){
-        pPlayer->randomizePosition();
+        if(pPlayer->isDead)
+            pPlayer->randomizePosition();
     }
 }
 
