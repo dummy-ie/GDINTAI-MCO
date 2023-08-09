@@ -77,7 +77,7 @@ void Timer::perform()
 void Timer::reset()
 {
     this->bIsCounting = true;
-    this->fTicks = 30.0f;
+    this->fTicks = 120.0f;
     // this->fUpdateTicks = 0.0f;
 }
 
